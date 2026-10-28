@@ -1,0 +1,4860 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Campus eArena | Campus Gaming & Tournament Rankings</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+<style>
+/* Campus eArena usability refinements */
+.arena-count-badge{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;margin-left:7px;border-radius:999px;background:#8feaff;color:#071426;font-size:11px;font-weight:800;line-height:1}
+.admin-accordion{border:1px solid var(--border,#23415f);border-radius:14px;margin:12px 0;overflow:hidden;background:rgba(7,20,38,.72)}
+.admin-accordion>summary{list-style:none;cursor:pointer;padding:16px 18px;font-weight:800;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(17,43,68,.78)}
+.admin-accordion>summary::-webkit-details-marker{display:none}
+.admin-accordion>summary:after{content:'＋';font-size:20px;color:#8feaff}
+.admin-accordion[open]>summary:after{content:'−'}
+.admin-accordion-content{padding:14px}
+#adminDashboardTab{white-space:normal}
+#navAvatar{object-fit:cover}
+.notification-delete-btn{margin:8px 0 0 8px!important;background:#632d3b!important;border:1px solid #b65a70!important;color:#fff!important}
+
+/* Campus eArena welcome, consistent account panel, icon and mobile refinements */
+.arena-welcome{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:24px;background:radial-gradient(ellipse at 50% 35%,#163c5d 0%,#071426 56%,#030912 100%);color:#f4f9ff;transition:opacity .35s ease,visibility .35s ease}
+.arena-welcome.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
+.welcome-content{position:relative;z-index:2;width:min(100%,620px);text-align:center;padding:clamp(24px,5vw,52px);border:1px solid rgba(143,234,255,.25);border-radius:28px;background:rgba(8,25,43,.76);box-shadow:0 25px 90px rgba(0,0,0,.4);backdrop-filter:blur(14px)}
+.welcome-emblem{width:110px;height:96px;margin:0 auto 18px;filter:drop-shadow(0 0 22px rgba(143,234,255,.25))}.welcome-emblem svg{width:100%;height:100%}.welcome-kicker{font-size:11px;letter-spacing:.22em;font-weight:800;color:#8feaff}.welcome-content h1{font-family:Orbitron,sans-serif;font-size:clamp(27px,6vw,48px);line-height:1.15;margin:12px 0}.welcome-content h1 span{color:#8feaff}.welcome-tagline{font-size:clamp(17px,3vw,23px);font-weight:700;margin:12px 0}.welcome-copy{color:#b8cbe0;line-height:1.7}.welcome-enter{margin:22px auto 12px;min-height:48px;padding:13px 24px;display:inline-flex;gap:16px;align-items:center;justify-content:center}.welcome-foot{display:block;font-size:10px;letter-spacing:.25em;color:#9db5cb;margin-top:12px}.welcome-orbit{position:absolute;border:1px solid rgba(143,234,255,.13);border-radius:50%;width:min(90vw,800px);aspect-ratio:1}.orbit-two{width:min(65vw,560px);border-color:rgba(143,234,255,.12)}
+.admin-accordion>summary .summary-label{display:flex;align-items:center;gap:10px;min-width:0}.admin-accordion>summary .menu-icon{flex:0 0 21px;margin:0}.account-dropdown{box-sizing:border-box;width:min(92vw,390px);max-width:calc(100vw - 24px);max-height:min(78vh,720px);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable}.account-dropdown *{box-sizing:border-box}.dashboard-panel{min-width:0}.admin-tools-grid,.dashboard-layout,.player-overview-grid{min-width:0}.admin-tool-card input,.admin-tool-card select,.admin-tool-card textarea{max-width:100%;min-width:0}.dashboard-tab{display:flex;align-items:center;gap:9px}.dashboard-tab .menu-icon{flex:0 0 20px}.player-overview-card .overview-icon{display:flex;align-items:center;justify-content:center;min-height:30px}.player-overview-card .overview-icon .menu-icon{width:26px;height:26px}.menu-icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+@media(max-width:760px){.navbar{flex-wrap:wrap;gap:12px;padding:12px 16px}.navbar nav{order:3;width:100%;display:flex;gap:8px;overflow-x:auto;white-space:nowrap;padding:4px 0}.navbar nav a{font-size:12px;flex:0 0 auto}.logo h2{font-size:16px}.nav-buttons{margin-left:auto}.account-dropdown{position:fixed;right:12px;top:74px;left:auto;width:min(390px,calc(100vw - 24px));max-height:calc(100dvh - 90px);z-index:9999}.section-padding{padding-left:16px!important;padding-right:16px!important}.player-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.dashboard-layout{grid-template-columns:minmax(0,1fr)!important}.dashboard-sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.dashboard-player-card{grid-column:1/-1}.dashboard-tab{min-width:0;font-size:12px;padding:11px 9px}.admin-tools-grid{grid-template-columns:minmax(0,1fr)!important}.admin-accordion>summary{padding:13px 12px;font-size:13px}.admin-accordion-content{padding:10px}.admin-tool-card{min-width:0}.admin-tool-card label{overflow-wrap:anywhere}.welcome-content{padding:26px 20px}.hero h1{font-size:clamp(32px,10vw,54px)}}
+@media(max-width:380px){.player-overview-grid{grid-template-columns:minmax(0,1fr)!important}.dashboard-sidebar{grid-template-columns:minmax(0,1fr)}.dashboard-player-card{grid-column:auto}.account-btn{font-size:12px}}
+
+</style>
+
+<style>
+
+/* Final mobile, welcome-screen, and icon consistency pass */
+.cea-splash{padding:20px}.cea-splash-card{width:min(100%,480px)}.splash-loading{margin-top:18px;color:#7795b4;font-size:11px;letter-spacing:1px}.logo-icon.brand-mark{width:48px;height:48px;flex:0 0 48px}.logo-icon.brand-mark svg{width:100%;height:100%}.footer-brand-icon{width:30px;height:30px;margin-right:8px;color:#8deaff;vertical-align:middle}.footer-logo{display:flex;align-items:center;justify-content:center;gap:5px}.admin-accordion>summary{min-height:52px}.admin-accordion>summary .summary-label{display:flex;align-items:center;gap:10px;min-width:0}.admin-accordion>summary .menu-icon{flex:0 0 21px;margin:0}.admin-accordion-content{overflow-wrap:anywhere}.record-icon{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;margin-right:5px;border:1px solid rgba(125,232,255,.5);border-radius:5px;color:#8deaff;font-size:13px;font-weight:700;vertical-align:middle}.dashboard-list-card p{overflow-wrap:anywhere;line-height:1.65}.account-dropdown{box-sizing:border-box;width:min(92vw,390px);max-width:calc(100vw - 24px);max-height:min(78vh,720px);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable}.account-dropdown *{box-sizing:border-box}.account-dropdown button{box-sizing:border-box;min-height:40px;height:auto;line-height:1.25;white-space:normal;transform:none!important}.player-overview-card .overview-icon{display:flex;align-items:center;justify-content:center;min-height:30px}.player-overview-card .overview-icon .menu-icon{width:26px;height:26px}.player-overview-card>span:not(.overview-icon){display:none}
+@media(max-width:760px){body{overflow-x:hidden}.navbar{width:100%;box-sizing:border-box}.navbar nav{scrollbar-width:thin}.section-mode-switch .ranking-mode{min-width:0;width:100%}.account-dropdown{position:fixed;right:12px;left:auto;top:74px;width:min(390px,calc(100vw - 24px));max-height:calc(100dvh - 90px);z-index:99999}.dashboard-panel,.dashboard-main,.dashboard-list-card,.admin-tool-card{min-width:0;max-width:100%}.admin-record-fields{grid-template-columns:minmax(0,1fr)!important}.admin-tool-card input,.admin-tool-card select,.admin-tool-card textarea{width:100%;font-size:16px}.dashboard-main{padding:14px!important}.player-overview-card{padding:12px}.player-overview-card small{font-size:9px}.player-overview-card strong{font-size:21px}.cea-splash h1{font-size:clamp(25px,8vw,38px)}.splash-message{letter-spacing:2px;font-size:10px}}
+@media(max-width:380px){.logo h2{font-size:14px}.logo small{font-size:8px}.account-btn{font-size:11px}.dashboard-tab{font-size:11px}.player-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.player-overview-card strong{font-size:19px}}
+
+</style>
+<style>
+
+/* Corrected tournament and fixture selectors: horizontal, consistent button sizing */
+.section-mode-switch.tournament-type-switch,.section-mode-switch.fixture-view-switch{display:flex!important;flex-direction:row!important;align-items:stretch;gap:12px;width:100%;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:thin}
+.section-mode-switch.tournament-type-switch>.ranking-mode{flex:1 0 0;min-width:190px;width:auto!important;min-height:76px;display:flex;align-items:center;justify-content:flex-start;gap:12px;text-align:left}
+.section-mode-switch.fixture-view-switch>.ranking-mode{flex:1 0 0;min-width:220px;width:auto!important;min-height:72px;display:flex;align-items:center;justify-content:flex-start;gap:12px;text-align:left}
+.section-mode-switch .ranking-mode span{display:flex;flex-direction:column;gap:5px;min-width:0}
+.section-mode-switch .ranking-mode small{white-space:normal;line-height:1.35}
+.account-dropdown{width:320px!important;min-width:320px!important;max-width:calc(100vw - 24px)!important;max-height:min(78vh,620px)!important;overflow-y:auto!important;overflow-x:hidden!important;transform:none!important}
+.account-dropdown.show{animation:none!important}
+.account-dropdown button{min-height:42px!important;height:42px!important;flex:0 0 42px;white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;transform:none!important}
+@media(max-width:760px){.section-mode-switch.tournament-type-switch,.section-mode-switch.fixture-view-switch{flex-wrap:nowrap!important;overflow-x:auto}.section-mode-switch.tournament-type-switch>.ranking-mode{flex:0 0 230px;min-width:230px}.section-mode-switch.fixture-view-switch>.ranking-mode{flex:0 0 230px;min-width:230px}.account-dropdown{width:min(320px,calc(100vw - 24px))!important;min-width:0!important;right:12px!important;top:74px!important;max-height:calc(100dvh - 90px)!important}}
+
+</style>
+</head>
+
+<body>
+
+<div class="cea-splash" id="ceaSplash" role="status" aria-label="Welcome to Campus eArena">
+  <div class="cea-splash-card">
+    <span class="cea-splash-mark" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><linearGradient id="splashMetal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset=".45" stop-color="#79e7ff"/><stop offset="1" stop-color="#3974bd"/></linearGradient></defs><path d="M50 4 88 25v43L50 94 12 68V25Z" fill="#071426" stroke="url(#splashMetal)" stroke-width="3"/><path d="M26 39c-7-4-13 2-12 11l4 19c1 7 7 8 11 2l7-11h28l7 11c4 6 10 5 11-2l4-19c1-9-5-15-12-11l-11 5H37Z" fill="#102d4b" stroke="url(#splashMetal)" stroke-width="2.5"/><path d="M28 43v13m-6-6h12" stroke="#8deaff" stroke-width="3" stroke-linecap="round"/><circle cx="68" cy="46" r="3" fill="#8deaff"/><circle cx="76" cy="53" r="3" fill="#fff"/><path d="M50 18v13m-7-7h14" stroke="#8deaff" stroke-width="2" stroke-linecap="round"/></svg></span>
+    <p class="splash-kicker">YOUR CAMPUS GAMING ARENA</p>
+    <h1>CAMPUS <span>eARENA</span></h1>
+    <p class="splash-message">YOUR CAMPUS. YOUR ARENA.<br>PLAY. COMPETE. WIN.</p>
+    <span class="splash-loader" aria-hidden="true"></span>
+    <p class="splash-loading">Loading your arena…</p>
+  </div>
+</div>
+
+
+<!-- CAMPUS eARENA WELCOME SCREEN -->
+<div id="arenaWelcome" class="arena-welcome" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+  <div class="welcome-orbit orbit-one"></div><div class="welcome-orbit orbit-two"></div>
+  <div class="welcome-content">
+    <div class="welcome-emblem" aria-hidden="true"><svg viewBox="0 0 120 90"><defs><linearGradient id="padMetal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset=".5" stop-color="#8feaff"/><stop offset="1" stop-color="#3974bd"/></linearGradient></defs><path d="M29 19Q17 19 12 37L4 62Q0 79 14 82Q24 84 35 66L43 57H77L85 66Q96 84 106 82Q120 79 116 62L108 37Q103 19 91 19L76 25H44Z" fill="#102b46" stroke="url(#padMetal)" stroke-width="3"/><path d="M25 33v20M15 43h20" stroke="#fff" stroke-width="4" stroke-linecap="round"/><circle cx="91" cy="35" r="4" fill="#8feaff"/><circle cx="101" cy="45" r="4" fill="#fff"/><circle cx="84" cy="45" r="3" fill="#8feaff"/><path d="M49 36h22M60 25v22" stroke="#8feaff" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+    <p class="welcome-kicker">THE CAMPUS GAMING EXPERIENCE</p>
+    <h1 id="welcomeTitle">CAMPUS <span>eARENA</span></h1>
+    <p class="welcome-tagline">Your Campus. Your Arena.</p>
+    <p class="welcome-copy">Play your game. Challenge your rivals. Build your legacy.</p>
+    <button id="enterArenaButton" class="primary-btn welcome-enter" type="button">ENTER THE ARENA <span aria-hidden="true">→</span></button>
+    <small class="welcome-foot">PLAY · COMPETE · WIN</small>
+  </div>
+</div>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        <span class="logo-icon brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64" role="img" aria-label="Campus eArena emblem">
+                <defs><linearGradient id="arenaMetal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".38" stop-color="#9cb9d9"/><stop offset=".68" stop-color="#f8fbff"/><stop offset="1" stop-color="#6486ad"/></linearGradient></defs>
+                <path d="M32 3 56 16v31L32 61 8 47V16Z" fill="#071426" stroke="url(#arenaMetal)" stroke-width="2.5"/>
+                <path d="M17 26c-5-3-10 1-9 8l3 13c1 5 5 6 8 1l5-7h16l5 7c3 5 7 4 8-1l3-13c1-7-4-11-9-8l-7 3H24Z" fill="#102d4b" stroke="url(#arenaMetal)" stroke-width="2"/>
+                <path d="M20 29v8m-4-4h8" stroke="#7de8ff" stroke-width="2" stroke-linecap="round"/><circle cx="42" cy="30" r="1.8" fill="#7de8ff"/><circle cx="46" cy="34" r="1.8" fill="#fff"/><path d="M32 8v8m-4-4h8" stroke="#7de8ff" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+        </span>
+
+        <div>
+            <h2>CAMPUS <span>eARENA</span></h2>
+            <small>PLAY. COMPETE. WIN.</small>
+        </div>
+    </div>
+
+<nav>
+
+<a href="#home">Home</a>
+
+<a href="#tournaments">Tournaments</a>
+
+<a href="#fixtures">Fixtures & Results</a>
+
+<a href="#leaderboard">Rankings</a>
+
+
+</nav>
+
+ <div class="nav-buttons" id="navButtons">
+
+<!-- Shown when the player is logged out -->
+<div id="loggedOutButtons" class="nav-auth-buttons">
+
+    <button class="login-btn" onclick="openLogin()">Sign In</button>
+    <button class="join-btn" type="button" onclick="openRegister()">Create Account</button>
+
+</div>
+
+<!-- Shown when the player is logged in -->
+<div id="loggedInButtons" class="nav-account" style="display: none;">
+
+    <button
+        class="account-btn"
+        id="accountButton"
+        onclick="toggleAccountMenu(event)"
+        aria-expanded="false"
+    >
+        My Account
+        <span class="account-arrow">⌄</span>
+    </button>
+
+    <button
+        class="avatar-button"
+        id="avatarButton"
+        onclick="toggleAccountMenu(event)"
+        aria-label="Open your account menu"
+    >
+        <img
+            id="navAvatar"
+            src="https://ui-avatars.com/api/?name=Player&background=102c46&color=9ceaff&size=96"
+            alt="Player profile"
+        >
+    </button>
+
+<!-- Account dropdown -->
+
+<div class="account-dropdown" id="accountDropdown">  
+        <div class="dropdown-player">
+
+            <img
+                id="dropdownAvatar"
+                src="https://ui-avatars.com/api/?name=Player&background=102c46&color=9ceaff&size=96"
+                alt="Player profile"
+            >
+
+            <div>
+                <strong id="dropdownPlayerName">Player</strong>
+                <small id="dropdownPlayerEmail">Player account</small>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <button onclick="openPlayerProfile()">
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.5-4 3.3-6 8-6s7.5 2 8 6"/></svg> My Profile
+        </button>
+
+        <button onclick="showMyTournaments()">
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="3"/><path d="M8 10v6M5 13h6M16 11h.01M18 15h.01"/></svg> My Tournaments
+        </button>
+
+        <button onclick="showMyMatches()">
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 14h3M14 14h3"/></svg> My Matches
+        </button>
+
+        <button onclick="showMyNotifications()">
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg> Notifications <span class="arena-count-badge" id="dropdownNotificationCount" aria-label="Unread notifications">0</span>
+        </button>
+
+        <button onclick="showAccountSettings()">
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 13.5a7 7 0 0 0 0-3l2-1.5-2-3.5-2.4 1a7 7 0 0 0-2.6-1.5L13.5 2h-4L9 5a7 7 0 0 0-2.6 1.5L4 5.5 2 9l2 1.5a7 7 0 0 0 0 3L2 15l2 3.5 2.4-1A7 7 0 0 0 9 19l.5 3h4l.5-3a7 7 0 0 0 2.6-1.5l2.4 1 2-3.5z"/></svg> Account Settings
+        </button>
+
+        <hr>
+
+        <button class="logout-option" onclick="logoutPlayer()">
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7"/></svg> Logout
+        </button>
+
+    </div>
+
+  
+
+</div>
+
+<!-- Always visible -->
+<button class="join-btn" onclick="scrollToTournaments()">
+    Join Tournament
+</button>
+
+
+</div>
+
+
+</header>
+
+
+<!-- ================= IMMERSIVE GAMING HERO ================= -->
+<section class="hero hero-immersive" id="home">
+    <div class="hero-backdrop" aria-hidden="true"></div>
+    <div class="hero-glass hero-content">
+        <div class="hero-label"><span class="live-dot"></span> CAMPUS GAMING COMMUNITY</div>
+        <p class="hero-eyebrow">THE NEXT MATCH. THE NEXT LEGEND.</p>
+        <h1>YOUR CAMPUS.<br><span>YOUR ARENA.</span></h1>
+        <p class="hero-description">Step into the competition. Challenge campus rivals in eFootball and EA SPORTS FC tournaments, rise through the rankings, and make your name.</p>
+        <div class="hero-game-pills"><span class="game-pill game-efootball">eFOOTBALL</span><span class="game-pill game-eafc">EA SPORTS FC</span><span class="game-pill game-esports">CAMPUS ESPORTS</span></div>
+        <div class="hero-buttons">
+            <button class="primary-btn" onclick="scrollToTournaments()"><span class="button-symbol">▶</span> Explore Tournaments</button>
+        </div>
+        <div class="hero-stats">
+            <div><h3 id="playerCount">0+</h3><p>Players</p></div>
+            <div><h3>24/7</h3><p>Competition</p></div>
+            <div><h3>01</h3><p>Next legend?</p></div>
+        </div>
+    </div>
+    <div class="hero-feature-glass">
+        <span class="feature-kicker">PLAYER ONE, READY?</span>
+        <strong>PLAY. COMPETE.<br><em>TAKE THE CROWN.</em></strong>
+        <span class="feature-line"></span>
+        <small>YOUR CAMPUS. YOUR GAME. YOUR LEGACY.</small>
+    </div>
+</section>
+
+
+<!-- ================= TOURNAMENT SECTION ================= -->
+
+<section class="tournaments section-padding" id="tournaments">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-tag">COMPETE & WIN</span>
+
+            <h2>Upcoming Tournaments</h2>
+
+        </div>
+
+        <a href="#tournaments">View All →</a>
+
+    </div>
+
+<div class="section-mode-switch tournament-type-switch" role="tablist" aria-label="Filter tournaments by format">
+  <button type="button" class="ranking-mode active" data-tournament-type="all" aria-selected="true"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v4a5 5 0 0 1-10 0zM12 13v5m-5 2h10M8 3H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4"/></svg><span><b>ALL TOURNAMENTS</b><small>Every available event</small></span></button>
+  <button type="button" class="ranking-mode" data-tournament-type="league" aria-selected="false"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v4a5 5 0 0 1-10 0zM12 13v5m-5 2h10M8 3H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4"/></svg><span><b>LEAGUE TOURNAMENTS</b><small>League format</small></span></button>
+  <button type="button" class="ranking-mode" data-tournament-type="knockout" aria-selected="false"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h5v4H4zM15 15h5v4h-5zM9 7h4a3 3 0 0 1 3 3v7M13 10l3 3 3-3"/></svg><span><b>KNOCKOUT TOURNAMENTS</b><small>Single elimination</small></span></button>
+</div>
+
+<div class="tournament-grid" id="tournamentList">
+
+    <p class="loading-message">Loading tournaments...</p>
+
+</div>
+
+</section>
+
+<!-- ================= FIXTURES & RESULTS ================= -->
+
+<section class="section-padding" id="fixtures">
+
+<div class="section-heading">
+    <div>
+        <span class="section-tag">THE BATTLE BEGINS</span>
+        <h2>Fixtures & Results</h2>
+    </div>
+</div>
+
+<div class="section-mode-switch fixture-view-switch" role="tablist" aria-label="Choose fixtures or results">
+ <button type="button" class="ranking-mode active" data-match-view="fixtures" aria-selected="true"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 14h3M14 14h3"/></svg><span><b>FIXTURES</b><small>Upcoming and scheduled matches</small></span></button>
+ <button type="button" class="ranking-mode" data-match-view="results" aria-selected="false"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5zM8 8l2 2 5-5M8 15h8"/></svg><span><b>RESULTS</b><small>Completed matches and scores</small></span></button>
+</div>
+<div class="fixture-filters">
+
+    <label for="gameFilter">Filter by game:</label>
+
+    <select id="gameFilter">
+        <option value="all">All Games</option>
+        <option value="FC 26">FC 26</option>
+        <option value="eFootball">eFootball</option>
+        <option value="Call of Duty">Call of Duty</option>
+    </select>
+
+    <label for="matchStatusFilter">Match status:</label>
+
+    <select id="matchStatusFilter">
+        <option value="all">All Matches</option>
+        <option value="scheduled">Upcoming</option>
+        <option value="in_progress">In Progress</option>
+        <option value="completed">Completed</option>
+    </select>
+
+</div>
+
+<div id="publicMatchList" class="tournament-grid">
+
+    <p class="loading-message">Loading fixtures and results...</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= CAMPUS eARENA RANKINGS ================= -->
+<section class="leaderboard section-padding arena-rankings" id="leaderboard">
+    <div class="section-heading rankings-heading">
+        <div><span class="section-tag">THE COMPETITION NEVER STOPS</span><h2>ARENA <span>RANKINGS</span></h2><p>Follow league tables, knockout battles, and the players climbing the global rating ladder.</p></div>
+        <div class="rating-badge"><span>✦</span><div><b>ELO-STYLE RATING</b><small>Performance-based ranking</small></div></div>
+    </div>
+    <div class="ranking-mode-switch" role="tablist" aria-label="Choose ranking view">
+        <button type="button" class="ranking-mode active" id="globalRankingButton" role="tab" aria-selected="true"><span class="mode-icon">✦</span><span><b>GLOBAL RANKING</b><small>All completed matches</small></span></button>
+        <button type="button" class="ranking-mode" id="leagueModeButton" role="tab" aria-selected="false"><span class="mode-icon">▤</span><span><b>LEAGUE TOURNAMENTS</b><small>Tables & match points</small></span></button>
+        <button type="button" class="ranking-mode" id="knockoutModeButton" role="tab" aria-selected="false"><span class="mode-icon">⌁</span><span><b>KNOCKOUT TOURNAMENTS</b><small>Bracket & results</small></span></button>
+    </div>
+    <div class="ranking-view-panel">
+        <div class="ranking-view-heading"><div><span class="section-tag" id="rankingViewTag">WORLDWIDE CAMPUS LADDER</span><h3 id="rankingViewTitle">Global Player Ranking</h3><p id="rankingViewDescription">Ratings update from completed head-to-head matches. Strong wins move you up the ladder.</p></div><input type="search" id="rankingSearch" placeholder="Search player username..." aria-label="Search player rankings" autocomplete="off"></div>
+        <div id="tournamentChipsWrap" class="tournament-chips-wrap" hidden><span class="chips-label" id="tournamentChipsLabel">CHOOSE A TOURNAMENT</span><div id="tournamentChips" class="tournament-chips" aria-label="Available tournaments"></div></div>
+        <p id="rankingStatusMessage" class="ranking-status-message" aria-live="polite">Loading tournaments and player ratings…</p>
+        <div id="globalRankingPanel" class="ranking-table-wrap">
+            <table class="standings-table ranking-table"><thead><tr><th>RANK</th><th>PLAYER</th><th>RATING</th><th>PLAYED</th><th>W</th><th>D</th><th>L</th><th>WIN RATE</th></tr></thead><tbody id="globalRankingBody"><tr><td colspan="8" class="standings-empty">Loading player ratings…</td></tr></tbody></table>
+        </div>
+        <div id="leagueRankingPanel" class="ranking-table-wrap" hidden>
+            <table class="standings-table ranking-table"><thead><tr><th>POS</th><th>PLAYER</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>PTS</th></tr></thead><tbody id="leagueRankingBody"><tr><td colspan="10" class="standings-empty">Choose a league tournament.</td></tr></tbody></table>
+            <p class="standings-note">P = Played · W = Wins · D = Draws · L = Losses · GF = Goals For · GA = Goals Against · GD = Goal Difference · PTS = 3 for a win, 1 for a draw.</p>
+        </div>
+        <div id="knockoutRankingPanel" class="knockout-panel" hidden>
+            <div class="bracket-header"><div><span class="section-tag">WIN OR GO HOME</span><h3 id="bracketTournamentTitle">Tournament Bracket</h3></div><span class="bracket-badge">KNOCKOUT BRACKET</span></div>
+            <div id="knockoutBracket" class="knockout-bracket"><p class="standings-empty">Choose a knockout tournament to view its matches and rounds.</p></div>
+        </div>
+    </div>
+    <p class="ranking-footnote">Ratings are calculated from completed matches visible to this website. Knockout brackets display fixtures/results created by the tournament administrator; this page does not automatically create or advance matches.</p>
+</section>
+
+
+<!-- ================= PLAYER DASHBOARD ================= -->
+
+<section id="playerDashboard" class="section-padding player-dashboard">
+
+<div class="section-heading">
+
+    <div>
+        <span class="section-tag">PLAYER ZONE</span>
+        <h2>My Account</h2>
+    </div>
+
+    <button class="secondary-btn" onclick="closePlayerDashboard()">
+        ← Back to Home
+    </button>
+
+</div>
+
+<div class="player-overview-grid" aria-label="Player summary statistics">
+    <article class="player-overview-card"><span class="overview-icon"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8v4a4 4 0 0 1-8 0zM12 11v5m-5 5h10M9 16h6M8 5H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4"/></svg></span><small>TOURNAMENTS JOINED</small><strong id="statTournaments">—</strong><p>Your registrations</p></article>
+    <article class="player-overview-card"><span class="overview-icon"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10zM12 7V3M8 10l-4-1M14 15l3 3"/></svg></span><small>MATCHES PLAYED</small><strong id="statMatches">—</strong><p>Completed results</p></article>
+    <article class="player-overview-card"><span class="overview-icon"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="m9 13-2 9 5-3 5 3-2-9M7 3H3v2a5 5 0 0 0 4 5m10-7h4v2a5 5 0 0 1-4 5"/></svg></span><small>WINS</small><strong id="statWins">—</strong><p>Your victories</p></article>
+    <article class="player-overview-card"><span class="overview-icon"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20V4M3 20h18M6 16l5-5 4 3 6-8"/></svg></span><small>WIN RATE</small><strong id="statWinRate">—</strong><p>Wins from completed matches</p></article>
+</div>
+<div class="player-progress-wrap"><div class="player-progress-heading"><strong>Profile completion</strong><span id="profileCompletionLabel">0%</span></div><div class="player-progress-track"><span id="profileCompletionBar"></span></div><p>Complete your player information to help organizers identify you.</p></div>
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="dashboard-sidebar">
+
+        <div class="dashboard-player-card">
+
+            <img
+                id="dashboardAvatar"
+                src="https://ui-avatars.com/api/?name=Player&background=102c46&color=9ceaff&size=160"
+                alt="Player avatar"
+            >
+
+            <h3 id="dashboardPlayerName">Player</h3>
+
+            <p id="dashboardGamingName">@player</p>
+
+            <span class="player-status">
+                ● PLAYER ACCOUNT
+            </span>
+
+        </div>
+
+        <button class="dashboard-tab active"
+            onclick="switchDashboardTab('profile', this)">
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.5-4 3.3-6 8-6s7.5 2 8 6"/></svg> My Profile
+        </button>
+
+        <button class="dashboard-tab"
+            onclick="switchDashboardTab('tournaments', this)">
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="3"/><path d="M8 10v6M5 13h6M16 11h.01M18 15h.01"/></svg> My Tournaments
+        </button>
+
+        <button class="dashboard-tab"
+            onclick="switchDashboardTab('matches', this)">
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 14h3M14 14h3"/></svg> My Matches
+        </button>
+
+        <button class="dashboard-tab"
+            onclick="switchDashboardTab('notifications', this)">
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg> Notifications <span class="arena-count-badge" id="dashboardNotificationCount">0</span>
+        </button>
+
+
+        <button class="dashboard-tab" id="adminDashboardTab" style="display:none" onclick="switchDashboardTab('admin', this)">
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 5v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="m8 12 2.5 2.5L16 9"/></svg> Admin Dashboard
+        </button>
+
+        <button class="dashboard-tab"
+            onclick="switchDashboardTab('settings', this)">
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 13.5a7 7 0 0 0 0-3l2-1.5-2-3.5-2.4 1a7 7 0 0 0-2.6-1.5L13.5 2h-4L9 5a7 7 0 0 0-2.6 1.5L4 5.5 2 9l2 1.5a7 7 0 0 0 0 3L2 15l2 3.5 2.4-1A7 7 0 0 0 9 19l.5 3h4l.5-3a7 7 0 0 0 2.6-1.5l2.4 1 2-3.5z"/></svg> Account Settings
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN DASHBOARD CONTENT -->
+
+    <div class="dashboard-main">
+
+        <!-- PROFILE -->
+
+        <div class="dashboard-panel active" id="panel-profile">
+
+            <h3>Player Profile</h3>
+
+            <p class="dashboard-description">
+                Your Campus eArena player information.
+            </p>
+
+            <div class="profile-information">
+
+                <div>
+                    <small>FULL NAME</small>
+                    <p id="profileFullName">Not available</p>
+                </div>
+
+                <div>
+                    <small>GAMING USERNAME</small>
+                    <p id="profileUsername">Not available</p>
+                </div>
+
+                <div>
+                    <small>EMAIL ADDRESS</small>
+                    <p id="profileEmail">Not available</p>
+                </div>
+
+                <div>
+                    <small>PHONE NUMBER</small>
+                    <p id="profilePhone">Not available</p>
+                </div>
+
+                <div>
+                    <small>CAMPUS</small>
+                    <p id="profileCampus">Not available</p>
+                </div>
+
+                <div>
+                    <small>ACCOUNT STATUS</small>
+                    <p class="verified-status">Registered Player</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOURNAMENTS -->
+
+        <div class="dashboard-panel" id="panel-tournaments">
+
+            <h3>My Tournaments</h3>
+
+            <p class="dashboard-description">
+                View the tournaments you have joined.
+            </p>
+
+            <div id="myTournamentList" class="dashboard-list">
+
+                <p class="loading-message">
+                    Loading your tournaments...
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- MATCHES -->
+
+        <div class="dashboard-panel" id="panel-matches">
+
+            <h3>My Matches</h3>
+
+            <p class="dashboard-description">
+                Keep track of your fixtures and match results.
+            </p>
+
+            <div id="myMatchList" class="dashboard-list">
+
+                <p class="loading-message">
+                    Your match schedule will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- NOTIFICATIONS -->
+
+        <div class="dashboard-panel" id="panel-notifications">
+
+            <h3>Notifications</h3>
+
+            <p class="dashboard-description">
+                Tournament announcements and account updates.
+            </p>
+
+            <div id="myNotificationList" class="dashboard-list">
+
+                <p class="loading-message">
+                    No notifications to display yet.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SETTINGS -->
+
+        <div class="dashboard-panel" id="panel-settings">
+
+            <h3>Account Settings</h3>
+
+            <p class="dashboard-description">
+                Manage your player information.
+            </p>
+
+            <form id="profileUpdateForm">
+
+                <label for="profileAvatarFile">Profile picture</label><input type="file" id="profileAvatarFile" accept="image/png,image/jpeg,image/webp"><p id="avatarUploadMessage" role="status"></p>\n                <label for="editFullName">Full Name</label>
+
+                <input type="text" id="editFullName" required>
+
+                <label for="editUsername">Gaming Username</label>
+
+                <input type="text" id="editUsername" required>
+
+                <label for="editPhone">Phone Number</label>
+
+                <input type="tel" id="editPhone" required>
+
+                <label for="editCampus">Campus</label>
+
+                <select id="editCampus" required>
+                    <option value="Maseno University">
+                        Maseno University
+                    </option>
+                    <option value="Other">
+                        Other Campus
+                    </option>
+                </select>
+
+                <button type="submit" class="primary-btn">
+                    Save Changes
+                </button>
+
+                <p id="profileUpdateMessage"></p>
+
+            </form>
+
+            <div class="account-security-box">
+                <h4><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Change Password</h4>
+                <p>Choose a strong password you do not use on other websites.</p>
+                <form id="changePasswordForm">
+                    <label for="newAccountPassword">New password</label>
+                    <input type="password" id="newAccountPassword" minlength="8" autocomplete="new-password" required placeholder="At least 8 characters">
+                    <label for="confirmAccountPassword">Confirm new password</label>
+                    <input type="password" id="confirmAccountPassword" minlength="8" autocomplete="new-password" required placeholder="Enter it again">
+                    <button type="submit" class="primary-btn">Update Password</button>
+                    <p id="passwordUpdateMessage" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-panel" id="panel-admin">
+            <h3><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 5v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="m8 12 2.5 2.5L16 9"/></svg> Admin Dashboard</h3>
+            <p class="dashboard-description">Manage tournaments, fixtures, results, player notifications and player accounts. Access is granted only to accounts marked as admin in the database.</p>
+            <details class="admin-accordion" open><summary><span class="summary-label"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8v4a4 4 0 0 1-8 0zM12 11v5m-5 5h10M9 16h6M8 5H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4"/></svg>Tournament creation</span></summary><div class="admin-accordion-content">
+            <div class="admin-tools-grid">
+                <form id="adminTournamentForm" class="admin-tool-card">
+                    <h4>Create tournament</h4>
+                    <label>Tournament name<input id="adminTournamentName" required maxlength="120"></label>
+                    <label>Game<input id="adminTournamentGame" required placeholder="FC 26 / eFootball"></label>
+                    <label>Format<select id="adminTournamentFormat"><option value="knockout">Knockout</option><option value="league">League</option></select></label>
+                    <label>Entry fee (KSh)<input id="adminTournamentFee" type="number" min="0" value="0" required></label>
+                    <label>Prize pool (KSh)<input id="adminTournamentPrize" type="number" min="0" value="0" required></label>
+                    <label>Start date<input id="adminTournamentDate" type="datetime-local"></label>
+                    <label>Registration status<select id="adminTournamentRegistration"><option value="true" selected>Open for registration</option><option value="false">Closed for registration</option></select></label>
+                    <button class="primary-btn" type="submit">Create tournament</button><p id="adminTournamentMessage" role="status"></p>
+                </form>
+                <form id="adminMatchForm" class="admin-tool-card">
+                    <h4>Create / assign match</h4>
+                    <label>Tournament<select id="adminMatchTournament" required></select></label>
+                    <label>Player 1 user ID<input id="adminPlayer1" required placeholder="UUID from player list"></label>
+                    <label>Player 2 user ID<input id="adminPlayer2" required placeholder="UUID from player list"></label>
+                    <label>Round<input id="adminRound" placeholder="Quarter-final / Matchday 1"></label>
+                    <label>Game<input id="adminMatchGame" required placeholder="FC 26"></label>
+                    <label>Schedule<input id="adminMatchDate" type="datetime-local"></label>
+                    <button class="primary-btn" type="submit">Create match</button><p id="adminMatchMessage" role="status"></p>
+                </form>
+                <form id="adminResultForm" class="admin-tool-card">
+                    <h4>Publish match result</h4>
+                    <label>Match<select id="adminResultMatch" required></select></label>
+                    <label>Player 1 score<input id="adminScore1" type="number" min="0" required></label>
+                    <label>Player 2 score<input id="adminScore2" type="number" min="0" required></label>
+                    <button class="primary-btn" type="submit">Publish result</button><p id="adminResultMessage" role="status"></p>
+                </form>
+            </div></div></details>
+            <details class="admin-accordion"><summary><span class="summary-label"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM8 5v14M16 5v14"/><path d="M8 9h8M8 15h8"/></svg>Manage all tournaments and registration</span></summary><div class="admin-accordion-content">
+            <div class="admin-tool-card admin-manager-card">
+                <h4>Manage all tournaments</h4>
+                <p>Review every tournament and open or close registration at any time.</p>
+                <button type="button" class="secondary-btn" id="adminRefreshTournaments">Refresh tournaments</button>
+                <div id="adminTournamentsOutput" class="admin-record-list" aria-live="polite">Loading tournaments…</div>
+            </div></div></details>
+            <details class="admin-accordion"><summary><span class="summary-label"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10zM12 7V3M8 10l-4-1M14 15l3 3"/></svg>Match and result management</span></summary><div class="admin-accordion-content">
+            <div class="admin-tool-card admin-manager-card">
+                <h4>View and edit matches and results</h4>
+                <p>Edit the fixture details, scheduled time, players, scores, and match status. Saving a completed score updates the public match data.</p>
+                <button type="button" class="secondary-btn" id="adminRefreshMatches">Refresh matches</button>
+                <div id="adminMatchesOutput" class="admin-record-list" aria-live="polite">Loading matches…</div>
+            </div></div></details>
+            <details class="admin-accordion"><summary><span class="summary-label"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>Notifications and announcements</span></summary><div class="admin-accordion-content">
+            <div class="admin-tool-card admin-manager-card">
+                <h4>Send a notification anytime</h4>
+                <p>Send an announcement to all players or one selected player independently of creating a tournament or match.</p>
+                <form id="adminNoticeForm" class="admin-notice-form">
+                    <label>Recipient<select id="adminNoticeRecipient"><option value="all">All players</option></select></label>
+                    <label>Title<input id="adminNoticeTitle" required maxlength="120"></label>
+                    <label>Message<textarea id="adminNoticeBody" required rows="3"></textarea></label>
+                    <button class="primary-btn" type="submit">Send notification</button><p id="adminNoticeMessage" role="status"></p>
+                </form>
+            </div></div></details>
+            <details class="admin-accordion"><summary><span class="summary-label"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21v-2a7 7 0 0 1 14 0v2M17 4a4 4 0 0 1 0 8m2 3a5 5 0 0 1 3 4v2"/></svg>Player accounts</span></summary><div class="admin-accordion-content">
+            <div class="admin-tool-card admin-player-list"><h4>Player accounts</h4><button type="button" class="secondary-btn" id="adminRefreshPlayers">Refresh player list</button><div id="adminPlayersOutput" class="dashboard-list">Admin access required.</div></div>
+            </div></details>
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+
+<!-- ================= REGISTRATION MODAL ================= -->
+
+<div class="modal" id="registerModal">
+
+    <div class="modal-content">
+
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+
+        <h2>Create Your Player Account</h2>
+
+        <p>Join the Campus eArena community.</p>
+
+        <form id="registerForm">
+
+            <input type="text" id="fullName"
+                placeholder="Full Name" required>
+
+            <input type="text" id="username"
+                placeholder="Gaming Username" required>
+
+            <input type="email" id="email"
+                placeholder="Email Address" required>
+
+            <input type="tel" id="phone"
+                placeholder="M-Pesa Phone Number" required>
+
+            <select id="campus" required>
+
+                <option value="">Select Campus</option>
+
+                <option value="Maseno University">
+                    Maseno University
+                </option>
+
+                <option value="Other">
+                    Other Campus
+                </option>
+
+            </select>
+
+            <input type="password" id="password"
+                placeholder="Create Password" required>
+
+            <button type="submit" class="primary-btn">
+
+                Create Account
+
+            </button>
+
+        </form>
+
+        <p id="registerMessage"></p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= LOGIN MODAL ================= -->
+
+<div class="modal" id="loginModal">
+
+    <div class="modal-content">
+
+        <span class="close-modal" onclick="closeLogin()">&times;</span>
+
+        <h2>Welcome Back</h2>
+
+        <p>Login to your player account.</p>
+
+        <form id="loginForm">
+
+            <input type="email" placeholder="Email Address" required>
+
+            <input type="password" placeholder="Password" required>
+
+            <button type="submit" class="primary-btn">
+
+                Login
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ================= TOURNAMENT REGISTRATION MODAL ================= -->
+
+<div class="modal" id="tournamentRegisterModal" style="display: none;">
+
+    <div class="modal-content">
+
+        <span class="close-modal"
+              onclick="closeTournamentRegister()">&times;</span>
+
+        <h2>Join Tournament</h2>
+
+        <p>You are registering for:</p>
+
+        <h3 id="selectedTournamentName">Tournament Name</h3>
+
+        <div class="registration-details">
+
+            <p>
+                <strong>Entry Fee:</strong>
+                <span id="selectedTournamentFee">Checking...</span>
+            </p>
+
+            <p>
+                <strong>Prize Pool:</strong>
+                <span id="selectedTournamentPrize">Checking...</span>
+            </p>
+
+        </div>
+
+        <p id="registrationMessage">
+            Confirm your participation in this tournament.
+        </p>
+
+        <!-- FREE TOURNAMENT BUTTON -->
+        <button
+            type="button"
+            class="primary-btn"
+            id="freeRegistrationBtn"
+            onclick="confirmTournamentRegistration()"
+            style="display: none;">
+
+            Confirm Free Registration
+
+        </button>
+
+        <!-- PAID TOURNAMENT BUTTON -->
+        <button
+            type="button"
+            class="primary-btn"
+            id="paidRegistrationBtn"
+            onclick="handlePaidTournament()"
+            style="display: none;">
+
+            Proceed to Payment
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+
+        CAMPUS <span>eARENA</span>
+
+    </div>
+
+    <p>
+
+        Your Campus. Your Arena.
+
+        Play. Compete. Win.
+
+    </p>
+
+    <p class="copyright">
+
+        © 2026 Campus eArena. All Rights Reserved.
+
+    </p>
+
+</footer>
+
+
+<style>
+
+/* ================= GENERAL ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #030914;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --green: #8feaff;
+    --dark: #030914;
+    --card: #081525;
+    --border: #17304c;
+    --blue: #00aaff;
+}
+
+button {
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 6%;
+
+    background: #050d1a;
+
+    border-bottom: 1px solid var(--border);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 35px;
+}
+
+.logo h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+}
+
+.logo h2 span {
+    color: var(--green);
+}
+
+.logo small {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #a6b5c7;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar nav a {
+    font-size: 13px;
+    color: #c5d0df;
+    transition: 0.3s;
+}
+
+.navbar nav a:hover {
+    color: var(--green);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.login-btn {
+    padding: 10px 20px;
+    background: transparent;
+    color: white;
+    border: 1px solid #31506e;
+    border-radius: 6px;
+}
+
+.join-btn {
+    padding: 10px 20px;
+    background: var(--green);
+    color: #000;
+    font-weight: 600;
+    border-radius: 6px;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    min-height: 600px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #030914 0%,
+            #06162a 60%,
+            #020812 100%
+        );
+
+    padding: 70px 6%;
+
+    align-items: center;
+
+    gap: 40px;
+}
+
+.hero-label {
+    color: var(--green);
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+}
+
+.live-dot {
+    display: inline-block;
+
+    width: 8px;
+    height: 8px;
+
+    background: var(--green);
+
+    border-radius: 50%;
+
+    margin-right: 8px;
+}
+
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: clamp(35px, 5vw, 65px);
+
+    line-height: 1.2;
+
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--green);
+}
+
+.hero-content > p {
+    max-width: 500px;
+
+    color: #b8c5d5;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.primary-btn {
+    background: var(--green);
+
+    color: #000;
+
+    padding: 14px 25px;
+
+    border-radius: 6px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    background: #c2ff5c;
+    transform: translateY(-3px);
+}
+
+.secondary-btn {
+    background: transparent;
+
+    border: 1px solid #46627f;
+
+    color: white;
+
+    padding: 14px 25px;
+
+    border-radius: 6px;
+}
+
+.hero-stats {
+    display: flex;
+
+    gap: 45px;
+
+    margin-top: 50px;
+}
+
+.hero-stats h3 {
+    font-family: 'Orbitron', sans-serif;
+
+    color: var(--green);
+
+    font-size: 25px;
+}
+
+.hero-stats p {
+    color: #8fa3bb;
+
+    font-size: 12px;
+}
+
+.hero-image {
+    min-height: 400px;
+
+    background:
+
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,0.8),
+            transparent
+        ),
+
+        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=85');
+
+    background-size: cover;
+
+    background-position: center;
+
+    border-radius: 15px;
+
+    border: 1px solid #1e4265;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.hero-image-text {
+    position: absolute;
+
+    bottom: 40px;
+
+    left: 30px;
+}
+
+.hero-image-text h2 {
+    font-size: 20px;
+}
+
+.hero-image-text h1 {
+    color: var(--green);
+
+    font-size: 35px;
+}
+
+.hero-image-text p {
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+
+/* ================= SECTIONS ================= */
+
+.section-padding {
+    padding: 80px 6%;
+}
+
+.section-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 35px;
+}
+
+.section-tag {
+    color: var(--green);
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+}
+
+.section-heading h2 {
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 28px;
+
+    margin-top: 10px;
+}
+
+.section-heading a {
+    color: var(--green);
+
+    font-size: 13px;
+}
+
+
+/* ================= TOURNAMENTS ================= */
+
+.tournament-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.tournament-card {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    transition: 0.3s;
+}
+
+.tournament-card:hover {
+    transform: translateY(-7px);
+
+    border-color: var(--green);
+}
+
+.tournament-image {
+    height: 180px;
+
+    background-size: cover;
+
+    background-position: center;
+
+    position: relative;
+}
+
+.tournament-one {
+    background-image:
+
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,0.7),
+            transparent
+        ),
+
+        url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=900&q=80');
+}
+
+.tournament-two {
+    background-image:
+
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,0.7),
+            transparent
+        ),
+
+        url('https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=900&q=80');
+}
+
+.tournament-three {
+    background-image:
+
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,0.7),
+            transparent
+        ),
+
+        url('https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=900&q=80');
+}
+
+.status {
+    position: absolute;
+
+    top: 15px;
+
+    left: 15px;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+.open {
+    background: var(--green);
+
+    color: #000;
+}
+
+.upcoming {
+    background: #163a62;
+
+    color: #9dcaff;
+}
+
+.tournament-info {
+    padding: 22px;
+}
+
+.tournament-info h3 {
+    font-size: 18px;
+}
+
+.game-name {
+    color: #9eb1c6;
+
+    font-size: 12px;
+
+    margin-top: 8px;
+
+    margin-bottom: 20px;
+}
+
+.tournament-details {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 15px 0;
+
+    border-top: 1px solid #17304c;
+}
+
+.tournament-details small {
+    color: #8095ad;
+
+    font-size: 10px;
+}
+
+.tournament-details h4 {
+    margin-top: 5px;
+
+    font-size: 15px;
+}
+
+.register-btn {
+    width: 100%;
+
+    background: var(--green);
+
+    color: #000;
+
+    padding: 13px;
+
+    border-radius: 6px;
+
+    font-weight: 600;
+
+    margin-top: 15px;
+}
+
+
+/* ================= LEADERBOARD ================= */
+
+.leaderboard {
+    background: #050e1c;
+}
+
+.leaderboard-container {
+    overflow-x: auto;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 500px;
+}
+
+th {
+    text-align: left;
+
+    background: #0c1b2e;
+
+    color: #8fa3bb;
+
+    font-size: 12px;
+
+    padding: 20px;
+}
+
+td {
+    padding: 20px;
+
+    border-top: 1px solid var(--border);
+
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background: #0c1b2e;
+}
+
+
+/* ================= DYNAMIC LEAGUE STANDINGS ================= */
+
+.standings-controls {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) minmax(220px, 1fr);
+    gap: 10px 16px;
+    align-items: center;
+    margin-bottom: 18px;
+    max-width: 850px;
+}
+
+.standings-controls label {
+    color: #b8c5d5;
+    font-size: 12px;
+}
+
+.standings-controls select,
+.standings-controls input {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    background: #081525;
+    color: #ffffff;
+    border: 1px solid #284565;
+    border-radius: 7px;
+    font: inherit;
+    font-size: 13px;
+}
+
+.standings-controls select:focus,
+.standings-controls input:focus {
+    outline: 2px solid var(--green);
+    outline-offset: 1px;
+}
+
+.my-standing-message {
+    grid-column: 1 / -1;
+    color: #9eb1c6;
+    font-size: 12px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.standings-scroll {
+    max-height: 465px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #31506e #081525;
+}
+
+.standings-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.standings-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.standings-table th {
+    padding: 15px 13px;
+    white-space: nowrap;
+    background: #10243a;
+}
+
+.standings-table td {
+    padding: 14px 13px;
+    white-space: nowrap;
+}
+
+.standings-table tbody tr.current-player-row {
+    background: rgba(156, 255, 0, 0.13);
+    box-shadow: inset 4px 0 0 var(--green);
+}
+
+.standings-table tbody tr.current-player-row td {
+    color: #eaffc7;
+    font-weight: 600;
+}
+
+.standings-table .standings-position {
+    color: var(--green);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+}
+
+.standings-table .standings-player-name {
+    font-weight: 600;
+}
+
+.standings-empty {
+    text-align: center;
+    color: #9eb1c6;
+    padding: 28px !important;
+}
+
+.standings-note {
+    margin-top: 12px;
+    color: #8195ad;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+    .standings-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .standings-scroll {
+        max-height: 430px;
+    }
+}
+
+/* ================= HOW IT WORKS ================= */
+
+.steps-container {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 30px;
+
+    text-align: center;
+}
+
+.step {
+    padding: 25px;
+}
+
+.step-icon {
+    width: 80px;
+
+    height: 80px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 35px;
+
+    background: #0c1d30;
+
+    border: 1px solid var(--green);
+
+    border-radius: 50%;
+}
+
+.step h3 {
+    font-size: 15px;
+
+    margin-bottom: 12px;
+}
+
+.step p {
+    color: #8fa3bb;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* ================= MODALS ================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    z-index: 2000;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.85);
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+}
+
+.modal-content {
+    background: #081525;
+
+    border: 1px solid #284565;
+
+    padding: 35px;
+
+    border-radius: 12px;
+
+    width: 100%;
+
+    max-width: 450px;
+
+    position: relative;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 22px;
+
+    margin-bottom: 10px;
+}
+
+.modal-content > p {
+    color: #8fa3bb;
+
+    font-size: 13px;
+
+    margin-bottom: 25px;
+}
+
+.close-modal {
+    position: absolute;
+
+    top: 15px;
+
+    right: 20px;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+.modal-content input,
+.modal-content select {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-bottom: 15px;
+
+    background: #030914;
+
+    color: white;
+
+    border: 1px solid #284565;
+
+    border-radius: 6px;
+
+    outline: none;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    border-color: var(--green);
+}
+
+.modal-content form button {
+    width: 100%;
+
+    margin-top: 10px;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #020711;
+
+    border-top: 1px solid var(--border);
+
+    text-align: center;
+
+    padding: 50px 20px;
+}
+
+.footer-logo {
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 20px;
+
+    margin-bottom: 15px;
+}
+
+.footer-logo span {
+    color: var(--green);
+}
+
+footer p {
+    color: #8195ad;
+
+    font-size: 13px;
+
+    margin-bottom: 10px;
+}
+
+.copyright {
+    margin-top: 30px;
+
+    font-size: 11px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+
+    .navbar nav {
+        display: none;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .tournament-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    .logo h2 {
+        font-size: 13px;
+    }
+
+    .logo small {
+        font-size: 7px;
+    }
+
+    .logo-icon {
+        font-size: 25px;
+    }
+
+    .login-btn {
+        display: none;
+    }
+
+    .join-btn {
+        padding: 9px 12px;
+
+        font-size: 11px;
+    }
+
+    .hero {
+        padding: 50px 5%;
+    }
+
+    .hero-image {
+        min-height: 300px;
+    }
+
+    .hero-stats {
+        gap: 25px;
+    }
+
+    .hero-stats h3 {
+        font-size: 19px;
+    }
+
+    .section-padding {
+        padding: 55px 5%;
+    }
+
+    .section-heading h2 {
+        font-size: 21px;
+    }
+
+    .tournament-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .steps-container {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        padding: 25px;
+    }
+
+}
+
+.loading-message {
+    color: #9eb1c6;
+    padding: 20px;
+    text-align: center;
+    grid-column: 1 / -1;
+}
+
+.register-btn:disabled {
+    background: #526174;
+    color: #ffffff;
+    cursor: not-allowed;
+}
+
+/* ================= ACCOUNT NAVIGATION ================= */
+
+.nav-auth-buttons {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.nav-account {
+position: relative;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.account-btn {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 14px;
+background: #0b192a;
+color: #ffffff;
+border: 1px solid #31506e;
+border-radius: 7px;
+font-size: 13px;
+transition: 0.3s;
+}
+
+.account-btn:hover {
+border-color: var(--green);
+color: var(--green);
+}
+
+.account-arrow {
+color: var(--green);
+font-size: 17px;
+}
+
+/* Circular profile image */
+
+.avatar-button {
+width: 43px;
+height: 43px;
+flex-shrink: 0;
+padding: 2px;
+background: #0b192a;
+border: 2px solid var(--green);
+border-radius: 50%;
+overflow: hidden;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.avatar-button:hover {
+transform: scale(1.07);
+box-shadow: 0 0 12px rgba(156, 255, 0, 0.3);
+}
+
+.avatar-button img {
+width: 100%;
+height: 100%;
+display: block;
+object-fit: cover;
+border-radius: 50%;
+}
+
+/* Account dropdown */
+
+.nav-account {
+    position: relative;
+}
+
+.account-dropdown {
+display: none;
+position: absolute;
+top: calc(100% + 14px);
+right: 0;
+width: 270px;
+background: #081525;
+border: 1px solid #284565;
+border-radius: 12px;
+padding: 12px;
+box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+z-index: 3000;
+}
+
+.account-dropdown.show {
+display: block;
+animation: accountFadeIn 0.2s ease;
+}
+
+@keyframes accountFadeIn {
+from {
+opacity: 0;
+transform: translateY(-5px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+.dropdown-player {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 10px 6px 14px;
+}
+
+.dropdown-player img {
+width: 43px;
+height: 43px;
+border-radius: 50%;
+object-fit: cover;
+border: 1px solid var(--green);
+}
+
+.dropdown-player strong {
+display: block;
+font-size: 13px;
+color: #ffffff;
+overflow-wrap: anywhere;
+}
+
+.dropdown-player small {
+display: block;
+margin-top: 4px;
+color: #8fa3bb;
+font-size: 10px;
+overflow-wrap: anywhere;
+}
+
+.account-dropdown hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 5px 0 8px;
+}
+
+.account-dropdown > button {
+width: 100%;
+padding: 11px 10px;
+background: transparent;
+color: #c5d0df;
+text-align: left;
+border-radius: 6px;
+font-size: 12px;
+transition: 0.2s;
+}
+
+.account-dropdown > button:hover {
+background: #10243a;
+color: var(--green);
+}
+
+.account-dropdown > .logout-option {
+color: #ff8585;
+}
+
+.account-dropdown > .logout-option:hover {
+background: #351820;
+color: #ffaaaa;
+}
+
+
+
+/* Mobile account navigation */
+
+@media (max-width: 600px) {
+
+.nav-buttons {
+    gap: 8px;
+}
+
+.account-btn {
+    padding: 9px 8px;
+    font-size: 11px;
+    gap: 4px;
+}
+
+.avatar-button {
+    width: 36px;
+    height: 36px;
+}
+
+.account-dropdown {
+    width: 250px;
+    right: 0;
+}
+
+.join-btn {
+    padding: 9px 10px;
+    font-size: 10px;
+}
+
+}
+/* ================= PLAYER DASHBOARD ================= */
+
+.player-dashboard {
+display: none;
+background: #050e1c;
+min-height: 70vh;
+}
+
+.player-dashboard .section-heading {
+flex-wrap: wrap;
+gap: 20px;
+}
+
+.dashboard-layout {
+display: grid;
+grid-template-columns: 270px minmax(0, 1fr);
+gap: 25px;
+align-items: start;
+}
+
+.dashboard-sidebar,
+.dashboard-main {
+background: #081525;
+border: 1px solid var(--border);
+border-radius: 12px;
+overflow: hidden;
+}
+
+.dashboard-player-card {
+text-align: center;
+padding: 28px 15px;
+border-bottom: 1px solid var(--border);
+}
+
+.dashboard-player-card img {
+width: 95px;
+height: 95px;
+border-radius: 50%;
+object-fit: cover;
+border: 3px solid var(--green);
+margin-bottom: 15px;
+}
+
+.dashboard-player-card h3 {
+font-size: 17px;
+overflow-wrap: anywhere;
+}
+
+.dashboard-player-card > p {
+font-size: 12px;
+color: #8fa3bb;
+margin-top: 5px;
+}
+
+.player-status {
+display: inline-block;
+color: var(--green);
+font-size: 9px;
+letter-spacing: 1px;
+margin-top: 15px;
+}
+
+.dashboard-tab {
+display: block;
+width: 100%;
+padding: 16px 20px;
+background: transparent;
+color: #b8c5d5;
+text-align: left;
+border-left: 3px solid transparent;
+font-size: 12px;
+transition: 0.2s;
+}
+
+.dashboard-tab:hover,
+.dashboard-tab.active {
+background: #10243a;
+color: var(--green);
+border-left-color: var(--green);
+}
+
+.dashboard-main {
+min-height: 450px;
+padding: 30px;
+}
+
+.dashboard-panel {
+display: none;
+}
+
+.dashboard-panel.active {
+display: block;
+}
+
+.dashboard-panel > h3 {
+font-family: 'Orbitron', sans-serif;
+font-size: 20px;
+margin-bottom: 10px;
+}
+
+.dashboard-description {
+color: #8fa3bb;
+font-size: 12px;
+line-height: 1.8;
+margin-bottom: 28px;
+}
+
+.profile-information {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 15px;
+}
+
+.profile-information > div {
+background: #030914;
+border: 1px solid var(--border);
+padding: 18px;
+border-radius: 8px;
+min-width: 0;
+}
+
+.profile-information small {
+color: #8195ad;
+font-size: 10px;
+letter-spacing: 1px;
+}
+
+.profile-information p {
+margin-top: 9px;
+font-size: 13px;
+overflow-wrap: anywhere;
+}
+
+.verified-status {
+color: var(--green);
+}
+
+.dashboard-list {
+display: grid;
+gap: 15px;
+}
+
+.dashboard-list-card {
+background: #030914;
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 18px;
+}
+
+.dashboard-list-card h4 {
+font-size: 14px;
+margin-bottom: 8px;
+}
+
+.dashboard-list-card p {
+color: #8fa3bb;
+font-size: 12px;
+line-height: 1.8;
+}
+
+#profileUpdateForm {
+display: grid;
+gap: 10px;
+}
+
+#profileUpdateForm label {
+color: #b8c5d5;
+font-size: 12px;
+margin-top: 8px;
+}
+
+#profileUpdateForm input,
+#profileUpdateForm select {
+width: 100%;
+padding: 13px;
+background: #030914;
+color: white;
+border: 1px solid #284565;
+border-radius: 6px;
+}
+
+#profileUpdateForm button {
+margin-top: 15px;
+}
+
+#profileUpdateMessage {
+font-size: 12px;
+line-height: 1.7;
+overflow-wrap: anywhere;
+}
+
+@media (max-width: 800px) {
+
+.dashboard-layout {
+    grid-template-columns: 1fr;
+}
+
+.dashboard-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dashboard-player-card {
+    grid-column: 1 / -1;
+}
+
+.dashboard-tab {
+    padding: 14px 10px;
+    font-size: 11px;
+}
+
+.dashboard-main {
+    padding: 22px 16px;
+}
+
+}
+
+@media (max-width: 480px) {
+
+.profile-information {
+    grid-template-columns: 1fr;
+}
+
+
+}
+
+/* PLAYER DASHBOARD POPUP */
+
+#playerDashboard.dashboard-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: min(950px, 94vw);
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    margin: 0;
+    z-index: 5000;
+
+    background: #081525;
+    border: 1px solid #284565;
+    border-radius: 16px;
+
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.7);
+}
+
+/* Dark background behind the popup */
+
+body:has(#playerDashboard.dashboard-popup)::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    z-index: 4999;
+}
+
+/* ================= FIXTURES & RESULTS ================= */
+
+.fixture-filters {
+display: flex;
+align-items: center;
+gap: 12px;
+flex-wrap: wrap;
+margin-bottom: 25px;
+}
+
+.fixture-filters label {
+color: #b8c5d5;
+font-size: 12px;
+}
+
+.fixture-filters select {
+background: #081525;
+color: #ffffff;
+border: 1px solid #284565;
+padding: 11px;
+border-radius: 6px;
+}
+
+.match-card {
+background: #081525;
+border: 1px solid #17304c;
+border-radius: 12px;
+padding: 22px;
+transition: 0.3s;
+}
+
+.match-card:hover {
+border-color: #8feaff;
+transform: translateY(-3px);
+}
+
+.match-card h3 {
+font-size: 16px;
+margin-bottom: 10px;
+}
+
+.match-card p {
+color: #9eb1c6;
+font-size: 12px;
+line-height: 1.9;
+}
+
+.match-score {
+color: #8feaff !important;
+font-family: 'Orbitron', sans-serif;
+font-size: 23px !important;
+font-weight: 700;
+margin: 15px 0;
+}
+
+.match-status {
+display: inline-block;
+margin-top: 12px;
+padding: 5px 10px;
+border-radius: 20px;
+background: #163a62;
+color: #9dcaff;
+font-size: 10px;
+}
+
+@media (max-width: 600px) {
+.fixture-filters {
+align-items: stretch;
+flex-direction: column;
+}
+
+.fixture-filters select {
+    width: 100%;
+}
+
+}
+
+
+/* ===== CAMPUS eARENA BRAND + IMMERSIVE GAMING REDESIGN ===== */
+.logo { gap: 12px; }
+.brand-mark { width: 48px; height: 48px; display:inline-flex; align-items:center; justify-content:center; filter: drop-shadow(0 0 12px rgba(116,226,255,.18)); }
+.brand-mark svg { width:100%; height:100%; }
+.logo h2 { letter-spacing: 1.2px; }
+.logo small { letter-spacing: 2.5px; }
+.hero-immersive { position:relative; isolation:isolate; display:flex; align-items:center; min-height:680px; padding:74px 6%; overflow:hidden; background:#06101f; }
+.hero-backdrop { position:absolute; inset:-18px; z-index:-2; background-image:linear-gradient(90deg,rgba(2,8,20,.93) 0%,rgba(3,11,26,.75) 47%,rgba(4,12,28,.48) 100%),linear-gradient(0deg,rgba(3,9,20,.58),rgba(3,9,20,.14)),url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=2400&q=90'); background-size:cover; background-position:center 44%; filter:blur(3px) saturate(.85); transform:scale(1.035); }
+.hero-immersive::after { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(ellipse at 78% 45%,rgba(0,160,255,.13),transparent 36%),linear-gradient(120deg,rgba(3,9,20,.14),rgba(4,8,18,.32)); }
+.hero-glass { width:min(700px,70%); padding:clamp(24px,4vw,46px); border:1px solid rgba(219,239,255,.24); border-radius:24px; background:linear-gradient(135deg,rgba(8,22,43,.76),rgba(9,19,34,.48)); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:0 24px 80px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.1); }
+.hero-eyebrow { color:#b8d9f5; font-size:11px; letter-spacing:4px; font-weight:700; margin:0 0 14px; }
+.hero-immersive h1 { font-size:clamp(40px,6vw,76px); letter-spacing:-2px; margin:0 0 20px; text-shadow:0 8px 35px rgba(0,0,0,.3); }
+.hero-immersive h1 span { background:linear-gradient(90deg,#9ce9ff,#eaf7ff 45%,#8caeff); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.hero-description { max-width:540px; color:#d4e1f0!important; font-size:15px; line-height:1.85; }
+.hero-game-pills { display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 24px; }
+.game-pill { padding:8px 12px; border:1px solid rgba(255,255,255,.22); border-radius:5px; color:#eef6ff; font-size:10px; font-weight:800; letter-spacing:1.4px; background:rgba(5,13,26,.52); }
+.game-efootball { border-color:rgba(82,205,255,.6); box-shadow:inset 0 -2px rgba(82,205,255,.7); }
+.game-eafc { border-color:rgba(231,83,102,.65); box-shadow:inset 0 -2px rgba(231,83,102,.7); }
+.game-esports { border-color:rgba(180,194,255,.45); }
+.hero-immersive .primary-btn { background:linear-gradient(110deg,#7ce7ff,#d8f8ff); color:#071426; border-radius:8px; box-shadow:0 8px 28px rgba(61,197,255,.2); }
+.hero-immersive .secondary-btn { background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.35); border-radius:8px; backdrop-filter:blur(10px); }
+.button-symbol { font-size:10px; margin-right:8px; }
+.hero-immersive .hero-stats { gap:0; margin-top:36px; padding-top:22px; border-top:1px solid rgba(255,255,255,.16); }
+.hero-immersive .hero-stats > div { min-width:105px; padding-right:28px; margin-right:28px; border-right:1px solid rgba(255,255,255,.14); }
+.hero-immersive .hero-stats > div:last-child { border:0; }
+.hero-immersive .hero-stats h3 { color:#a8edff; }
+.hero-feature-glass { position:absolute; right:6%; bottom:12%; width:min(310px,25%); padding:24px; border:1px solid rgba(255,255,255,.23); border-radius:18px; background:rgba(5,14,30,.45); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:0 20px 55px rgba(0,0,0,.22); color:#f4f8ff; }
+.feature-kicker { display:block; font-size:9px; letter-spacing:2.5px; color:#8ee9ff; margin-bottom:14px; font-weight:800; }
+.hero-feature-glass strong { font:800 clamp(19px,2.1vw,27px)/1.3 'Orbitron',sans-serif; }
+.hero-feature-glass em { font-style:normal; color:#b3eaff; }
+.feature-line { display:block; height:3px; width:55px; margin:18px 0 12px; background:linear-gradient(90deg,#75e4ff,transparent); }
+.hero-feature-glass small { font-size:8px; letter-spacing:1.4px; color:#b7c7db; }
+.arena-rankings { background:radial-gradient(ellipse at 8% 0%,rgba(22,90,143,.18),transparent 42%),#07111f; }
+.rankings-heading { align-items:flex-end; gap:24px; }
+.rankings-heading h2 { color:#f5f8ff; font-family:'Orbitron',sans-serif; letter-spacing:1px; }
+.rankings-heading h2 span { color:#9ceaff; }
+.rankings-heading p { color:#94a9c2; margin-top:10px; max-width:650px; line-height:1.7; }
+.rating-badge { display:flex; align-items:center; gap:12px; padding:14px 18px; border:1px solid rgba(142,222,255,.25); border-radius:12px; background:rgba(11,31,52,.7); white-space:nowrap; }
+.rating-badge>span { color:#9ceaff; font-size:26px; }
+.rating-badge b,.rating-badge small { display:block; }
+.rating-badge b { color:#eaf7ff; font-size:10px; letter-spacing:1.2px; }
+.rating-badge small { color:#91a7c0; margin-top:5px; font-size:10px; }
+.ranking-mode-switch { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:28px 0 18px; }
+.ranking-mode { display:flex; align-items:center; gap:14px; min-width:0; padding:18px; text-align:left; color:#c8d7e8; background:rgba(12,29,49,.8); border:1px solid #203a56; border-radius:12px; cursor:pointer; transition:transform .2s,border-color .2s,background .2s; }
+.ranking-mode:hover { transform:translateY(-2px); border-color:#68cde9; }
+.ranking-mode.active { background:linear-gradient(120deg,rgba(28,90,124,.58),rgba(12,27,47,.9)); border-color:#83e5ff; box-shadow:inset 0 0 0 1px rgba(131,229,255,.08),0 8px 30px rgba(0,0,0,.12); color:#fff; }
+.mode-icon { display:grid; place-items:center; flex:0 0 42px; width:42px; height:42px; border-radius:10px; color:#a9edff; background:rgba(110,214,246,.1); border:1px solid rgba(110,214,246,.2); font-size:23px; }
+.ranking-mode b,.ranking-mode small { display:block; }
+.ranking-mode b { font-size:11px; letter-spacing:.7px; }
+.ranking-mode small { margin-top:6px; color:#91a8c2; font-size:10px; font-weight:400; }
+.ranking-view-panel { padding:clamp(16px,3vw,28px); border:1px solid #203a56; border-radius:16px; background:linear-gradient(140deg,rgba(12,29,49,.96),rgba(6,18,33,.97)); box-shadow:0 18px 50px rgba(0,0,0,.15); }
+.ranking-view-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:20px; margin-bottom:22px; }
+.ranking-view-heading h3,.bracket-header h3 { color:#f5f8ff; font-size:22px; margin-top:6px; }
+.ranking-view-heading p { color:#91a8c2; font-size:12px; line-height:1.7; margin-top:7px; }
+.ranking-view-heading input { width:min(290px,100%); padding:12px 14px; color:#fff; background:#071426; border:1px solid #2b4764; border-radius:8px; font:inherit; font-size:12px; }
+.ranking-view-heading input:focus { outline:2px solid #8ce6ff; }
+.ranking-status-message { color:#a6bad0; font-size:12px; line-height:1.7; margin:8px 0 16px; }
+.tournament-chips-wrap { margin:4px 0 18px; }
+.chips-label { display:block; color:#9bb2ca; font-size:9px; font-weight:800; letter-spacing:2px; margin-bottom:10px; }
+.tournament-chips { display:flex; gap:10px; overflow-x:auto; padding:3px 2px 12px; scrollbar-color:#376582 #0b1a2c; scrollbar-width:thin; }
+.tournament-chip { flex:0 0 auto; max-width:260px; padding:12px 16px; border-radius:9px; border:1px solid #29445f; background:#09182a; color:#c7d9eb; text-align:left; cursor:pointer; }
+.tournament-chip strong,.tournament-chip small { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.tournament-chip strong { font-size:12px; }
+.tournament-chip small { color:#8da5be; margin-top:5px; font-size:10px; }
+.tournament-chip.active { color:#fff; border-color:#91eaff; background:linear-gradient(120deg,rgba(26,103,139,.55),rgba(10,26,45,.95)); box-shadow:inset 0 -2px #91eaff; }
+.ranking-table-wrap { width:100%; overflow-x:auto; border:1px solid #1c354e; border-radius:10px; }
+.ranking-table { min-width:690px; margin:0; }
+.ranking-table thead { background:#0a1a2d; }
+.ranking-table th { color:#9ab3cc; font-size:10px; letter-spacing:1px; }
+.ranking-table td { color:#d7e4f2; }
+.ranking-table tbody tr:first-child td:first-child { color:#8feaff; font-weight:800; }
+.ranking-player { display:flex; align-items:center; gap:10px; min-width:150px; }
+.rank-avatar { display:grid; place-items:center; width:32px; height:32px; flex:0 0 32px; border-radius:9px; color:#071426; font-weight:800; background:linear-gradient(135deg,#d9f7ff,#6eb9d7); }
+.rating-value { color:#a9edff!important; font-weight:800; font-family:'Orbitron',sans-serif; }
+.my-rank-row { background:rgba(62,153,186,.12)!important; box-shadow:inset 3px 0 #8de8ff; }
+.knockout-panel { margin-top:10px; }
+.bracket-header { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:18px; }
+.bracket-badge { padding:8px 10px; color:#a6eaff; border:1px solid rgba(140,230,255,.25); border-radius:6px; font-size:9px; letter-spacing:1.4px; }
+.knockout-bracket { display:flex; gap:16px; align-items:stretch; overflow-x:auto; padding:8px 2px 20px; min-height:110px; scrollbar-width:thin; scrollbar-color:#376582 #0b1a2c; }
+.bracket-round { flex:0 0 245px; width:245px; }
+.bracket-round-title { color:#9ceaff; font-size:10px; font-weight:800; letter-spacing:1.5px; margin:0 0 14px; text-transform:uppercase; }
+.bracket-match { padding:12px; margin-bottom:12px; border:1px solid #25425d; border-radius:10px; background:linear-gradient(135deg,#0b1e32,#091525); }
+.bracket-match-top { display:flex; justify-content:space-between; color:#7793ae; font-size:9px; margin-bottom:9px; }
+.bracket-player { display:flex; justify-content:space-between; gap:10px; padding:8px 7px; color:#d6e4f3; font-size:11px; border-radius:5px; overflow-wrap:anywhere; }
+.bracket-player + .bracket-player { border-top:1px solid rgba(255,255,255,.06); }
+.bracket-player.winner { color:#a4eeff; background:rgba(75,174,205,.1); font-weight:800; }
+.bracket-score { flex:0 0 auto; font-family:'Orbitron',sans-serif; font-weight:700; }
+.bracket-match-status { color:#809ab3; font-size:9px; margin-top:8px; }
+.standings-empty { color:#a5bad0!important; padding:24px!important; text-align:center; line-height:1.7; }
+.ranking-footnote { color:#7089a4; font-size:10px; line-height:1.7; margin-top:14px; }
+[hidden] { display:none!important; }
+@media(max-width:900px) { .hero-immersive { min-height:unset; padding:55px 5%; } .hero-glass { width:100%; } .hero-feature-glass { display:none; } .rankings-heading { align-items:flex-start; flex-direction:column; } .ranking-mode-switch { grid-template-columns:1fr; } .ranking-mode { padding:14px; } .ranking-view-heading { align-items:stretch; flex-direction:column; } .ranking-view-heading input { width:100%; } }
+@media(max-width:560px) { .hero-immersive { padding:34px 4%; } .hero-glass { padding:23px 18px; border-radius:17px; } .hero-immersive h1 { font-size:clamp(36px,10vw,52px); letter-spacing:-1px; } .hero-eyebrow { letter-spacing:2px; font-size:9px; } .hero-immersive .hero-stats { justify-content:space-between; gap:8px; } .hero-immersive .hero-stats>div { min-width:0; padding-right:10px; margin-right:8px; } .hero-immersive .hero-stats h3 { font-size:20px; } .hero-immersive .hero-stats p { font-size:10px; } .rating-badge { white-space:normal; } .bracket-round { flex-basis:225px; width:225px; } }
+
+
+/* ===== CAMPUS eARENA GLOBAL FOOTBALL-GAMING THEME ===== */
+:root { --green:#91eaff; --accent:#8ee8ff; --border:#25435f; --card:#0a1b2d; --bg:#050d19; }
+html { scroll-behavior:smooth; }
+body { background:#050d19; color:#edf6ff; }
+section:not(.hero-immersive) { background-color:transparent; }
+.section-padding { position:relative; }
+.section-heading h2, h1, h2, h3 { text-wrap:balance; }
+.section-tag { color:#91eaff!important; letter-spacing:2px; }
+.navbar { background:rgba(4,12,25,.88)!important; border-bottom:1px solid rgba(137,222,255,.18); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
+.logo-icon { background:linear-gradient(135deg,#f5fdff,#75b9d4)!important; color:#061323!important; box-shadow:0 0 25px rgba(120,221,255,.22); }
+.logo h2 span { color:#91eaff!important; }
+button, .primary-btn, .secondary-btn, .join-btn, .login-btn, .account-btn { transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,filter .22s ease!important; }
+.primary-btn, .join-btn { color:#03111f!important; background:linear-gradient(110deg,#e7fbff,#8ce6ff 48%,#5ab8e0)!important; border:1px solid rgba(225,250,255,.85)!important; box-shadow:0 10px 30px rgba(80,195,235,.24),inset 0 1px rgba(255,255,255,.9)!important; }
+.primary-btn:hover, .join-btn:hover, .secondary-btn:hover, .login-btn:hover, .account-btn:hover { transform:translateY(-4px); box-shadow:0 14px 35px rgba(85,205,245,.3)!important; filter:brightness(1.06); }
+.secondary-btn, .login-btn, .account-btn { background:rgba(11,32,52,.76)!important; border:1px solid rgba(135,220,255,.38)!important; color:#eaf8ff!important; }
+.hero-immersive { isolation:isolate; min-height:650px; }
+.hero-backdrop { background-image:linear-gradient(90deg,rgba(2,8,20,.87),rgba(3,11,26,.55) 52%,rgba(4,12,28,.36)),linear-gradient(0deg,rgba(3,9,20,.5),rgba(3,9,20,.08)),url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=2400&q=90')!important; filter:blur(5px) saturate(.9)!important; transform:scale(1.045); }
+.hero-glass, .hero-feature-glass { background:rgba(5,18,34,.48)!important; border:1px solid rgba(222,247,255,.24)!important; backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:0 24px 70px rgba(0,0,0,.3),inset 0 1px rgba(255,255,255,.08); }
+.hero-glass { border-radius:24px!important; }
+.hero-eyebrow, .hero-label { color:#9deaff!important; }
+.hero-glass h1, .hero-glass h1 span { text-shadow:0 3px 28px rgba(0,0,0,.45); }
+.tournament-grid { display:flex!important; gap:20px!important; overflow-x:auto!important; overflow-y:visible!important; padding:18px 5px 28px!important; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:#4786a5 #0a192b; }
+.tournament-grid > .tournament-card, .tournament-grid > .match-card { flex:0 0 clamp(260px,31vw,350px)!important; width:clamp(260px,31vw,350px)!important; min-width:0; scroll-snap-align:start; }
+.tournament-card, .match-card, .dashboard-list-card, .dashboard-sidebar, .dashboard-main, .step, .feature-card { background:linear-gradient(145deg,rgba(13,34,55,.96),rgba(5,17,31,.97))!important; border:1px solid rgba(113,192,224,.23)!important; box-shadow:0 14px 36px rgba(0,0,0,.18); transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease!important; }
+.tournament-card:hover, .match-card:hover, .dashboard-list-card:hover, .feature-card:hover { transform:translateY(-7px)!important; border-color:#8ee8ff!important; box-shadow:0 18px 38px rgba(0,0,0,.32),0 0 22px rgba(98,205,240,.1)!important; }
+.match-score { color:#9ceaff!important; }
+.match-status { background:rgba(65,153,190,.18)!important; color:#b5efff!important; border:1px solid rgba(142,232,255,.2); }
+.fixture-filters select, select, input, textarea { background:#07182a!important; color:#effaff!important; border-color:#2d506b!important; }
+.ranking-mode-switch { display:flex!important; overflow-x:auto!important; gap:14px!important; padding:8px 4px 18px!important; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:#4786a5 #0a192b; }
+.ranking-mode { flex:1 0 245px; border-radius:16px!important; background:linear-gradient(145deg,rgba(14,39,62,.92),rgba(5,17,31,.94))!important; box-shadow:0 8px 22px rgba(0,0,0,.15); scroll-snap-align:start; }
+.ranking-mode:hover { transform:translateY(-5px)!important; box-shadow:0 15px 32px rgba(73,187,225,.15)!important; }
+.ranking-mode.active { background:linear-gradient(120deg,rgba(53,142,177,.55),rgba(9,27,47,.96))!important; border-color:#91eaff!important; box-shadow:0 10px 32px rgba(73,187,225,.18)!important; }
+.tournament-chip { transition:transform .22s ease,box-shadow .22s ease; }
+.tournament-chip:hover { transform:translateY(-4px); box-shadow:0 10px 24px rgba(73,187,225,.17); }
+.tournament-chip.active { background:linear-gradient(110deg,#dff9ff,#8ce6ff)!important; color:#03111f!important; border-color:#e9fbff!important; }
+.ranking-view-panel { background:linear-gradient(140deg,rgba(12,31,51,.96),rgba(4,15,28,.98))!important; border-color:rgba(113,192,224,.25)!important; }
+#publicMatchList { align-items:stretch; }
+#publicMatchList .match-card { min-height:100%; scroll-snap-align:start; }
+.account-dropdown { background:rgba(5,17,31,.97)!important; border:1px solid rgba(135,220,255,.3)!important; backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:0 20px 55px rgba(0,0,0,.4)!important; }
+.account-dropdown button { display:flex!important; align-items:center; gap:12px; width:100%; color:#e8f6ff!important; background:transparent!important; border-radius:9px; padding:12px 14px!important; text-align:left; }
+.account-dropdown button:hover { background:rgba(92,185,222,.15)!important; transform:translateX(3px); }
+.menu-icon { width:19px; height:19px; flex:0 0 19px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; color:#9ceaff; }
+.player-dashboard { background:radial-gradient(ellipse at top left,rgba(25,94,140,.2),transparent 45%); }
+.dashboard-sidebar, .dashboard-main { background:linear-gradient(145deg,rgba(12,32,52,.96),rgba(5,17,31,.98))!important; }
+.dashboard-list-card { border-radius:14px!important; }
+@media(max-width:700px) {
+ .hero-immersive { min-height:620px; }
+ .hero-glass { padding:24px!important; }
+ .section-heading { gap:14px; }
+ .tournament-grid > .tournament-card, .tournament-grid > .match-card { flex-basis:82vw!important; width:82vw!important; }
+ .ranking-mode { flex-basis:245px; }
+}
+
+
+/* ===== FIXED RANKING PANELS, FIXTURES & CONSISTENT CeA BRAND ===== */
+[hidden] { display:none !important; }
+#globalRankingPanel[hidden], #leagueRankingPanel[hidden], #knockoutRankingPanel[hidden] { display:none!important; }
+.fixture-card { display:flex; flex-direction:column; gap:10px; min-height:275px; padding:20px; border-radius:16px; background:linear-gradient(145deg,rgba(15,40,64,.97),rgba(5,17,31,.98))!important; border:1px solid rgba(125,211,240,.3)!important; box-shadow:0 12px 34px rgba(0,0,0,.24); transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease!important; }
+.fixture-card:hover { transform:translateY(-7px)!important; border-color:#9ceaff!important; box-shadow:0 18px 42px rgba(55,175,220,.17)!important; }
+.fixture-card-top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.fixture-game-tag { color:#9ceaff; font-size:10px; font-weight:800; letter-spacing:1.3px; text-transform:uppercase; }
+.fixture-tournament-name { color:#8ea9c4; font-size:11px; margin:2px 0 0; }
+.fixture-card h3 { color:#f1f8ff; font-size:16px; margin:0; }
+.fixture-versus { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); gap:10px; align-items:center; padding:14px 0; }
+.fixture-player { min-width:0; display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center; color:#e5f2ff; font-size:11px; overflow-wrap:anywhere; }
+.fixture-player-mark { width:38px; height:38px; display:grid; place-items:center; border-radius:12px; color:#041321; background:linear-gradient(135deg,#effcff,#83dfff 65%,#5c9cc2); font:800 17px 'Orbitron',sans-serif; box-shadow:0 0 18px rgba(105,212,245,.15); }
+.fixture-score { color:#9ceaff; font:800 17px 'Orbitron',sans-serif; white-space:nowrap; }
+.fixture-date { margin-top:auto; padding-top:12px; border-top:1px solid rgba(184,225,245,.1); color:#8ea8c1; font-size:10px; }
+.fixture-empty { flex:0 0 min(100%,600px); padding:26px; border-radius:16px; border:1px solid rgba(125,211,240,.25); background:rgba(8,24,42,.82); color:#dcefff; }
+.fixture-empty h3 { color:#effaff; margin:0 0 10px; }
+.fixture-empty p { color:#a6bfd4; line-height:1.7; }
+.glass-empty { backdrop-filter:blur(16px); }
+.account-dropdown img, #navAvatar, #dashboardAvatar { border:2px solid rgba(156,234,255,.7)!important; background:#102c46!important; box-shadow:0 0 18px rgba(95,200,238,.18); }
+.dashboard-sidebar button, .dashboard-tab, .account-dropdown button, .dashboard-list-card button { transition:transform .22s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease!important; }
+.dashboard-sidebar button:hover, .dashboard-tab:hover, .dashboard-list-card button:hover { transform:translateY(-3px); box-shadow:0 10px 24px rgba(70,181,221,.16); }
+.logo-icon { background:transparent!important; box-shadow:none!important; }
+@media(max-width:700px) { .fixture-versus { gap:5px; } .fixture-player { font-size:10px; } .fixture-card { padding:16px; } }
+
+
+/* Final visibility safeguards for auth navigation, hero imagery and knockout rounds */
+#loggedOutButtons { display:flex; align-items:center; gap:12px; }
+#loggedInButtons { position:relative; align-items:center; gap:10px; }
+#loggedInButtons[style*="display: none"] { display:none!important; }
+#loggedOutButtons[style*="display: none"] { display:none!important; }
+.knockout-panel:not([hidden]) { display:block!important; visibility:visible!important; opacity:1!important; }
+#knockoutBracket { display:flex!important; visibility:visible; min-height:110px; }
+#knockoutBracket .bracket-round { display:block; flex:0 0 245px; width:245px; min-width:245px; }
+#knockoutBracket .bracket-match { display:block; visibility:visible; }
+.tournament-format-line, .tournament-date-line { color:#9eb6cc; font-size:11px; line-height:1.6; margin:6px 0; }
+.hero-backdrop { background-position:center 44%; background-size:cover; }
+
+
+/* ================= PLAYER ACCOUNT UPGRADES ================= */
+.player-overview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:0 0 18px}
+.player-overview-card{min-width:0;background:linear-gradient(145deg,#10243a,#071321);border:1px solid var(--border);border-radius:12px;padding:18px}
+.player-overview-card>span{display:block;font-size:22px;margin-bottom:10px}
+.player-overview-card small{display:block;color:#8fa3bb;font-size:9px;letter-spacing:.8px;line-height:1.5}
+.player-overview-card strong{display:block;font-family:'Orbitron',sans-serif;font-size:26px;color:var(--green);margin:8px 0;overflow-wrap:anywhere}
+.player-overview-card p,.player-progress-wrap>p{font-size:11px;color:#8fa3bb;line-height:1.6}
+.player-progress-wrap{background:#081525;border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:24px}
+.player-progress-heading{display:flex;justify-content:space-between;gap:12px;font-size:12px;margin-bottom:10px}
+.player-progress-heading span{color:var(--green);font-weight:700}
+.player-progress-track{height:8px;background:#030914;border-radius:20px;overflow:hidden;margin-bottom:9px}
+.player-progress-track span{display:block;height:100%;width:0;background:linear-gradient(90deg,#59d6ff,var(--green));border-radius:20px;transition:width .3s ease}
+.account-security-box{margin-top:28px;padding-top:24px;border-top:1px solid var(--border)}
+.account-security-box h4{font-size:16px;margin-bottom:8px}
+.account-security-box>p{color:#8fa3bb;font-size:12px;line-height:1.7;margin-bottom:14px}
+#changePasswordForm{display:grid;gap:10px;max-width:520px}
+#changePasswordForm label{color:#b8c5d5;font-size:12px;margin-top:5px}
+#changePasswordForm input{width:100%;padding:13px;background:#030914;color:white;border:1px solid #284565;border-radius:6px;font-size:14px}
+#changePasswordForm button{margin-top:10px}
+#passwordUpdateMessage{font-size:12px;line-height:1.7;overflow-wrap:anywhere}
+@media(max-width:900px){.player-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.player-overview-grid{gap:9px}.player-overview-card{padding:13px}.player-overview-card strong{font-size:22px}.dashboard-main{padding:18px}.profile-information{grid-template-columns:1fr}}
+
+
+/* Campus eArena feature additions */
+.admin-tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.admin-tool-card{background:#030914;border:1px solid var(--border);border-radius:10px;padding:18px;display:grid;gap:10px;min-width:0}
+.admin-tool-card h4{color:var(--green);margin-bottom:4px}
+.admin-tool-card label{display:grid;gap:6px;color:#b8c5d5;font-size:12px}
+.admin-tool-card input,.admin-tool-card select,.admin-tool-card textarea{width:100%;min-width:0;background:#081525;color:#fff;border:1px solid #284565;border-radius:6px;padding:11px;font:inherit;font-size:13px}
+.admin-tool-card button{margin-top:6px}
+.admin-tool-card p{font-size:12px;overflow-wrap:anywhere}
+.admin-player-list{margin-top:16px}
+.admin-player-row{padding:10px 0;border-bottom:1px solid var(--border);overflow-wrap:anywhere}
+.admin-manager-card{margin:16px 0}
+.admin-record-list{display:grid;gap:12px;margin-top:10px;min-width:0}
+.admin-record-row{border:1px solid #284565;border-radius:8px;padding:14px;display:grid;gap:10px;min-width:0;background:#07111f}
+.admin-record-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.admin-record-heading strong{color:#fff;overflow-wrap:anywhere}
+.admin-record-meta{font-size:12px;color:#aebed0;overflow-wrap:anywhere}
+.admin-record-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.admin-record-fields label{display:grid;gap:5px;font-size:11px;color:#b8c5d5;min-width:0}
+.admin-record-fields input,.admin-record-fields select{width:100%;min-width:0;background:#081525;color:#fff;border:1px solid #284565;border-radius:6px;padding:9px;font:inherit;font-size:12px}
+.admin-record-actions{display:flex;gap:8px;flex-wrap:wrap}
+.admin-open-pill{font-size:11px;padding:5px 9px;border-radius:20px;border:1px solid #31543a;color:#8feaff;white-space:nowrap}
+.admin-closed-pill{font-size:11px;padding:5px 9px;border-radius:20px;border:1px solid #713d43;color:#ff9a9a;white-space:nowrap}
+.admin-notice-form{display:grid;gap:10px}
+.admin-empty{color:#aebed0;font-size:13px;padding:12px 0}
+#profileAvatarFile{background:#030914;color:#fff;padding:10px;border:1px solid var(--border);border-radius:6px}
+@media(max-width:700px){.admin-tools-grid{grid-template-columns:1fr}.admin-record-fields{grid-template-columns:1fr 1fr}.dashboard-main{padding:18px}}
+@media(max-width:420px){.admin-record-fields{grid-template-columns:1fr}}
+
+</style>
+<!-- ====================================== -->
+<!-- SUPABASE LIBRARY -->
+<!-- ====================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- ====================================== -->
+<!-- SUPABASE CONNECTION -->
+<!-- ====================================== -->
+
+<script>
+
+    const SUPABASE_URL = "https://elyumcjmczsrtzgdqfrl.supabase.co";
+
+    const SUPABASE_ANON_KEY = "sb_publishable_aWUTfa4URPu7hmTgUc1P2w_jpQbdLkJ";
+
+    const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+    console.log("Supabase connected!");
+
+</script>
+
+
+<!-- ====================================== -->
+<!-- CAMPUS EARENA JAVASCRIPT -->
+<!-- ====================================== -->
+
+<script>
+
+// ======================================
+// NAVIGATION
+// ======================================
+
+window.scrollToTournaments = function () {
+
+    const section = document.getElementById("tournaments");
+
+    if (section) {
+        section.scrollIntoView({
+            behavior: "smooth"
+        });
+    } else {
+        console.error("Tournament section not found.");
+    }
+
+};
+
+function scrollToHow() {
+
+    document.getElementById("how-it-works").scrollIntoView({
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+// ======================================
+// REGISTRATION MODAL
+// ======================================
+
+function openRegister() {
+
+    document.getElementById("registerModal").style.display = "flex";
+
+}
+
+
+function closeModal() {
+
+    document.getElementById("registerModal").style.display = "none";
+
+}
+
+
+// ======================================
+// LOGIN MODAL
+// ======================================
+
+function openLogin() {
+
+    document.getElementById("loginModal").style.display = "flex";
+
+}
+
+
+function closeLogin() {
+
+    document.getElementById("loginModal").style.display = "none";
+
+}
+
+// ======================================
+// LOAD TOURNAMENTS FROM SUPABASE
+// ======================================
+
+async function loadTournaments() {
+
+    const tournamentList = document.getElementById("tournamentList");
+
+    if (!tournamentList) {
+        console.error("Tournament list element was not found.");
+        return;
+    }
+
+    tournamentList.innerHTML = `
+        <p class="loading-message">Loading tournaments...</p>
+    `;
+
+    // Load tournaments from Supabase.
+    const { data: tournaments, error } = await supabaseClient
+        .from("tournaments")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+    // Temporary diagnostics.
+    console.log("TOURNAMENT QUERY ERROR:", error);
+    console.log("TOURNAMENTS RETURNED:", tournaments);
+
+    // Handle database errors.
+    if (error) {
+        console.error("Tournament loading error:", error);
+
+        tournamentList.innerHTML = `
+            <p class="loading-message">Unable to load tournaments.</p>
+        `;
+
+        return;
+    }
+
+    // Handle an empty tournament list.
+    if (!tournaments || tournaments.length === 0) {
+        tournamentList.innerHTML = `
+            <p class="loading-message">No tournaments available yet.</p>
+        `;
+
+        return;
+    }
+
+    // Clear the loading message.
+    tournamentList.innerHTML = "";
+
+    // Create a card for every tournament, keeping the original image-card design.
+    tournaments.forEach(function(tournament, index) {
+
+        const card = document.createElement("div");
+        card.className = "tournament-card";
+
+        const gameText = String(tournament.game || "").toLowerCase();
+        let imageClass = ["tournament-one", "tournament-two", "tournament-three"][index % 3];
+        if (gameText.includes("call of duty") || gameText.includes("cod")) imageClass = "tournament-two";
+        else if (gameText.includes("efootball") || gameText.includes("pes")) imageClass = "tournament-one";
+        else if (gameText.includes("fc") || gameText.includes("fifa")) imageClass = "tournament-three";
+
+        const registrationIsOpen = tournament.registration_open !== false;
+        const tournamentStatus = String(tournament.status || "upcoming").replace(/[_-]/g, " ");
+
+        card.innerHTML = `
+            <div class="tournament-image ${imageClass}">
+                <span class="status ${registrationIsOpen ? "open" : "upcoming"}">${registrationIsOpen ? "REGISTRATION OPEN" : "REGISTRATION CLOSED"}</span>
+            </div>
+
+            <div class="tournament-info">
+                <h3>${tournament.name || "eFootball Tournament"}</h3>
+
+                <p class="game-name">
+                    ${tournament.game || "eFootball"}
+                </p>
+
+                <p class="tournament-format-line">${String(tournament.tournament_format || tournament.format || tournament.tournament_type || "Tournament").replace(/[_-]/g, " ")} · ${tournamentStatus}</p>
+                <p class="tournament-date-line">Starts: ${tournament.start_date ? new Date(tournament.start_date).toLocaleDateString("en-KE", {day:"numeric",month:"short",year:"numeric"}) : "Date to be announced"}</p>
+
+                <div class="tournament-details">
+                    <div>
+                        <small>ENTRY FEE</small>
+                        <h4>KSh ${tournament.entry_fee || 0}</h4>
+                    </div>
+
+                    <div>
+                        <small>PRIZE POOL</small>
+                        <h4>KSh ${tournament.prize_pool || 0}</h4>
+                    </div>
+                </div>
+
+                <button class="register-btn" type="button">
+                    Register / Join
+                </button>
+            </div>
+        `;
+
+        const registerButton = card.querySelector(".register-btn");
+
+        registerButton.dataset.tournamentId = tournament.id;
+        registerButton.dataset.tournamentName =
+            tournament.name || "eFootball Tournament";
+        registerButton.dataset.entryFee =
+            Number(tournament.entry_fee || 0);
+        registerButton.dataset.prizePool =
+            Number(tournament.prize_pool || 0);
+
+        if (!registrationIsOpen) {
+            registerButton.disabled = true;
+            registerButton.textContent = "Registration Closed";
+        }
+
+        registerButton.addEventListener("click", async function() {
+
+            if (!registrationIsOpen) return;
+
+            const { data, error } = await supabaseClient.auth.getUser();
+
+            if (error) {
+                console.error("Account check error:", error);
+                alert("Unable to check your account. Please try again.");
+                return;
+            }
+
+            window.selectedTournamentId = tournament.id;
+
+            if (!data.user) {
+                alert("Please log in before joining a tournament.");
+                openLogin();
+                return;
+            }
+
+            openTournamentRegister();
+
+        });
+
+        tournamentList.appendChild(card);
+
+    });
+
+}
+
+
+// ======================================
+// PLAYER LOGIN
+// ======================================
+
+const loginForm = document.getElementById("loginForm");
+
+loginForm.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const email = this.querySelector('input[type="email"]').value.trim();
+    const password = this.querySelector('input[type="password"]').value;
+
+    try {
+
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        if (error) {
+            alert(error.message);
+            return;
+        }
+
+        const user = data.user;
+
+        console.log("LOGIN USER ID:", user.id);
+
+        // Check whether the player has a pending tournament
+        const pendingTournamentId = localStorage.getItem(
+            "campusEArenaPendingTournament"
+        );
+
+        if (pendingTournamentId) {
+
+ 
+        // Save the tournament registration
+        const { error: registrationError } = await supabaseClient
+            .from("tournament_registrations")
+            .insert({
+                tournament_id: pendingTournamentId,
+                player_id: user.id,
+                status: "registered"
+            });
+
+        if (registrationError) {
+
+            if (registrationError.code === "23505") {
+
+                localStorage.removeItem(
+                    "campusEArenaPendingTournament"
+                );
+
+                alert("You are already registered for this tournament.");
+
+            } else {
+
+                console.error(
+                    "Tournament registration error:",
+                    registrationError
+                );
+
+                alert(
+                    "You logged in successfully, but tournament registration failed: " +
+                    registrationError.message
+                );
+
+            }
+
+        } else {
+
+            localStorage.removeItem(
+                "campusEArenaPendingTournament"
+            );
+
+            alert("Welcome back! Your tournament registration is complete.");
+
+            // Use the same authenticated account that owns the registration.
+            const notificationUserId = user.id;
+
+            const { error: notificationError } = await supabaseClient
+                .from("notifications")
+                .insert({
+                    user_id: notificationUserId,
+                    title: "Tournament Registration Successful",
+                    message: "You have successfully registered for your tournament.",
+                    type: "tournament"
+                });
+
+            if (notificationError) {
+
+                console.error(
+                    "Notification creation failed:",
+                    notificationError
+                );
+
+            } else {
+
+                console.log(
+                    "Registration notification created for:",
+                    notificationUserId
+                );
+            console.log("Notification creation completed successfully.");
+            }
+
+            // Refresh My Tournaments
+            if (typeof loadMyTournaments === "function") {
+                await loadMyTournaments();
+            }
+
+            // Refresh Notifications
+            if (typeof loadMyNotifications === "function") {
+                await loadMyNotifications();
+            }
+
+        }
+
+
+        } else {
+
+            alert("Welcome back, " + email + "!");
+
+        }
+
+        closeLogin();
+
+await updateAccountNavigation(user);
+
+await loadPlayerDashboard();
+
+console.log("Logged in user:", user);
+        
+    } catch (error) {
+
+        console.error("Login error:", error);
+
+        alert("Unable to login. Please try again.");
+
+    }
+
+});
+
+// ======================================
+// TOURNAMENT REGISTRATION
+// ======================================
+
+// Open the tournament registration modal
+
+// ======================================
+// SELECTED TOURNAMENT INFORMATION
+// ======================================
+
+window.selectedTournamentId = null;
+window.selectedTournamentFee = 0;
+
+
+// ======================================
+// OPEN TOURNAMENT REGISTRATION WINDOW
+// ======================================
+
+function openTournamentRegister() {
+
+    const modal = document.getElementById("tournamentRegisterModal");
+
+    const tournamentName = document.getElementById("selectedTournamentName");
+    const tournamentFee = document.getElementById("selectedTournamentFee");
+    const tournamentPrize = document.getElementById("selectedTournamentPrize");
+
+    const registrationMessage = document.getElementById("registrationMessage");
+
+    const freeButton = document.getElementById("freeRegistrationBtn");
+    const paidButton = document.getElementById("paidRegistrationBtn");
+
+    if (!window.selectedTournamentId) {
+        alert("Please select a tournament first.");
+        return;
+    }
+
+    const tournamentButton = document.querySelector(
+        '.register-btn[data-tournament-id="' +
+        window.selectedTournamentId +
+        '"]'
+    );
+
+    if (!tournamentButton) {
+        alert("Tournament information could not be found. Please refresh the page.");
+        return;
+    }
+
+    const name = tournamentButton.dataset.tournamentName || "Tournament";
+
+    const fee = Number(tournamentButton.dataset.entryFee || 0);
+
+    const prize = Number(tournamentButton.dataset.prizePool || 0);
+
+    if (!Number.isFinite(fee) || fee < 0) {
+        alert("The tournament entry fee is invalid.");
+        return;
+    }
+
+    window.selectedTournamentFee = fee;
+
+    tournamentName.textContent = name;
+
+    tournamentFee.textContent = fee === 0
+        ? "FREE"
+        : "KSh " + fee.toLocaleString("en-KE");
+
+    tournamentPrize.textContent = "KSh " + prize.toLocaleString("en-KE");
+
+    // Hide both buttons before selecting the correct one.
+    freeButton.style.display = "none";
+    paidButton.style.display = "none";
+
+    if (fee === 0) {
+
+        registrationMessage.textContent =
+            "This is a free tournament. Confirm below to register.";
+
+        freeButton.style.display = "block";
+
+    } else {
+
+        registrationMessage.textContent =
+            "This tournament requires payment. Payment must be verified before registration is confirmed.";
+
+        paidButton.style.display = "block";
+
+    }
+
+    modal.style.display = "flex";
+
+}
+
+
+// ======================================
+// CLOSE REGISTRATION WINDOW
+// ======================================
+
+function closeTournamentRegister() {
+
+    document.getElementById("tournamentRegisterModal").style.display = "none";
+
+}
+
+
+// ======================================
+// PAID TOURNAMENT PLACEHOLDER
+// PAYMENT INTEGRATION COMES LATER
+// ======================================
+
+function handlePaidTournament() {
+
+    if (!window.selectedTournamentId) {
+        alert("Please select a tournament first.");
+        return;
+    }
+
+    if (window.selectedTournamentFee <= 0) {
+        alert("This tournament does not require payment.");
+        return;
+    }
+
+    alert(
+        "M-Pesa payment is not yet available. " +
+        "You cannot register for this paid tournament until payment integration is complete."
+    );
+
+}
+
+
+// ======================================
+// CONFIRM FREE TOURNAMENT REGISTRATION
+// ======================================
+
+async function confirmTournamentRegistration() {
+
+    if (!window.selectedTournamentId) {
+        alert("Please select a tournament first.");
+        return;
+    }
+
+    // Never allow this function to register a paid tournament.
+    if (window.selectedTournamentFee !== 0) {
+        alert("This tournament requires payment. Free registration is not allowed.");
+        return;
+    }
+
+    const freeButton = document.getElementById("freeRegistrationBtn");
+
+    freeButton.disabled = true;
+    freeButton.textContent = "Registering...";
+
+    try {
+
+        // Check the currently logged-in user.
+        const { data, error } = await supabaseClient.auth.getUser();
+
+        if (error || !data.user) {
+
+            alert("Please log in before registering for a tournament.");
+
+            closeTournamentRegister();
+            openLogin();
+
+            return;
+        }
+
+        const user = data.user;
+
+        console.log("Selected tournament ID:", window.selectedTournamentId);
+console.log("Current user ID:", user.id);
+
+        // Confirm the tournament still exists and is free.
+        const { data: tournament, error: tournamentError } =
+            await supabaseClient
+                .from("tournaments")
+                .select("id, name, entry_fee")
+                .eq("id", window.selectedTournamentId)
+                .maybeSingle();
+
+        if (tournamentError) {
+            console.error("Tournament verification error:", tournamentError);
+
+            alert("Unable to verify this tournament. Please try again.");
+
+            return;
+        }
+
+        if (!tournament) {
+            alert("This tournament could not be found.");
+
+            return;
+        }
+
+        if (Number(tournament.entry_fee) !== 0) {
+            alert(
+                "This tournament is not free. " +
+                "You cannot register without completing payment."
+            );
+
+            return;
+        }
+
+        // Check whether the player has already registered.
+        const { data: existingRegistration, error: checkError } =
+            await supabaseClient
+                .from("tournament_registrations")
+                .select("id")
+                .eq("tournament_id", window.selectedTournamentId)
+                .eq("player_id", user.id)
+                .maybeSingle();
+
+        if (checkError) {
+
+            console.error("Registration check error:", checkError);
+
+            alert(
+                "Unable to check your registration. " +
+                "Please check your database permissions and try again."
+            );
+
+            return;
+        }
+
+        if (existingRegistration) {
+
+            alert("You are already registered for this tournament.");
+
+            closeTournamentRegister();
+
+            if (typeof loadMyTournaments === "function") {
+                await loadMyTournaments();
+            }
+
+            return;
+        }
+
+        // Register the player for the free tournament.
+        const { error: registrationError } = await supabaseClient
+            .from("tournament_registrations")
+            .insert({
+                tournament_id: window.selectedTournamentId,
+                player_id: user.id,
+                status: "registered"
+            });
+
+        if (registrationError) {
+
+            console.error("Registration error:", registrationError);
+
+            alert(
+                "Registration failed. Please try again. " +
+                "If the problem continues, check your Supabase database permissions."
+            );
+
+            return;
+        }
+
+        alert(
+            "Congratulations! You have successfully registered for " +
+            (tournament.name || "the tournament") + "."
+        );
+        // Create a notification for the player who registered
+const { error: notificationError } = await supabaseClient
+    .from("notifications")
+    .insert({
+        user_id: user.id,
+        title: "Tournament Registration Successful",
+        message: "You have successfully registered for " +
+                 (tournament.name || "the tournament") + ".",
+        type: "tournament"
+    });
+
+if (notificationError) {
+    console.error(
+        "Notification creation failed:",
+        notificationError
+    );
+} else {
+    console.log(
+        "Registration notification created for:",
+        user.id
+    );
+}
+        closeTournamentRegister();
+
+        if (typeof loadMyTournaments === "function") {
+            await loadMyTournaments();
+        }
+
+    } catch (error) {
+
+        console.error("Unexpected registration error:", error);
+
+        alert("Something went wrong. Please try again.");
+
+    } finally {
+
+        freeButton.disabled = false;
+        freeButton.textContent = "Confirm Free Registration";
+
+    }
+
+}
+
+// ======================================
+// PLAYER COUNT
+// ======================================
+
+async function updatePlayerCount() {
+
+    const { count, error } = await supabaseClient
+
+        .from("profiles")
+
+        .select("*", { count: "exact", head: true });
+
+
+    if (error) {
+
+        console.error("Player count error:", error);
+
+        return;
+
+    }
+
+
+    document.getElementById("playerCount").innerText =
+
+        count + "+";
+
+}
+
+
+// ======================================
+// CLOSE MODALS WHEN CLICKING OUTSIDE
+// ======================================
+
+window.onclick = function(event) {
+
+    const registerModal = document.getElementById("registerModal");
+
+    const loginModal = document.getElementById("loginModal");
+
+
+    if (event.target === registerModal) {
+
+        closeModal();
+
+    }
+
+
+    if (event.target === loginModal) {
+
+        closeLogin();
+
+    }
+
+};
+
+// ======================================
+// PLAYER ACCOUNT NAVIGATION
+// ======================================
+
+function toggleAccountMenu(event) {
+if (event) event.stopPropagation();
+const dropdown = document.getElementById("accountDropdown");
+const accountButton = document.getElementById("accountButton") || document.getElementById("avatarButton");
+if (!dropdown) return;
+dropdown.classList.toggle("show");
+const expanded = dropdown.classList.contains("show") ? "true" : "false";
+[document.getElementById("accountButton"), document.getElementById("avatarButton")].filter(Boolean).forEach(button => button.setAttribute("aria-expanded", expanded));
+
+}
+
+// Close the menu when clicking elsewhere
+
+document.addEventListener("click", function(event) {
+
+const accountArea = document.getElementById("loggedInButtons");
+const dropdown = document.getElementById("accountDropdown");
+
+if (accountArea && !accountArea.contains(event.target)) {
+    if (dropdown) dropdown.classList.remove('show');
+    [document.getElementById('accountButton'), document.getElementById('avatarButton')].filter(Boolean).forEach(button => button.setAttribute('aria-expanded', 'false'));
+}
+
+});
+
+// Update the navigation using the current Supabase session
+
+async function updateAccountNavigation(user) {
+    const loggedOut = document.getElementById("loggedOutButtons");
+    const loggedIn = document.getElementById("loggedInButtons");
+    const dropdown = document.getElementById("accountDropdown");
+
+    // Keep the login control visible unless Supabase confirms an active session.
+    if (!user) {
+        if (loggedOut) loggedOut.style.display = "flex";
+        if (loggedIn) loggedIn.style.display = "none";
+        if (dropdown) dropdown.classList.remove("show");
+        return;
+    }
+
+    if (loggedOut) loggedOut.style.display = "none";
+    if (loggedIn) loggedIn.style.display = "flex";
+
+    const metadata = user.user_metadata || {};
+    const playerName = metadata.username || metadata.full_name || (user.email || "player").split("@")[0];
+    const email = user.email || "Signed-in player";
+    const nameElement = document.getElementById("dropdownPlayerName");
+    const emailElement = document.getElementById("dropdownPlayerEmail");
+    if (nameElement) nameElement.textContent = playerName;
+    if (emailElement) emailElement.textContent = email;
+
+    const avatarUrl = metadata.avatar_url || ("https://ui-avatars.com/api/?name=" + encodeURIComponent(playerName) + "&background=102c46&color=9ceaff&size=96");
+    const navAvatar = document.getElementById("navAvatar");
+    const dropdownAvatar = document.getElementById("dropdownAvatar");
+    if (navAvatar) navAvatar.src = avatarUrl;
+    if (dropdownAvatar) dropdownAvatar.src = avatarUrl;
+}
+
+// React to login, logout, and session changes
+
+supabaseClient.auth.onAuthStateChange(function(event, session) {
+
+updateAccountNavigation(session ? session.user : null);
+
+});
+
+// Check whether the player is already logged in
+
+async function initializeAccountNavigation() {
+
+const { data, error } = await supabaseClient.auth.getSession();
+
+if (error) {
+
+    console.error("Unable to check player session:", error);
+
+    return;
+
+}
+
+await updateAccountNavigation(
+    data.session ? data.session.user : null
+);
+
+}
+
+// Log out the current player
+
+async function logoutPlayer() {
+
+const { error } = await supabaseClient.auth.signOut();
+
+if (error) {
+
+    alert("Unable to log out. Please try again.");
+
+    console.error(error);
+
+    return;
+
+}
+
+document.getElementById("accountDropdown").classList.remove("show");
+
+closeLogin();
+
+alert("You have logged out successfully.");
+
+}
+
+// Temporary placeholders for the dashboard features
+
+// ======================================
+// PLAYER DASHBOARD NAVIGATION
+// ======================================
+
+function openPlayerDashboard() {
+
+    const dashboard = document.getElementById("playerDashboard");
+
+    dashboard.style.display = "block";
+    dashboard.classList.add("dashboard-popup");
+
+    document.getElementById("accountDropdown").classList.remove("show");
+
+    loadPlayerDashboard();
+
+}
+
+
+function closePlayerDashboard() {
+
+    const dashboard = document.getElementById("playerDashboard");
+
+    dashboard.style.display = "none";
+    dashboard.classList.remove("dashboard-popup");
+
+}
+
+function switchDashboardTab(tabName, button) {
+
+document.querySelectorAll(".dashboard-panel").forEach(function(panel) {
+    panel.classList.remove("active");
+});
+
+document.querySelectorAll(".dashboard-tab").forEach(function(tab) {
+    tab.classList.remove("active");
+});
+
+const targetPanel = document.getElementById("panel-" + tabName);
+if (!targetPanel) { console.warn("Dashboard panel missing:", tabName); return; }
+targetPanel.classList.add("active");
+if (button) button.classList.add("active");
+const dropdown = document.getElementById("accountDropdown");
+if (dropdown) dropdown.classList.remove("show");
+
+if (tabName === "tournaments") {
+    loadMyTournaments();
+}
+
+if (tabName === "matches") {
+    loadMyMatches();
+}
+
+if (tabName === "notifications") {
+    loadMyNotifications();
+}
+
+}
+
+
+
+// Account dropdown actions
+
+function openPlayerProfile() {
+
+openPlayerDashboard();
+
+switchDashboardTab(
+    "profile",
+    document.querySelector('.dashboard-tab[onclick*="profile"]')
+);
+
+}
+
+function showMyTournaments() {
+
+openPlayerDashboard();
+
+switchDashboardTab(
+    "tournaments",
+    document.querySelector('.dashboard-tab[onclick*="tournaments"]')
+);
+
+}
+
+function showMyMatches() {
+
+openPlayerDashboard();
+
+switchDashboardTab(
+    "matches",
+    document.querySelector('.dashboard-tab[onclick*="matches"]')
+);
+
+}
+
+function showMyNotifications() {
+
+openPlayerDashboard();
+
+switchDashboardTab(
+    "notifications",
+    document.querySelector('.dashboard-tab[onclick*="notifications"]')
+);
+
+}
+
+function showAccountSettings() {
+
+openPlayerDashboard();
+
+switchDashboardTab(
+    "settings",
+    document.querySelector('.dashboard-tab[onclick*="settings"]')
+);
+
+}
+
+// ======================================
+// LOAD PLAYER PROFILE
+// ======================================
+
+async function loadPlayerDashboard() {
+
+const { data, error } = await supabaseClient.auth.getUser();
+
+if (error || !data.user) {
+
+    alert("Please log in to view your account.");
+
+    return;
+
+}
+
+const user = data.user;
+const metadata = user.user_metadata || {};
+
+const fullName = metadata.full_name || "";
+const username = metadata.username || "";
+const phone = metadata.phone || "";
+const campus = metadata.campus || "";
+
+document.getElementById("dashboardPlayerName").textContent =
+    username || fullName || "Player";
+
+document.getElementById("dashboardGamingName").textContent =
+    "@" + (username || "player");
+
+document.getElementById("profileFullName").textContent =
+    fullName || "Not provided";
+
+document.getElementById("profileUsername").textContent =
+    username || "Not provided";
+
+document.getElementById("profileEmail").textContent =
+    user.email || "Not available";
+
+document.getElementById("profilePhone").textContent =
+    phone || "Not provided";
+
+document.getElementById("profileCampus").textContent =
+    campus || "Not provided";
+
+document.getElementById("editFullName").value = fullName;
+document.getElementById("editUsername").value = username;
+document.getElementById("editPhone").value = phone;
+
+document.getElementById("editCampus").value =
+    campus === "Maseno University" ? "Maseno University" : "Other";
+
+const avatarName = username || fullName || "Player";
+
+const avatarUrl =
+    "https://ui-avatars.com/api/?name=" +
+    encodeURIComponent(avatarName) +
+    "&background=102c46&color=9ceaff&size=160";
+
+document.getElementById("dashboardAvatar").src = avatarUrl;
+
+const completionFields = [fullName, username, user.email, phone, campus];
+const completion = Math.round(completionFields.filter(value => String(value || "").trim()).length / completionFields.length * 100);
+const completionLabel = document.getElementById("profileCompletionLabel");
+const completionBar = document.getElementById("profileCompletionBar");
+if (completionLabel) completionLabel.textContent = completion + "%";
+if (completionBar) completionBar.style.width = completion + "%";
+await loadPlayerAccountStats(user.id);
+
+}
+
+// ================= PLAYER ACCOUNT STATISTICS =================
+async function loadPlayerAccountStats(userId) {
+    const setStat = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
+    ["statTournaments", "statMatches", "statWins", "statWinRate"].forEach(id => setStat(id, "—"));
+    try {
+        const [registrationResult, matchResult] = await Promise.all([
+            supabaseClient.from("tournament_registrations").select("id", { count: "exact", head: true }).eq("player_id", userId),
+            supabaseClient.from("matches").select("player1_id, player2_id, player1_score, player2_score, status").or(`player1_id.eq.${userId},player2_id.eq.${userId}`)
+        ]);
+        if (!registrationResult.error) setStat("statTournaments", registrationResult.count ?? 0);
+        if (matchResult.error || !Array.isArray(matchResult.data)) return;
+        const finished = matchResult.data.filter(m => {
+            const status = String(m.status || "").toLowerCase();
+            return ["completed", "complete", "finished", "played", "approved"].includes(status) && m.player1_score !== null && m.player2_score !== null;
+        });
+        let wins = 0;
+        finished.forEach(m => {
+            const a = Number(m.player1_score), b = Number(m.player2_score);
+            if (!Number.isFinite(a) || !Number.isFinite(b) || a === b) return;
+            if ((m.player1_id === userId && a > b) || (m.player2_id === userId && b > a)) wins++;
+        });
+        setStat("statMatches", finished.length);
+        setStat("statWins", wins);
+        setStat("statWinRate", finished.length ? Math.round(wins / finished.length * 100) + "%" : "0%");
+    } catch (err) { console.warn("Player stats could not load:", err); }
+}
+
+// Change password securely through Supabase Auth; no password is stored in the profiles table.
+const changePasswordForm = document.getElementById("changePasswordForm");
+if (changePasswordForm) changePasswordForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const password = document.getElementById("newAccountPassword").value;
+    const confirmation = document.getElementById("confirmAccountPassword").value;
+    const message = document.getElementById("passwordUpdateMessage");
+    if (password.length < 8) { message.textContent = "Use at least 8 characters."; message.style.color = "#ff8585"; return; }
+    if (password !== confirmation) { message.textContent = "The passwords do not match."; message.style.color = "#ff8585"; return; }
+    const button = changePasswordForm.querySelector('button[type="submit"]');
+    button.disabled = true; button.textContent = "Updating...";
+    message.textContent = "Updating your password securely..."; message.style.color = "#8fa3bb";
+    try {
+        const { error } = await supabaseClient.auth.updateUser({ password });
+        if (error) throw error;
+        changePasswordForm.reset();
+        message.textContent = "Password updated successfully."; message.style.color = "#8feaff";
+    } catch (error) {
+        message.textContent = "Could not update password: " + (error.message || "Please try again."); message.style.color = "#ff8585";
+    } finally { button.disabled = false; button.textContent = "Update Password"; }
+});
+
+// ======================================
+// SAVE PROFILE SETTINGS
+// ======================================
+
+document.getElementById("profileUpdateForm").addEventListener(
+"submit",
+async function(event) {
+
+    event.preventDefault();
+
+    const message = document.getElementById("profileUpdateMessage");
+
+    message.textContent = "Saving your changes...";
+    message.style.color = "#8feaff";
+
+    const fullName = document.getElementById("editFullName").value.trim();
+    const username = document.getElementById("editUsername").value.trim();
+    const phone = document.getElementById("editPhone").value.trim();
+    const campus = document.getElementById("editCampus").value;
+
+    const { data, error } = await supabaseClient.auth.updateUser({
+
+        data: {
+            full_name: fullName,
+            username: username,
+            phone: phone,
+            campus: campus
+        }
+
+    });
+
+    if (error) {
+
+        message.textContent = "Could not save changes: " + error.message;
+        message.style.color = "#ff8585";
+
+        return;
+
+    }
+
+    message.textContent = "Profile updated successfully!";
+    message.style.color = "#8feaff";
+
+    await loadPlayerDashboard();
+
+    await updateAccountNavigation(data.user);
+
+}
+
+);
+
+// ======================================
+// TOURNAMENTS, MATCHES & NOTIFICATIONS
+// Temporary empty states until database tables are connected
+// ======================================
+
+// ======================================
+// LOAD MY TOURNAMENTS
+// ======================================
+
+async function loadMyTournaments() {
+
+    const tournamentList = document.getElementById("myTournamentList");
+
+    tournamentList.innerHTML = `
+        <div class="dashboard-list-card">
+            <p>Loading your tournaments...</p>
+        </div>
+    `;
+
+    const { data: userData, error: userError } =
+        await supabaseClient.auth.getUser();
+
+    if (userError || !userData.user) {
+
+        tournamentList.innerHTML = `
+            <div class="dashboard-list-card">
+                <p>Please log in to view your tournaments.</p>
+            </div>
+        `;
+
+        return;
+
+    }
+
+    const userId = userData.user.id;
+
+    const { data: registrations, error } = await supabaseClient
+
+        .from("tournament_registrations")
+
+        .select(`
+            id,
+            status,
+            created_at,
+            tournament_id,
+            tournaments (
+                name,
+                game,
+                entry_fee,
+                prize_pool,
+                start_date,
+                tournament_format
+            )
+        `)
+
+        .eq("player_id", userId)
+
+        .order("created_at", { ascending: false });
+
+
+    if (error) {
+
+        console.error("My tournaments error:", error);
+
+        tournamentList.innerHTML = `
+            <div class="dashboard-list-card">
+                <h4>Unable to load tournaments</h4>
+                <p>${error.message}</p>
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    if (!registrations || registrations.length === 0) {
+
+        tournamentList.innerHTML = `
+            <div class="dashboard-list-card">
+                <h4>No tournaments joined yet</h4>
+                <p>Register for a tournament to see it here.</p>
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    tournamentList.innerHTML = "";
+
+
+    registrations.forEach(function(registration) {
+
+        const tournament = registration.tournaments;
+
+        if (!tournament) {
+            return;
+        }
+
+        const card = document.createElement("div");
+
+        card.className = "dashboard-list-card";
+
+        card.innerHTML = `
+            <h4>${tournament.name || "Tournament"}</h4>
+
+            <p>
+                ${tournament.game || "eFootball"}
+            </p>
+
+                        <p>
+                Entry Fee:
+                ${
+                    Number(tournament.entry_fee || 0) === 0
+                        ? "FREE"
+                        : "KSh " + Number(tournament.entry_fee).toLocaleString("en-KE")
+                }
+            </p>
+
+            <p>
+                Prize Pool:
+                KSh ${Number(tournament.prize_pool || 0).toLocaleString("en-KE")}
+            </p>
+
+            <p>
+                Payment Status:
+                <strong>
+                    ${
+                        Number(tournament.entry_fee || 0) === 0
+                            ? "FREE — No Payment Required"
+                            : "Payment Verification Required"
+                    }
+                </strong>
+            </p>
+
+            <p>
+                Start Date: ${tournament.start_date || "To be announced"}
+            </p>
+
+            <p>
+                Format: ${tournament.tournament_format || "To be announced"}
+            </p>
+
+            <p>
+                Status: <strong>${registration.status || "Registered"}</strong>
+            </p>
+        `;
+
+        tournamentList.appendChild(card);
+
+    });
+
+}
+
+// ======================================
+// LOAD MY MATCHES
+// ======================================
+
+async function loadMyMatches() {
+
+    const matchList = document.getElementById("myMatchList");
+
+    matchList.innerHTML = `
+        <div class="dashboard-list-card">
+            <p>Loading your matches...</p>
+        </div>
+    `;
+
+    // Get the logged-in player
+    const { data: userData, error: userError } =
+        await supabaseClient.auth.getUser();
+
+    if (userError || !userData.user) {
+
+        matchList.innerHTML = `
+            <div class="dashboard-list-card">
+                <h4>Please log in</h4>
+                <p>Log in to view your matches.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+    const userId = userData.user.id;
+
+    // Retrieve matches involving this player
+   const { data: matches, error } = await supabaseClient
+.from("matches")
+.select(`         id,
+        tournament_id,
+        game_name,
+        player1_id,
+        player2_id,
+        round_name,
+        scheduled_at,
+        status,
+        player1_score,
+        player2_score,
+        tournaments (
+            name
+        )
+    `)
+.or(`player1_id.eq.${userId},player2_id.eq.${userId}`)
+.order("scheduled_at", { ascending: true, nullsFirst: false });
+
+    if (error) {
+
+        console.error("My matches error:", error);
+
+        matchList.innerHTML = `
+            <div class="dashboard-list-card">
+                <h4>Unable to load matches</h4>
+                <p>${error.message}</p>
+            </div>
+        `;
+
+        return;
+    }
+
+    // Show an empty state when no matches exist
+    if (!matches || matches.length === 0) {
+
+        matchList.innerHTML = `
+            <div class="dashboard-list-card">
+                <h4>No matches scheduled yet</h4>
+                <p>Your fixtures will appear here when tournament matches are created.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+    matchList.innerHTML = "";
+
+    // Get all opponents' IDs
+    const opponentIds = [
+        ...new Set(
+            matches.map(match =>
+                match.player1_id === userId
+                    ? match.player2_id
+                    : match.player1_id
+            ).filter(Boolean)
+        )
+    ];
+
+    // Retrieve opponents' gaming names from profiles
+    let profiles = [];
+
+    if (opponentIds.length > 0) {
+
+        const { data: profileData, error: profileError } =
+            await supabaseClient
+                .from("profiles")
+                .select("*")
+                .in("id", opponentIds);
+
+        if (profileError) {
+            console.error("Opponent profiles error:", profileError);
+        } else {
+            profiles = profileData || [];
+        }
+    }
+
+    // Display each match
+    matches.forEach(function(match) {
+
+        const opponentId =
+            match.player1_id === userId
+                ? match.player2_id
+                : match.player1_id;
+
+        const opponent = profiles.find(
+            profile => profile.id === opponentId
+        );
+
+        const opponentName = opponent
+            ? opponent.username || opponent.full_name || "Opponent"
+            : "Opponent";
+
+        const tournament = match.tournaments;
+
+        const hasScore =
+            match.player1_score !== null &&
+            match.player1_score !== undefined &&
+            match.player2_score !== null &&
+            match.player2_score !== undefined;
+
+        const myScore =
+            match.player1_id === userId
+                ? match.player1_score
+                : match.player2_score;
+
+        const opponentScore =
+            match.player1_id === userId
+                ? match.player2_score
+                : match.player1_score;
+
+       const matchDate = match.scheduled_at
+    ? new Date(match.scheduled_at).toLocaleString("en-KE", {
+        dateStyle: "medium",
+        timeStyle: "short"
+    })
+    : "To be announced";
+       
+        const statusLabels = {
+            scheduled: "Upcoming",
+            in_progress: "In Progress",
+            completed: "Completed",
+            cancelled: "Cancelled"
+        };
+
+        const statusText =
+            statusLabels[match.status] || match.status || "Scheduled";
+
+        const card = document.createElement("div");
+
+        card.className = "dashboard-list-card";
+
+        const title = document.createElement("h4");
+        title.textContent = tournament?.name || "Tournament Match";
+        card.appendChild(title);
+
+        const game = document.createElement("p");
+game.textContent = (match.game_name || "Game to be announced");
+card.appendChild(game);
+        const opponentLine = document.createElement("p");
+        opponentLine.textContent = "Opponent: " + opponentName;
+        card.appendChild(opponentLine);
+
+        const roundLine = document.createElement("p");
+        roundLine.textContent = "Round: " + (match.round_name || "To be announced");
+        card.appendChild(roundLine);
+
+        const dateLine = document.createElement("p");
+        dateLine.textContent = "Date: " + matchDate;
+        card.appendChild(dateLine);
+
+        const statusLine = document.createElement("p");
+        statusLine.textContent = "Status: " + statusText;
+        card.appendChild(statusLine);
+
+        const scoreLine = document.createElement("p");
+
+        if (hasScore) {
+            scoreLine.textContent =
+                "Score: " + myScore + " - " + opponentScore;
+        } else {
+            scoreLine.textContent = "Score: Not available yet";
+        }
+
+        card.appendChild(scoreLine);
+
+        matchList.appendChild(card);
+
+    });
+
+}
+
+// Keep unread counts synchronized in the account dropdown and dashboard.
+async function arenaUpdateNotificationCounts() {
+    try {
+        const { data: { user } } = await supabaseClient.auth.getUser();
+        if (!user) { ['dropdownNotificationCount','dashboardNotificationCount'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='0';}); return; }
+        const { count, error } = await supabaseClient.from('notifications').select('id', { count:'exact', head:true }).eq('user_id',user.id).eq('is_read',false);
+        if (error) throw error;
+        ['dropdownNotificationCount','dashboardNotificationCount'].forEach(id=>{const el=document.getElementById(id);if(el){el.textContent=String(count||0);el.style.display=(count||0)>0?'inline-flex':'none';}});
+    } catch(err) { console.warn('Unread notification count unavailable:',err.message); }
+}
+
+// ======================================
+// LOAD MY NOTIFICATIONS
+// ======================================
+
+async function loadMyNotifications() {
+
+    const notificationList =
+document.getElementById("myNotificationList");
+
+if (!notificationList) {
+console.error(
+"Notifications error: Element #myNotificationList was not found."
+);
+return;
+}
+   
+    notificationList.innerHTML = `
+        <div class="dashboard-list-card">
+            <p>Loading your notifications...</p>
+        </div>
+    `;
+
+    // Get the logged-in player
+    const { data: userData, error: userError } =
+        await supabaseClient.auth.getUser();
+
+    if (userError || !userData.user) {
+
+        notificationList.innerHTML = `
+            <div class="dashboard-list-card">
+                <h4>Please log in</h4>
+                <p>Log in to view your notifications.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+const userId = userData.user.id;
+
+console.log("Logged-in notification user ID:", userId);
+
+// Retrieve this player's notifications
+const { data: notifications, error } = await supabaseClient
+   
+        .from("notifications")
+        .select("id, title, message, type, is_read, created_at")
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false });
+    console.log("Notifications returned:", notifications);
+    if (error) {
+
+        console.error("Notifications error:", error);
+
+        notificationList.innerHTML = `
+            <div class="dashboard-list-card">
+                <h4>Unable to load notifications</h4                >
+                <p>${error.message}</p>
+            </div>
+        `;
+
+        return;
+    }
+
+    // Display an empty state if there are no notifications
+    if (!notifications || notifications.length === 0) {
+
+        notificationList.innerHTML = `
+            <div class="dashboard-list-card">
+                <h4>You're all caught up!</h4>
+                <p>Tournament announcements, match updates, and results will appear here.</p>
+            </div>
+        `;
+
+        await arenaUpdateNotificationCounts();
+        return;
+    }
+
+    notificationList.innerHTML = "";
+
+    notifications.forEach(function(notification) {
+
+        const card = document.createElement("div");
+
+        card.className = "dashboard-list-card";
+
+        if (!notification.is_read) {
+            card.style.borderLeft = "4px solid #8feaff";
+        }
+
+        const title = document.createElement("h4");
+
+        title.textContent =
+            
+            notification.title;
+
+        card.appendChild(title);
+
+        const message = document.createElement("p");
+
+        message.textContent = notification.message;
+
+        card.appendChild(message);
+
+        const details = document.createElement("p");
+
+        details.style.fontSize = "12px";
+        details.style.opacity = "0.75";
+
+        details.textContent =
+            (notification.type || "general") +
+            " • " +
+            new Date(notification.created_at).toLocaleString("en-KE");
+
+        card.appendChild(details);
+
+        if (!notification.is_read) {
+
+            const readButton = document.createElement("button");
+
+            readButton.textContent = "Mark as read";
+            readButton.className = "login-btn";
+            readButton.style.marginTop = "10px";
+
+            readButton.addEventListener("click", async function() {
+
+                readButton.disabled = true;
+                readButton.textContent = "Updating...";
+
+                const { error: updateError } = await supabaseClient
+                    .from("notifications")
+                    .update({ is_read: true })
+                    .eq("id", notification.id)
+                    .eq("user_id", userId);
+
+                if (updateError) {
+
+                    console.error("Mark notification as read:", updateError);
+
+                    readButton.disabled = false;
+                    readButton.textContent = "Try again";
+
+                    alert("Could not update this notification. Please try again.");
+
+                    return;
+                }
+
+                notification.is_read = true;
+
+                title.textContent = notification.title;
+
+                card.style.borderLeft = "";
+
+                readButton.remove();
+
+            });
+
+            card.appendChild(readButton);
+
+        }
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete notification";
+        deleteButton.className = "login-btn notification-delete-btn";
+        deleteButton.addEventListener("click", async function () {
+            if (!confirm("Delete this notification? This cannot be undone.")) return;
+            deleteButton.disabled = true;
+            const { error: deleteError } = await supabaseClient.from("notifications").delete().eq("id", notification.id).eq("user_id", userId);
+            if (deleteError) { alert("Could not delete notification: " + deleteError.message); deleteButton.disabled = false; return; }
+            card.remove();
+            await arenaUpdateNotificationCounts();
+            if (!notificationList.children.length) notificationList.innerHTML = `<div class="dashboard-list-card"><h4>You're all caught up!</h4><p>Tournament announcements, match updates, and results will appear here.</p></div>`;
+        });
+        card.appendChild(deleteButton);
+        notificationList.appendChild(card);
+
+    });
+    await arenaUpdateNotificationCounts();
+
+}
+
+
+// ================= CAMPUS eARENA RANKINGS =================
+
+// ================= PUBLIC FIXTURES & RESULTS =================
+// Separate reads are used instead of a nested Supabase relationship so this works
+// even when the project has no declared foreign-key relationship for the join.
+let publicMatchView = 'fixtures';
+window.publicMatchView = 'fixtures';
+async function loadPublicMatches() {
+    const host = document.getElementById('publicMatchList');
+    if (!host) return;
+    host.innerHTML = '<p class="loading-message">Loading fixtures and results...</p>';
+    try {
+        const { data: matchRows, error: matchError } = await supabaseClient
+            .from('matches').select('*').order('scheduled_at', { ascending: true, nullsFirst: false });
+        if (matchError) throw matchError;
+        const matches = matchRows || [];
+        const tournamentIds = [...new Set(matches.map(m => m.tournament_id).filter(Boolean))];
+        const playerIds = [...new Set(matches.flatMap(m => [m.player1_id, m.player2_id]).filter(Boolean))];
+        let tournamentMap = new Map(), profileMap = new Map();
+        if (tournamentIds.length) {
+            const { data, error } = await supabaseClient.from('tournaments').select('id,name,game').in('id', tournamentIds);
+            if (error) console.warn('Fixture tournament names could not be loaded:', error.message);
+            (data || []).forEach(t => tournamentMap.set(String(t.id), t));
+        }
+        if (playerIds.length) {
+            const { data, error } = await supabaseClient.from('profiles').select('id,username,full_name').in('id', playerIds);
+            if (error) console.warn('Fixture player names could not be loaded:', error.message);
+            (data || []).forEach(p => profileMap.set(String(p.id), p));
+        }
+        const nameOf = id => { const p = profileMap.get(String(id)); return p ? (p.username || p.full_name || 'Player') : (id ? 'Registered player' : 'TBD'); };
+        const safe = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const dateOf = v => { if (!v) return 'Date to be announced'; const d = new Date(v); return Number.isNaN(d.getTime()) ? 'Date to be announced' : d.toLocaleString('en-KE', { dateStyle:'medium', timeStyle:'short' }); };
+        const gameSelect = document.getElementById('gameFilter');
+        const statusSelect = document.getElementById('matchStatusFilter');
+        const render = () => {
+            const game = gameSelect?.value || 'all';
+            const status = statusSelect?.value || 'all';
+            const rows = matches.filter(m => {
+                const g = String(m.game_name || m.game || tournamentMap.get(String(m.tournament_id))?.game || '').toLowerCase();
+                const wantedGame = String(game).toLowerCase();
+                const gameOk = game === 'all' || g.includes(wantedGame) || (wantedGame.includes('fc') && g.includes('ea sports fc'));
+                const matchStatus = String(m.status || 'scheduled').toLowerCase().replace(/[ -]/g,'_');
+                const isCompleted = matchStatus === 'completed' || matchStatus === 'final';
+                const activeView = window.publicMatchView || publicMatchView || 'fixtures';
+                const viewOk = activeView === 'results' ? isCompleted : !isCompleted;
+                const statusOk = activeView === 'results' ? isCompleted : (status === 'all' ? !isCompleted : matchStatus === status);
+                return gameOk && viewOk && statusOk;
+            });
+            if (!rows.length) {
+                host.innerHTML = `<div class="fixture-empty glass-empty"><h3>${matches.length ? 'No matches match these filters' : 'No fixtures have been published yet'}</h3><p>${matches.length ? 'Try selecting another game or match status.' : 'Fixtures created by the tournament administrator will appear here.'}</p></div>`;
+                return;
+            }
+            host.innerHTML = rows.map(m => {
+                const t = tournamentMap.get(String(m.tournament_id));
+                const gameName = m.game_name || m.game || t?.game || 'Football gaming';
+                const hasScores = m.player1_score !== null && m.player1_score !== undefined && m.player2_score !== null && m.player2_score !== undefined;
+                const score = hasScores ? `${safe(m.player1_score)} <span>–</span> ${safe(m.player2_score)}` : 'VS';
+                const state = String(m.status || 'scheduled').replace(/_/g,' ');
+                return `<article class="match-card fixture-card"><div class="fixture-card-top"><span class="fixture-game-tag">${safe(gameName)}</span><span class="match-status">${safe(state)}</span></div><p class="fixture-tournament-name">${safe(t?.name || 'Campus eArena Tournament')}</p><h3>${safe(m.round_name || m.match_type || 'Tournament Match')}</h3><div class="fixture-versus"><div class="fixture-player"><span class="fixture-player-mark">${safe(nameOf(m.player1_id).slice(0,1).toUpperCase())}</span><strong>${safe(nameOf(m.player1_id))}</strong></div><div class="fixture-score">${score}</div><div class="fixture-player"><span class="fixture-player-mark">${safe(nameOf(m.player2_id).slice(0,1).toUpperCase())}</span><strong>${safe(nameOf(m.player2_id))}</strong></div></div><p class="fixture-date">${safe(dateOf(m.scheduled_at))}</p></article>`;
+            }).join('');
+        };
+        render();
+        if (gameSelect) gameSelect.onchange = render;
+        if (statusSelect) statusSelect.onchange = render;
+    } catch (error) {
+        console.error('Public fixtures could not load:', error);
+        host.innerHTML = `<div class="fixture-empty glass-empty"><h3>Fixtures could not be loaded</h3><p>${String(error?.message || 'Check Supabase connectivity and SELECT access for the matches table.').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}</p><button type="button" class="secondary-btn" onclick="loadPublicMatches()">Try again</button></div>`;
+    }
+}
+
+// ================= CAMPUS eARENA RANKINGS ENGINE =================
+let arenaRankings = { tournaments: [], matches: [], profiles: [], mode: 'global', selectedTournamentId: null, currentUserId: null };
+const ARENA_DEFAULT_RATING = 1000;
+const ARENA_ELO_K = 32;
+function arenaEsc(value) {
+    return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+function arenaFormat(value) {
+    const f = String(value || '').trim().toLowerCase().replace(/[_-]+/g,' ').replace(/\s+/g,' ');
+    if (f.includes('league') || f.includes('round robin') || f.includes('round-robin') || f.includes('points table')) return 'league';
+    if (f.includes('knock') || f.includes('elimination') || f.includes('bracket') || f.includes('single elim') || f.includes('single elimination') || f.includes('cup')) return 'knockout';
+    return f;
+}
+function arenaTournamentFormat(t) {
+    return arenaFormat(t?.tournament_format ?? t?.format ?? t?.tournament_type ?? t?.type ?? '');
+}
+
+function arenaPlayerName(id) {
+    const p = arenaRankings.profiles.find(x => x.id === id);
+    return p ? (p.username || p.full_name || 'Player') : 'Player';
+}
+function arenaCompleted(match) {
+    return String(match.status || '').toLowerCase() === 'completed' && match.player1_score !== null && match.player1_score !== undefined && match.player2_score !== null && match.player2_score !== undefined && match.player1_id && match.player2_id;
+}
+function arenaCalculateGlobalRatings() {
+    const ratings = new Map();
+    const stats = new Map();
+    const ensure = id => {
+        if (!ratings.has(id)) ratings.set(id, ARENA_DEFAULT_RATING);
+        if (!stats.has(id)) stats.set(id, {played:0,wins:0,draws:0,losses:0});
+    };
+    const matches = arenaRankings.matches.filter(arenaCompleted).slice().sort((a,b) => new Date(a.created_at || a.scheduled_at || 0) - new Date(b.created_at || b.scheduled_at || 0));
+    matches.forEach(m => {
+        ensure(m.player1_id); ensure(m.player2_id);
+        const r1 = ratings.get(m.player1_id), r2 = ratings.get(m.player2_id);
+        const expected1 = 1 / (1 + Math.pow(10, (r2-r1)/400));
+        const s1 = Number(m.player1_score) > Number(m.player2_score) ? 1 : Number(m.player1_score) < Number(m.player2_score) ? 0 : .5;
+        const delta = ARENA_ELO_K * (s1 - expected1);
+        ratings.set(m.player1_id, Math.round(r1 + delta));
+        ratings.set(m.player2_id, Math.round(r2 - delta));
+        const a=stats.get(m.player1_id), b=stats.get(m.player2_id); a.played++; b.played++;
+        if (s1 === 1) { a.wins++; b.losses++; }
+        else if (s1 === 0) { b.wins++; a.losses++; }
+        else { a.draws++; b.draws++; }
+    });
+    const ids = new Set([...arenaRankings.profiles.map(p=>p.id), ...ratings.keys()]);
+    return [...ids].map(id => {
+        const p=arenaRankings.profiles.find(x=>x.id===id) || {id,username:'Player',full_name:''};
+        const st=stats.get(id) || {played:0,wins:0,draws:0,losses:0};
+        return {...p,...st,rating:ratings.get(id) ?? ARENA_DEFAULT_RATING,winRate:st.played ? Math.round(st.wins/st.played*100) : 0};
+    }).sort((a,b)=>b.rating-a.rating || b.wins-a.wins || a.username.localeCompare(b.username));
+}
+function arenaSetMode(mode) {
+    arenaRankings.mode=mode;
+    const configs={global:['GLOBAL PLAYER LADDER','Global Player Ranking','Ratings use an Elo-style system: winning against a highly rated opponent earns more rating than beating a lower-rated opponent.'],league:['LEAGUE COMPETITION','League Tables','Choose a league tournament to view its own table. Each win earns 3 points and each draw earns 1 point.'],knockout:['KNOCKOUT ARENA','Knockout Bracket','Choose a knockout tournament to follow the admin-created rounds, fixtures, and results.']};
+    document.getElementById('rankingViewTag').textContent=configs[mode][0];
+    document.getElementById('rankingViewTitle').textContent=configs[mode][1];
+    document.getElementById('rankingViewDescription').textContent=configs[mode][2];
+    document.getElementById('globalRankingPanel').hidden=mode!=='global';
+    document.getElementById('leagueRankingPanel').hidden=mode!=='league';
+    document.getElementById('knockoutRankingPanel').hidden=mode!=='knockout';
+    document.getElementById('tournamentChipsWrap').hidden=mode==='global';
+    [['global','globalRankingButton'],['league','leagueModeButton'],['knockout','knockoutModeButton']].forEach(([m,id])=>{
+        const btn=document.getElementById(id); btn.classList.toggle('active',mode===m); btn.setAttribute('aria-selected',String(mode===m));
+    });
+    const chipLabel=document.getElementById('tournamentChipsLabel');
+    chipLabel.textContent=mode==='league'?'CHOOSE A LEAGUE TOURNAMENT':'CHOOSE A KNOCKOUT TOURNAMENT';
+    document.getElementById('rankingSearch').placeholder=mode==='knockout'?'Search player in this bracket...':'Search player username...';
+    renderArenaTournamentChips();
+    renderArenaCurrentView();
+}
+function renderArenaTournamentChips() {
+    const wrap=document.getElementById('tournamentChips');
+    const wanted=arenaRankings.mode;
+    const list=arenaRankings.tournaments.filter(t=>{
+        const format=arenaTournamentFormat(t);
+        if(format===wanted) return true;
+        if(wanted==='knockout' && !format) return arenaRankings.matches.some(m=>String(m.tournament_id)===String(t.id));
+        if(wanted==='knockout' && format!=='league' && format!=='knockout') return arenaRankings.matches.some(m=>String(m.tournament_id)===String(t.id));
+        return false;
+    });
+    if (!list.length) {
+        wrap.innerHTML='<span class="ranking-status-message">No '+(wanted==='league'?'league':'knockout')+' tournaments were found. Check that the admin page saves the tournament format as '+(wanted==='league'?'League':'Knockout')+' and that this page can read tournaments.</span>';
+        arenaRankings.selectedTournamentId=null; return;
+    }
+    if (!list.some(t=>t.id===arenaRankings.selectedTournamentId)) arenaRankings.selectedTournamentId=list[0].id;
+    wrap.innerHTML=list.map(t=>`<button type="button" class="tournament-chip ${t.id===arenaRankings.selectedTournamentId?'active':''}" data-tournament-id="${arenaEsc(t.id)}"><strong>${arenaEsc(t.name||'Untitled tournament')}</strong><small>${arenaEsc(t.game||'Game')} · ${arenaEsc(t.status||'status unavailable')}</small></button>`).join('');
+    wrap.querySelectorAll('[data-tournament-id]').forEach(btn=>btn.addEventListener('click',()=>{
+        arenaRankings.selectedTournamentId=btn.dataset.tournamentId;
+        renderArenaTournamentChips(); renderArenaCurrentView();
+    }));
+}
+function renderArenaGlobalRanking() {
+    const body=document.getElementById('globalRankingBody');
+    const query=document.getElementById('rankingSearch').value.trim().toLowerCase();
+    const rows=arenaCalculateGlobalRatings().filter(p=>(p.username||'').toLowerCase().includes(query)||(p.full_name||'').toLowerCase().includes(query));
+    if (!rows.length) { body.innerHTML='<tr><td colspan="8" class="standings-empty">No player profiles or completed-match players were found.</td></tr>'; return; }
+    body.innerHTML=rows.map((p,i)=>`<tr class="${p.id===arenaRankings.currentUserId?'my-rank-row':''}"><td>${i+1<=3?String(i+1).padStart(2,'0'):String(i+1).padStart(2,'0')}</td><td><div class="ranking-player"><span class="rank-avatar">${arenaEsc((p.username||p.full_name||'P').slice(0,1).toUpperCase())}</span><span><strong>${arenaEsc(p.username||p.full_name||'Player')}</strong>${p.id===arenaRankings.currentUserId?'<small>YOU</small>':''}</span></div></td><td class="rating-value">${p.rating}</td><td>${p.played}</td><td>${p.wins}</td><td>${p.draws}</td><td>${p.losses}</td><td>${p.winRate}%</td></tr>`).join('');
+}
+async function renderArenaLeague() {
+    const body=document.getElementById('leagueRankingBody'), msg=document.getElementById('rankingStatusMessage');
+    const t=arenaRankings.tournaments.find(x=>x.id===arenaRankings.selectedTournamentId);
+    if (!t) { body.innerHTML='<tr><td colspan="10" class="standings-empty">No league tournament is available to select.</td></tr>'; msg.textContent='No league tournament was returned by Supabase. The dropdown has been replaced with tournament cards; if your tournament is missing, verify the saved format and read access.'; return; }
+    const query=document.getElementById('rankingSearch').value.trim().toLowerCase();
+    const registrations=await supabaseClient.from('tournament_registrations').select('player_id,status').eq('tournament_id',t.id);
+    if (registrations.error) { console.error('League registration query:',registrations.error); body.innerHTML='<tr><td colspan="10" class="standings-empty">Registered players could not be loaded. Check SELECT access for tournament_registrations.</td></tr>'; msg.textContent='Could not read registrations. The page has not changed database permissions.'; return; }
+    const registered=(registrations.data||[]).filter(r=>!r.status||['registered','approved','confirmed','active'].includes(String(r.status).toLowerCase())).map(r=>r.player_id).filter(Boolean);
+    const matches=arenaRankings.matches.filter(m=>String(m.tournament_id)===String(t.id) && arenaCompleted(m));
+    const ids=new Set([...registered,...matches.flatMap(m=>[m.player1_id,m.player2_id])]);
+    const table=new Map([...ids].map(id=>[id,{id,played:0,wins:0,draws:0,losses:0,gf:0,ga:0,pts:0,username:arenaPlayerName(id)}]));
+    matches.forEach(m=>{const a=table.get(m.player1_id),b=table.get(m.player2_id); if(!a||!b)return; const s1=Number(m.player1_score),s2=Number(m.player2_score); a.played++;b.played++;a.gf+=s1;a.ga+=s2;b.gf+=s2;b.ga+=s1; if(s1>s2){a.wins++;b.losses++;a.pts+=3;}else if(s2>s1){b.wins++;a.losses++;b.pts+=3;}else{a.draws++;b.draws++;a.pts++;b.pts++;}});
+    const rows=[...table.values()].map(p=>({...p,gd:p.gf-p.ga})).filter(p=>p.username.toLowerCase().includes(query)).sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf||a.username.localeCompare(b.username));
+    if(!rows.length){body.innerHTML='<tr><td colspan="10" class="standings-empty">No registered players found for this tournament yet.</td></tr>';msg.textContent=`${t.name}: no registrations or visible player records yet.`;return;}
+    body.innerHTML=rows.map((p,i)=>`<tr class="${p.id===arenaRankings.currentUserId?'my-rank-row':''}"><td>${i+1}</td><td><div class="ranking-player"><span class="rank-avatar">${arenaEsc(p.username.slice(0,1).toUpperCase())}</span><strong>${arenaEsc(p.username)}${p.id===arenaRankings.currentUserId?' · YOU':''}</strong></div></td><td>${p.played}</td><td>${p.wins}</td><td>${p.draws}</td><td>${p.losses}</td><td>${p.gf}</td><td>${p.ga}</td><td>${p.gd>0?'+':''}${p.gd}</td><td class="rating-value">${p.pts}</td></tr>`).join('');
+    msg.textContent=`${t.name} · ${rows.length} player${rows.length===1?'':'s'} shown. Table is calculated from registered players and completed matches.`;
+}
+function renderArenaKnockout() {
+    const host=document.getElementById('knockoutBracket'), title=document.getElementById('bracketTournamentTitle'), msg=document.getElementById('rankingStatusMessage');
+    const t=arenaRankings.tournaments.find(x=>x.id===arenaRankings.selectedTournamentId);
+    if(!t){title.textContent='Tournament Bracket';host.innerHTML='<p class="standings-empty">No knockout tournament is available to select.</p>';msg.textContent='No knockout tournament was returned by Supabase. Check the format saved in the admin page and read access.';return;}
+    title.textContent=t.name||'Tournament Bracket';
+    const q=document.getElementById('rankingSearch').value.trim().toLowerCase();
+    const matches=arenaRankings.matches.filter(m=>String(m.tournament_id)===String(t.id)).filter(m=>!q||arenaPlayerName(m.player1_id).toLowerCase().includes(q)||arenaPlayerName(m.player2_id).toLowerCase().includes(q));
+    if(!matches.length){host.innerHTML='<p class="standings-empty">No fixtures have been created for this tournament yet. The administrator can create the rounds and matches; this view will display them here.</p>';msg.textContent=`${t.name}: matches awaiting update.`;return;}
+    const roundKey=m=>String(m.round_name||m.match_type||'Round to be announced').trim();
+    const rounds=new Map(); matches.forEach(m=>{const k=roundKey(m);if(!rounds.has(k))rounds.set(k,[]);rounds.get(k).push(m);});
+    const roundOrder=name=>{const x=name.toLowerCase();if(x.includes('final')&&!x.includes('semi'))return 100;if(x.includes('semi'))return 90;if(x.includes('quarter'))return 80;if(x.includes('round of 16'))return 70;if(x.includes('round of 32'))return 60;if(x.includes('round of 64'))return 50;if(x.includes('round'))return 40;return 10;};
+    host.innerHTML=[...rounds.entries()].sort((a,b)=>roundOrder(a[0])-roundOrder(b[0])).map(([round,items])=>`<div class="bracket-round"><h4 class="bracket-round-title">${arenaEsc(round)}</h4>${items.map(m=>{const done=arenaCompleted(m),s1=m.player1_score,s2=m.player2_score,winner=done?(Number(s1)>Number(s2)?m.player1_id:Number(s2)>Number(s1)?m.player2_id:null):null;return `<article class="bracket-match"><div class="bracket-match-top"><span>MATCH #${arenaEsc(m.id)}</span><span>${arenaEsc(m.status||'scheduled')}</span></div><div class="bracket-player ${winner===m.player1_id?'winner':''}"><span>${arenaEsc(arenaPlayerName(m.player1_id))}</span><span class="bracket-score">${done?arenaEsc(s1):'—'}</span></div><div class="bracket-player ${winner===m.player2_id?'winner':''}"><span>${arenaEsc(arenaPlayerName(m.player2_id))}</span><span class="bracket-score">${done?arenaEsc(s2):'—'}</span></div><div class="bracket-match-status">${done?(winner?'Winner: '+arenaEsc(arenaPlayerName(winner)):(Number(s1)===Number(s2)?'Draw — admin resolution needed':'Completed')):'Awaiting result'}</div></article>`;}).join('')}</div>`).join('');
+    msg.textContent=`${t.name} · ${matches.length} fixture${matches.length===1?'':'s'} displayed across ${rounds.size} round group${rounds.size===1?'':'s'}. Rounds are read from matches created by the admin.`;
+}
+function renderArenaCurrentView() {
+    if(arenaRankings.mode==='global') renderArenaGlobalRanking();
+    else if(arenaRankings.mode==='league') renderArenaLeague();
+    else renderArenaKnockout();
+}
+async function initializeArenaRankings() {
+    const status=document.getElementById('rankingStatusMessage');
+    try {
+        const [tRes,mRes,pRes,userRes]=await Promise.all([
+            supabaseClient.from('tournaments').select('*').order('created_at',{ascending:false}),
+            supabaseClient.from('matches').select('*').order('created_at',{ascending:true}),
+            supabaseClient.from('profiles').select('id,username,full_name'),
+            supabaseClient.auth.getUser()
+        ]);
+        if(tRes.error) console.error('Rankings tournament query failed:',tRes.error);
+        if(mRes.error) console.error('Rankings match query failed:',mRes.error);
+        if(pRes.error) console.error('Rankings profile query failed:',pRes.error);
+        arenaRankings.tournaments=tRes.data||[]; arenaRankings.matches=mRes.data||[]; arenaRankings.profiles=pRes.data||[]; arenaRankings.currentUserId=userRes.data?.user?.id||null;
+        if(tRes.error) status.textContent='Tournament list could not be read from Supabase. Check the browser console and SELECT permissions; existing data has not been changed.';
+        else if(mRes.error) status.textContent='Tournament names loaded, but matches could not be read. Ratings and brackets may be incomplete; check matches table SELECT access.';
+        else status.textContent=`Loaded ${arenaRankings.tournaments.length} tournament${arenaRankings.tournaments.length===1?'':'s'} and ${arenaRankings.matches.length} match records.`;
+        document.getElementById('globalRankingButton').addEventListener('click',()=>arenaSetMode('global'));
+        document.getElementById('leagueModeButton').addEventListener('click',()=>arenaSetMode('league'));
+        document.getElementById('knockoutModeButton').addEventListener('click',()=>arenaSetMode('knockout'));
+        document.getElementById('rankingSearch').addEventListener('input',renderArenaCurrentView);
+        arenaSetMode('global');
+    } catch(error) {
+        console.error('Campus eArena rankings failed to initialize:',error);
+        status.textContent='Rankings could not be initialized. Check your internet connection and Supabase configuration.';
+    }
+}
+
+
+// ===== CAMPUS eARENA: PLAYER + ADMIN FEATURES =====
+function arenaSafeText(value) {
+    return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function arenaSetMessage(id, text, ok=false) {
+    const el=document.getElementById(id); if(el){el.textContent=text;el.style.color=ok?'#8feaff':'#ff9a9a';}
+}
+async function arenaCurrentUser() {
+    const {data,error}=await supabaseClient.auth.getUser();
+    if(error) throw error;
+    if(!data.user) throw new Error('Please log in first.');
+    return data.user;
+}
+async function arenaIsAdmin(user) {
+    // Admin rights are read from the database, never from editable browser metadata.
+    const {data,error}=await supabaseClient.from('profiles').select('role').eq('id',user.id).maybeSingle();
+    if(error) { console.warn('Admin role lookup:',error.message); return false; }
+    return String(data?.role||'').toLowerCase()==='admin';
+}
+async function arenaInitializeAdmin() {
+    const tab=document.getElementById('adminDashboardTab');
+    if(!tab) return;
+    try {
+        const user=await arenaCurrentUser();
+        const allowed=await arenaIsAdmin(user);
+        tab.style.display=allowed?'block':'none';
+        if(allowed) await arenaAdminLoadLists();
+    } catch { tab.style.display='none'; }
+}
+async function arenaRequireAdmin() {
+    const user=await arenaCurrentUser();
+    if(!(await arenaIsAdmin(user))) throw new Error('Admin permission is required for this action.');
+    return user;
+}
+function arenaToLocalDateTime(value) {
+    if (!value) return '';
+    const d = new Date(value);
+    if (Number.isNaN(d.getTime())) return '';
+    const local = new Date(d.getTime() - d.getTimezoneOffset() * 60000);
+    return local.toISOString().slice(0, 16);
+}
+async function arenaAdminLoadLists() {
+    await arenaRequireAdmin();
+    const {data:tournaments,error:tErr}=await supabaseClient.from('tournaments').select('id,name,game,tournament_format,entry_fee,prize_pool,start_date,status,registration_open,created_at').order('created_at',{ascending:false}).limit(200);
+    const ts=document.getElementById('adminMatchTournament');
+    if(!tErr && ts) ts.innerHTML=(tournaments||[]).map(t=>`<option value="${arenaSafeText(t.id)}">${arenaSafeText(t.name)} — ${arenaSafeText(t.game||'Game')}</option>`).join('')||'<option value="">No tournaments</option>';
+    const tournamentOut=document.getElementById('adminTournamentsOutput');
+    if(tournamentOut) {
+        if(tErr) tournamentOut.innerHTML=`<p class="admin-empty">Could not load tournaments: ${arenaSafeText(tErr.message)}</p>`;
+        else tournamentOut.innerHTML=(tournaments||[]).map(t=>{
+            const isOpen=t.registration_open===true;
+            return `<article class="admin-record-row">
+                <div class="admin-record-heading"><strong>${arenaSafeText(t.name||'Untitled tournament')} · ${arenaSafeText(t.game||'Game')}</strong><span class="${isOpen?'admin-open-pill':'admin-closed-pill'}">${isOpen?'REGISTRATION OPEN':'REGISTRATION CLOSED'}</span></div>
+                <div class="admin-record-meta">${arenaSafeText(t.tournament_format||'Tournament')} · Entry: KSh ${arenaSafeText(t.entry_fee??0)} · Prize: KSh ${arenaSafeText(t.prize_pool??0)} · Starts: ${t.start_date?arenaSafeText(new Date(t.start_date).toLocaleString()):'TBA'}</div>
+                <div class="admin-record-actions"><button type="button" class="${isOpen?'secondary-btn':'primary-btn'}" data-admin-toggle-tournament="${arenaSafeText(t.id)}" data-next-open="${isOpen?'false':'true'}">${isOpen?'Close registration':'Open registration'}</button></div>
+            </article>`;
+        }).join('')||'<p class="admin-empty">No tournaments have been created yet.</p>';
+    }
+    const {data:matches,error:mErr}=await supabaseClient.from('matches').select('id,tournament_id,game_name,round_name,player1_id,player2_id,scheduled_at,player1_score,player2_score,status,created_at').order('created_at',{ascending:false}).limit(300);
+    const ms=document.getElementById('adminResultMatch');
+    if(!mErr && ms) ms.innerHTML=(matches||[]).map(m=>`<option value="${arenaSafeText(m.id)}">${arenaSafeText(m.round_name||'Match')} — ${arenaSafeText(m.game_name||'Game')} [${arenaSafeText(m.status||'scheduled')}]</option>`).join('')||'<option value="">No matches</option>';
+    const matchesOut=document.getElementById('adminMatchesOutput');
+    const tournamentNames=new Map((tournaments||[]).map(t=>[String(t.id),t.name]));
+    if(matchesOut) {
+        if(mErr) matchesOut.innerHTML=`<p class="admin-empty">Could not load matches: ${arenaSafeText(mErr.message)}</p>`;
+        else matchesOut.innerHTML=(matches||[]).map(m=>`<article class="admin-record-row" data-admin-match-row="${arenaSafeText(m.id)}">
+            <div class="admin-record-heading"><strong>Match #${arenaSafeText(m.id)} · ${arenaSafeText(tournamentNames.get(String(m.tournament_id))||'Tournament')}</strong><span class="admin-record-meta">${arenaSafeText(m.status||'scheduled')}</span></div>
+            <div class="admin-record-fields">
+                <label>Game<input data-match-field="game_name" value="${arenaSafeText(m.game_name||'')}" maxlength="120"></label>
+                <label>Round<input data-match-field="round_name" value="${arenaSafeText(m.round_name||'')}" maxlength="120"></label>
+                <label>Status<select data-match-field="status">${['scheduled','in_progress','completed','cancelled'].map(st=>`<option value="${st}" ${String(m.status||'scheduled')===st?'selected':''}>${st.replace('_',' ')}</option>`).join('')}</select></label>
+                <label>Player 1 user ID<input data-match-field="player1_id" value="${arenaSafeText(m.player1_id||'')}" spellcheck="false"></label>
+                <label>Player 2 user ID<input data-match-field="player2_id" value="${arenaSafeText(m.player2_id||'')}" spellcheck="false"></label>
+                <label>Scheduled time<input data-match-field="scheduled_at" type="datetime-local" value="${arenaSafeText(arenaToLocalDateTime(m.scheduled_at))}"></label>
+                <label>Player 1 score<input data-match-field="player1_score" type="number" min="0" step="1" value="${m.player1_score===null||m.player1_score===undefined?'':arenaSafeText(m.player1_score)}"></label>
+                <label>Player 2 score<input data-match-field="player2_score" type="number" min="0" step="1" value="${m.player2_score===null||m.player2_score===undefined?'':arenaSafeText(m.player2_score)}"></label>
+            </div>
+            <div class="admin-record-actions"><button type="button" class="primary-btn" data-admin-save-match="${arenaSafeText(m.id)}">Save match / result edits</button></div>
+        </article>`).join('')||'<p class="admin-empty">No matches have been created yet.</p>';
+    }
+    const {data:profiles,error:pErr}=await supabaseClient.from('profiles').select('id,username,full_name').order('username').limit(500);
+    const rec=document.getElementById('adminNoticeRecipient');
+    if(!pErr && rec) rec.innerHTML='<option value="all">All players</option>'+(profiles||[]).map(p=>`<option value="${arenaSafeText(p.id)}">${arenaSafeText(p.username||p.full_name||'Player')} — ${arenaSafeText(p.id)}</option>`).join('');
+    const out=document.getElementById('adminPlayersOutput');
+    if(out) out.innerHTML=pErr?`<p>Could not load player profiles: ${arenaSafeText(pErr.message)}</p>`:(profiles||[]).map(p=>`<div class="admin-player-row"><strong>${arenaSafeText(p.username||p.full_name||'Player')}</strong><br><small>${arenaSafeText(p.full_name||'')} · ${arenaSafeText(p.id)}</small></div>`).join('')||'<p>No player profiles found.</p>';
+}
+function arenaWireAdminManagerActions() {
+    document.getElementById('adminTournamentsOutput')?.addEventListener('click', async e => {
+        const button=e.target.closest('[data-admin-toggle-tournament]');
+        if(!button) return;
+        button.disabled=true;
+        try {
+            await arenaRequireAdmin();
+            const id=button.getAttribute('data-admin-toggle-tournament');
+            const nextOpen=button.getAttribute('data-next-open')==='true';
+            const {error}=await supabaseClient.from('tournaments').update({registration_open:nextOpen}).eq('id',id);
+            if(error) throw error;
+            await arenaAdminLoadLists();
+            await loadTournaments();
+            await initializeArenaRankings();
+        } catch(err) { alert(err.message||'Could not change registration status.'); button.disabled=false; }
+    });
+    document.getElementById('adminMatchesOutput')?.addEventListener('click', async e => {
+        const button=e.target.closest('[data-admin-save-match]');
+        if(!button) return;
+        const row=button.closest('[data-admin-match-row]');
+        if(!row) return;
+        button.disabled=true;
+        try {
+            await arenaRequireAdmin();
+            const value=field=>row.querySelector(`[data-match-field="${field}"]`)?.value ?? '';
+            const game_name=value('game_name').trim();
+            const round_name=value('round_name').trim()||'Round 1';
+            const status=value('status');
+            const player1_id=value('player1_id').trim();
+            const player2_id=value('player2_id').trim();
+            const scheduledRaw=value('scheduled_at');
+            const s1raw=value('player1_score');
+            const s2raw=value('player2_score');
+            if(!game_name) throw new Error('Game name is required.');
+            if(player1_id && player2_id && player1_id===player2_id) throw new Error('A match must have two different players.');
+            const payload={game_name,round_name,status,player1_id:player1_id||null,player2_id:player2_id||null,scheduled_at:scheduledRaw?new Date(scheduledRaw).toISOString():null,player1_score:s1raw===''?null:Number(s1raw),player2_score:s2raw===''?null:Number(s2raw)};
+            for(const key of ['player1_score','player2_score']) if(payload[key]!==null&&(!Number.isInteger(payload[key])||payload[key]<0)) throw new Error('Scores must be whole numbers of zero or greater.');
+            const {error}=await supabaseClient.from('matches').update(payload).eq('id',row.getAttribute('data-admin-match-row'));
+            if(error) throw error;
+            arenaSetMessage('adminResultMessage','Match and result changes saved.',true);
+            await arenaAdminLoadLists(); await loadPublicMatches(); await initializeArenaRankings();
+        } catch(err) { alert(err.message||'Could not save match changes.'); }
+        finally { button.disabled=false; }
+    });
+    document.getElementById('adminRefreshTournaments')?.addEventListener('click',async()=>{try{await arenaAdminLoadLists();}catch(err){alert(err.message);}});
+    document.getElementById('adminRefreshMatches')?.addEventListener('click',async()=>{try{await arenaAdminLoadLists();}catch(err){alert(err.message);}});
+}
+
+function arenaWireAdminForms() {
+    const tournamentForm=document.getElementById('adminTournamentForm');
+    tournamentForm?.addEventListener('submit',async e=>{
+        e.preventDefault(); const b=tournamentForm.querySelector('button[type=submit]'); b.disabled=true;
+        try {
+            await arenaRequireAdmin();
+            const name=document.getElementById('adminTournamentName').value.trim();
+            const game=document.getElementById('adminTournamentGame').value.trim();
+            const format=document.getElementById('adminTournamentFormat').value;
+            const fee=Number(document.getElementById('adminTournamentFee').value);
+            const prize=Number(document.getElementById('adminTournamentPrize').value);
+            const date=document.getElementById('adminTournamentDate').value;
+            const adminUser=await arenaRequireAdmin();
+            const registrationOpen=document.getElementById('adminTournamentRegistration').value==='true';
+            const payload={name,game,tournament_format:format,entry_fee:fee,prize_pool:prize,registration_open:registrationOpen,created_by:adminUser.id};
+            if(date) payload.start_date=new Date(date).toISOString();
+            const {error}=await supabaseClient.from('tournaments').insert(payload);
+            if(error) throw error;
+            arenaSetMessage('adminTournamentMessage','Tournament created.',true); tournamentForm.reset();
+            await loadTournaments(); await initializeArenaRankings(); await arenaAdminLoadLists();
+        } catch(err){arenaSetMessage('adminTournamentMessage',err.message||'Could not create tournament. Check the table columns and RLS policies.');}
+        finally{b.disabled=false;}
+    });
+    document.getElementById('adminMatchForm')?.addEventListener('submit',async e=>{
+        e.preventDefault(); const form=e.currentTarget; const b=form.querySelector('button[type=submit]'); b.disabled=true;
+        try {
+            await arenaRequireAdmin();
+            const p1=document.getElementById('adminPlayer1').value.trim(),p2=document.getElementById('adminPlayer2').value.trim();
+            if(p1===p2) throw new Error('Select two different player IDs.');
+            const scheduled=document.getElementById('adminMatchDate').value;
+            const payload={tournament_id:document.getElementById('adminMatchTournament').value,player1_id:p1,player2_id:p2,round_name:document.getElementById('adminRound').value.trim()||'Round 1',game_name:document.getElementById('adminMatchGame').value.trim(),status:'scheduled'};
+            if(scheduled) payload.scheduled_at=new Date(scheduled).toISOString();
+            const {error}=await supabaseClient.from('matches').insert(payload); if(error) throw error;
+            arenaSetMessage('adminMatchMessage','Match created and assigned.',true); form.reset(); await arenaAdminLoadLists(); await loadPublicMatches();
+        } catch(err){arenaSetMessage('adminMatchMessage',err.message||'Could not create match.');}
+        finally{b.disabled=false;}
+    });
+    document.getElementById('adminResultForm')?.addEventListener('submit',async e=>{
+        e.preventDefault();const form=e.currentTarget;const b=form.querySelector('button[type=submit]');b.disabled=true;
+        try {
+            await arenaRequireAdmin();
+            const id=document.getElementById('adminResultMatch').value;
+            const s1=Number(document.getElementById('adminScore1').value),s2=Number(document.getElementById('adminScore2').value);
+            if(!id||s1<0||s2<0) throw new Error('Choose a match and enter valid scores.');
+            const {error}=await supabaseClient.from('matches').update({player1_score:s1,player2_score:s2,status:'completed'}).eq('id',id);
+            if(error) throw error;
+            arenaSetMessage('adminResultMessage','Result published.',true); form.reset(); await arenaAdminLoadLists(); await loadPublicMatches(); await initializeArenaRankings();
+            // Notify both players for the completed fixture.
+            const {data:m}=await supabaseClient.from('matches').select('player1_id,player2_id,game_name,round_name').eq('id',id).maybeSingle();
+            if(m) {
+                const notices=[m.player1_id,m.player2_id].filter(Boolean).map(user_id=>({user_id,title:'Match result published',message:`${m.game_name||'Match'} (${m.round_name||'fixture'}): ${s1} - ${s2}.`,type:'match_result',is_read:false}));
+                if(notices.length) { const n=await supabaseClient.from('notifications').insert(notices); if(n.error) console.warn('Result saved, notification failed:',n.error.message); }
+            }
+        } catch(err){arenaSetMessage('adminResultMessage',err.message||'Could not publish result.');}
+        finally{b.disabled=false;}
+    });
+    document.getElementById('adminNoticeForm')?.addEventListener('submit',async e=>{
+        e.preventDefault();const form=e.currentTarget,b=form.querySelector('button[type=submit]');b.disabled=true;
+        try {
+            await arenaRequireAdmin();
+            const recipient=document.getElementById('adminNoticeRecipient').value;
+            const title=document.getElementById('adminNoticeTitle').value.trim(),message=document.getElementById('adminNoticeBody').value.trim();
+            let recipients=[];
+            if(recipient==='all') {
+                const {data,error}=await supabaseClient.from('profiles').select('id').limit(1000); if(error) throw error;
+                recipients=(data||[]).map(p=>p.id).filter(Boolean);
+            } else recipients=[recipient];
+            if(!recipients.length) throw new Error('No recipients found.');
+            const rows=recipients.map(user_id=>({user_id,title,message,type:'announcement',is_read:false}));
+            const {error}=await supabaseClient.from('notifications').insert(rows); if(error) throw error;
+            arenaSetMessage('adminNoticeMessage',`Notification sent to ${rows.length} player(s).`,true);form.reset();
+        } catch(err){arenaSetMessage('adminNoticeMessage',err.message||'Could not send notification.');}
+        finally{b.disabled=false;}
+    });
+    document.getElementById('adminRefreshPlayers')?.addEventListener('click',async()=>{try{await arenaAdminLoadLists();}catch(err){alert(err.message);}});
+    // Profile picture uploads use a public Storage bucket named player-avatars.
+    document.getElementById('profileAvatarFile')?.addEventListener('change',async e=>{
+        const file=e.target.files?.[0];if(!file)return;
+        const msg=document.getElementById('avatarUploadMessage');
+        try {
+            const user=await arenaCurrentUser();
+            if(!['image/jpeg','image/png','image/webp'].includes(file.type)) throw new Error('Use a JPG, PNG or WebP image.');
+            if(file.size>3*1024*1024) throw new Error('Image must be 3 MB or smaller.');
+            msg.textContent='Uploading picture…';
+            const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg';
+            const path=`${user.id}/avatar.${ext}`;
+            const {error:uploadError}=await supabaseClient.storage.from('player-avatars').upload(path,file,{upsert:true,contentType:file.type});
+            if(uploadError) {
+                if(/bucket.*not found|not found.*bucket/i.test(uploadError.message||'')) throw new Error('The player-avatars storage bucket has not been created yet. Run the supplied Campus eArena Avatar Storage SQL in Supabase SQL Editor, then try again.');
+                throw uploadError;
+            }
+            const {data}=supabaseClient.storage.from('player-avatars').getPublicUrl(path);
+            const avatarUrl=data.publicUrl+(data.publicUrl.includes('?')?'&':'?')+'v='+Date.now();
+            const {error:updateError}=await supabaseClient.auth.updateUser({data:{avatar_url:avatarUrl}});
+            if(updateError) throw updateError;
+            ['navAvatar','dropdownAvatar','dashboardAvatar'].forEach(id=>{const img=document.getElementById(id);if(img)img.src=avatarUrl;});
+            msg.textContent='Profile picture updated.';msg.style.color='#8feaff';
+        } catch(err){msg.textContent=err.message||'Upload failed. Create the player-avatars bucket and storage policies first.';msg.style.color='#ff9a9a';}
+    });
+}
+document.addEventListener('DOMContentLoaded',()=>{
+    arenaWireAdminForms();
+    arenaWireAdminManagerActions();
+    supabaseClient.auth.onAuthStateChange(()=>{setTimeout(arenaInitializeAdmin,0);});
+    setTimeout(arenaInitializeAdmin,500);
+});
+
+
+// ===== STARTUP: run only after every function and state variable is defined =====
+document.addEventListener('DOMContentLoaded', function () {
+    initializeAccountNavigation();
+    updatePlayerCount();
+    loadTournaments();
+    loadPublicMatches();
+    initializeArenaRankings();
+});
+
+</script>
+
+
+<script>
+(function(){
+ const welcome=document.getElementById('arenaWelcome');
+ const enter=document.getElementById('enterArenaButton');
+ if(welcome&&enter){enter.addEventListener('click',()=>{welcome.classList.add('is-hidden');setTimeout(()=>welcome.remove(),400);});}
+ // Keep the account menu anchored and its dimensions stable as tabs/content change.
+ const dropdown=document.getElementById('accountDropdown');
+ if(dropdown){const observer=new MutationObserver(()=>{dropdown.style.width=window.matchMedia('(max-width:760px)').matches?'min(390px, calc(100vw - 24px))':'min(92vw, 390px)';});observer.observe(dropdown,{childList:true,subtree:true,attributes:true,attributeFilter:['class','style']});window.addEventListener('resize',()=>{dropdown.style.maxHeight=window.matchMedia('(max-width:760px)').matches?'calc(100dvh - 90px)':'min(78vh, 720px)';});}
+ // Admin tab visibility should be recalculated whenever the account dashboard opens.
+ const oldSwitch=window.switchDashboardTab;
+ if(typeof oldSwitch==='function'){window.switchDashboardTab=function(tab,button){const result=oldSwitch.apply(this,arguments);if(tab==='admin'){const panel=document.getElementById('panel-admin');if(panel)panel.style.display='block';}return result;};}
+})();
+</script>
+
+<script>
+(function(){const splash=document.getElementById('ceaSplash');if(!splash)return;const dismiss=()=>{splash.classList.add('is-hidden');window.setTimeout(()=>splash.remove(),500)};window.setTimeout(dismiss,1900);splash.addEventListener('click',dismiss,{once:true});})();
+</script>
+
+<script>
+(function(){
+ const all=(sel,root=document)=>Array.from(root.querySelectorAll(sel));
+ function cardFormat(card){const t=(card.innerText||card.textContent||'').toLowerCase();return /knockout|single elimination/.test(t)?'knockout':/league|round.?robin/.test(t)?'league':'unknown';}
+ function applyTournamentFilter(type){all('#tournamentList > *').forEach(card=>{if(card.classList.contains('loading-message'))return;const fmt=cardFormat(card);card.style.display=(type==='all'||fmt===type||fmt==='unknown'&&type==='all')?'':'none';});all('[data-tournament-type]').forEach(b=>{const active=b.dataset.tournamentType===type;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});}
+ all('[data-tournament-type]').forEach(b=>b.addEventListener('click',()=>applyTournamentFilter(b.dataset.tournamentType)));
+ function applyMatchView(view){
+   const chosen = view === 'results' ? 'results' : 'fixtures';
+   window.publicMatchView = chosen;
+   try { publicMatchView = chosen; } catch(e) {}
+   all('[data-match-view]').forEach(b=>{const active=b.dataset.matchView===chosen;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
+   const status=document.getElementById('matchStatusFilter');
+   if(status){status.value=chosen==='results'?'completed':'all';status.disabled=chosen==='results';}
+   if(typeof loadPublicMatches==='function') loadPublicMatches();
+ }
+ all('[data-match-view]').forEach(b=>b.addEventListener('click',()=>applyMatchView(b.dataset.matchView)));
+ applyMatchView('fixtures');
+ // Keep the profile dropdown available above page sections and stable while its contents change.
+ const dropdown=document.getElementById('accountDropdown'), accountArea=document.getElementById('loggedInButtons');
+ if(dropdown&&accountArea){accountArea.style.position='relative';dropdown.style.width='320px';dropdown.style.boxSizing='border-box';dropdown.style.zIndex='99999';dropdown.addEventListener('click',e=>e.stopPropagation());}
+ window.addEventListener('resize',()=>{if(dropdown){dropdown.style.width='min(390px, calc(100vw - 24px))';dropdown.style.maxHeight='min(78vh, 720px)';}});
+ // Welcome colors strictly match the site's blue/cyan palette.
+ const welcome=document.getElementById('arenaWelcome');if(welcome){welcome.querySelectorAll('.welcome-kicker,.welcome-orbit').forEach(el=>{el.style.color='#8feaff';el.style.borderColor='rgba(143,234,255,.13)';});}
+})();
+</script>
+
+
+<style id="cea-final-layout-fixes">
+/* Final interaction fixes: horizontal selectors, stable account menu, responsive mobile layout */
+.section-mode-switch.tournament-type-switch,.section-mode-switch.fixture-view-switch{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:stretch;gap:12px;width:100%;overflow-x:auto;overflow-y:hidden;padding:4px 2px 12px;scrollbar-width:thin}
+.section-mode-switch.tournament-type-switch>.ranking-mode,.section-mode-switch.fixture-view-switch>.ranking-mode{display:flex!important;flex:1 0 0!important;min-width:0!important;width:auto!important;min-height:76px;height:auto!important;flex-shrink:0!important;align-items:center;justify-content:flex-start;gap:12px;text-align:left;white-space:normal!important}
+.section-mode-switch.tournament-type-switch>.ranking-mode{flex-basis:calc((100% - 24px)/3)!important}
+.section-mode-switch.fixture-view-switch>.ranking-mode{flex-basis:calc((100% - 12px)/2)!important}
+.section-mode-switch .ranking-mode span{display:flex;flex-direction:column;gap:5px;min-width:0}
+.section-mode-switch .ranking-mode small{white-space:normal;line-height:1.35}
+.account-dropdown{position:absolute;right:0;top:calc(100% + 10px);width:320px!important;min-width:320px!important;max-width:calc(100vw - 24px)!important;height:auto!important;max-height:min(78vh,620px)!important;overflow-y:auto!important;overflow-x:hidden!important;box-sizing:border-box!important;transform:none!important;z-index:999999!important}
+.account-dropdown.show{display:block!important;animation:none!important}
+.account-dropdown button{width:100%;min-height:42px!important;height:auto!important;min-width:0!important;flex:0 0 auto!important;white-space:normal!important;overflow-wrap:anywhere;text-overflow:clip;line-height:1.3;padding:11px 14px;transform:none!important}
+@media(max-width:760px){.section-mode-switch.tournament-type-switch>.ranking-mode{flex:0 0 230px!important;flex-basis:230px!important;min-width:230px!important}.section-mode-switch.fixture-view-switch>.ranking-mode{flex:0 0 230px!important;flex-basis:230px!important;min-width:230px!important}.account-dropdown{position:fixed!important;top:74px!important;right:12px!important;left:auto!important;width:min(320px,calc(100vw - 24px))!important;min-width:0!important;max-width:calc(100vw - 24px)!important;max-height:calc(100dvh - 90px)!important}.navbar .nav-account{position:static!important}}
+@media(max-width:380px){.section-mode-switch .ranking-mode b{font-size:11px}.section-mode-switch .ranking-mode small{font-size:10px}}
+/* Blue/cyan-only welcome palette */
+#arenaWelcome .welcome-kicker,#arenaWelcome .welcome-orbit,#ceaSplash .splash-kicker{color:#8feaff!important;border-color:rgba(143,234,255,.25)!important}
+</style>
+<script id="cea-final-account-fixes">
+(function(){
+ const dropdown=document.getElementById('accountDropdown');
+ const accountArea=document.getElementById('loggedInButtons');
+ const setExpanded=value=>[document.getElementById('accountButton'),document.getElementById('avatarButton')].filter(Boolean).forEach(b=>b.setAttribute('aria-expanded',String(value)));
+ window.toggleAccountMenu=function(event){if(event)event.stopPropagation();if(!dropdown)return;dropdown.classList.toggle('show');setExpanded(dropdown.classList.contains('show'));};
+ if(dropdown){dropdown.addEventListener('click',e=>e.stopPropagation());const observer=new MutationObserver(()=>{dropdown.style.boxSizing='border-box';});observer.observe(dropdown,{attributes:true,attributeFilter:['class']});}
+ document.addEventListener('click',function(event){if(accountArea&&!accountArea.contains(event.target)){if(dropdown)dropdown.classList.remove('show');setExpanded(false);}});
+ window.addEventListener('resize',()=>{if(dropdown){dropdown.style.maxHeight=window.matchMedia('(max-width:760px)').matches?'calc(100dvh - 90px)':'min(78vh,620px)';}});
+})();
+</script>
+
+</body>
+</html>
