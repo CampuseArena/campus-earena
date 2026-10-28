@@ -728,7 +728,7 @@
             </select>
 
             <input type="password" id="password"
-                placeholder="Create Password" required>
+                placeholder="Create Password (at least 6 characters)" minlength="6" autocomplete="new-password" required>
 
             <button type="submit" class="primary-btn">
 
@@ -2835,6 +2835,86 @@ async function loadTournaments() {
 
 }
 
+
+// ======================================
+// PLAYER ACCOUNT CREATION (SUPABASE AUTH)
+// ======================================
+
+const registerForm = document.getElementById("registerForm");
+if (registerForm) {
+    registerForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const message = document.getElementById("registerMessage");
+        const submitButton = registerForm.querySelector('button[type="submit"]');
+        const fullName = document.getElementById("fullName").value.trim();
+        const username = document.getElementById("username").value.trim();
+        const email = document.getElementById("email").value.trim().toLowerCase();
+        const phone = document.getElementById("phone").value.trim();
+        const campus = document.getElementById("campus").value;
+        const password = document.getElementById("password").value;
+
+        if (password.length < 6) {
+            message.textContent = "Please use a password with at least 6 characters.";
+            message.style.color = "#ff9a9a";
+            return;
+        }
+
+        if (message) {
+            message.textContent = "Creating your account…";
+            message.style.color = "#9ceaff";
+        }
+        if (submitButton) { submitButton.disabled = true; submitButton.textContent = "Creating account…"; }
+
+        try {
+            const { data, error } = await supabaseClient.auth.signUp({
+                email,
+                password,
+                options: {
+                    data: {
+                        full_name: fullName,
+                        username,
+                        phone,
+                        campus
+                    }
+                }
+            });
+
+            if (error) throw error;
+
+            // Supabase may require email confirmation before the first login.
+            if (data && data.session && data.user) {
+                if (message) {
+                    message.textContent = "Account created successfully. You are now signed in.";
+                    message.style.color = "#86efac";
+                }
+                await updateAccountNavigation(data.user);
+                closeModal();
+                if (typeof loadPlayerDashboard === "function") await loadPlayerDashboard();
+                alert("Your Campus eArena account has been created successfully.");
+            } else {
+                if (message) {
+                    message.textContent = "Account request submitted. Check your email for a confirmation link, then return here and use Login. If you do not receive an email, check Spam or ask the site administrator to review Supabase Auth settings.";
+                    message.style.color = "#9ceaff";
+                }
+            }
+        } catch (error) {
+            console.error("Account creation error:", error);
+            if (message) {
+                let friendly = error && error.message ? error.message : "Unable to create the account.";
+                if (/already registered|already exists|user already registered/i.test(friendly)) {
+                    friendly = "An account may already exist for this email. Try Login or use the password reset option.";
+                } else if (/password/i.test(friendly) && /short|length|least/i.test(friendly)) {
+                    friendly = "Your password is too short. Use at least 6 characters.";
+                }
+                message.textContent = friendly;
+                message.style.color = "#ff9a9a";
+            }
+        } finally {
+            if (submitButton) { submitButton.disabled = false; submitButton.textContent = "Create Account"; }
+        }
+    });
+}
 
 // ======================================
 // PLAYER LOGIN
