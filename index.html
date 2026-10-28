@@ -13,98 +13,9 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-
-<style>
-/* Campus eArena usability refinements */
-.arena-count-badge{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;margin-left:7px;border-radius:999px;background:#8feaff;color:#071426;font-size:11px;font-weight:800;line-height:1}
-.admin-accordion{border:1px solid var(--border,#23415f);border-radius:14px;margin:12px 0;overflow:hidden;background:rgba(7,20,38,.72)}
-.admin-accordion>summary{list-style:none;cursor:pointer;padding:16px 18px;font-weight:800;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(17,43,68,.78)}
-.admin-accordion>summary::-webkit-details-marker{display:none}
-.admin-accordion>summary:after{content:'＋';font-size:20px;color:#8feaff}
-.admin-accordion[open]>summary:after{content:'−'}
-.admin-accordion-content{padding:14px}
-#adminDashboardTab{white-space:normal}
-#navAvatar{object-fit:cover}
-.notification-delete-btn{margin:8px 0 0 8px!important;background:#632d3b!important;border:1px solid #b65a70!important;color:#fff!important}
-
-/* Campus eArena welcome, consistent account panel, icon and mobile refinements */
-.arena-welcome{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:24px;background:radial-gradient(ellipse at 50% 35%,#163c5d 0%,#071426 56%,#030912 100%);color:#f4f9ff;transition:opacity .35s ease,visibility .35s ease}
-.arena-welcome.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
-.welcome-content{position:relative;z-index:2;width:min(100%,620px);text-align:center;padding:clamp(24px,5vw,52px);border:1px solid rgba(143,234,255,.25);border-radius:28px;background:rgba(8,25,43,.76);box-shadow:0 25px 90px rgba(0,0,0,.4);backdrop-filter:blur(14px)}
-.welcome-emblem{width:110px;height:96px;margin:0 auto 18px;filter:drop-shadow(0 0 22px rgba(143,234,255,.25))}.welcome-emblem svg{width:100%;height:100%}.welcome-kicker{font-size:11px;letter-spacing:.22em;font-weight:800;color:#8feaff}.welcome-content h1{font-family:Orbitron,sans-serif;font-size:clamp(27px,6vw,48px);line-height:1.15;margin:12px 0}.welcome-content h1 span{color:#8feaff}.welcome-tagline{font-size:clamp(17px,3vw,23px);font-weight:700;margin:12px 0}.welcome-copy{color:#b8cbe0;line-height:1.7}.welcome-enter{margin:22px auto 12px;min-height:48px;padding:13px 24px;display:inline-flex;gap:16px;align-items:center;justify-content:center}.welcome-foot{display:block;font-size:10px;letter-spacing:.25em;color:#9db5cb;margin-top:12px}.welcome-orbit{position:absolute;border:1px solid rgba(143,234,255,.13);border-radius:50%;width:min(90vw,800px);aspect-ratio:1}.orbit-two{width:min(65vw,560px);border-color:rgba(143,234,255,.12)}
-.admin-accordion>summary .summary-label{display:flex;align-items:center;gap:10px;min-width:0}.admin-accordion>summary .menu-icon{flex:0 0 21px;margin:0}.account-dropdown{box-sizing:border-box;width:min(92vw,390px);max-width:calc(100vw - 24px);max-height:min(78vh,720px);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable}.account-dropdown *{box-sizing:border-box}.dashboard-panel{min-width:0}.admin-tools-grid,.dashboard-layout,.player-overview-grid{min-width:0}.admin-tool-card input,.admin-tool-card select,.admin-tool-card textarea{max-width:100%;min-width:0}.dashboard-tab{display:flex;align-items:center;gap:9px}.dashboard-tab .menu-icon{flex:0 0 20px}.player-overview-card .overview-icon{display:flex;align-items:center;justify-content:center;min-height:30px}.player-overview-card .overview-icon .menu-icon{width:26px;height:26px}.menu-icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
-@media(max-width:760px){.navbar{flex-wrap:wrap;gap:12px;padding:12px 16px}.navbar nav{order:3;width:100%;display:flex;gap:8px;overflow-x:auto;white-space:nowrap;padding:4px 0}.navbar nav a{font-size:12px;flex:0 0 auto}.logo h2{font-size:16px}.nav-buttons{margin-left:auto}.account-dropdown{position:fixed;right:12px;top:74px;left:auto;width:min(390px,calc(100vw - 24px));max-height:calc(100dvh - 90px);z-index:9999}.section-padding{padding-left:16px!important;padding-right:16px!important}.player-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.dashboard-layout{grid-template-columns:minmax(0,1fr)!important}.dashboard-sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.dashboard-player-card{grid-column:1/-1}.dashboard-tab{min-width:0;font-size:12px;padding:11px 9px}.admin-tools-grid{grid-template-columns:minmax(0,1fr)!important}.admin-accordion>summary{padding:13px 12px;font-size:13px}.admin-accordion-content{padding:10px}.admin-tool-card{min-width:0}.admin-tool-card label{overflow-wrap:anywhere}.welcome-content{padding:26px 20px}.hero h1{font-size:clamp(32px,10vw,54px)}}
-@media(max-width:380px){.player-overview-grid{grid-template-columns:minmax(0,1fr)!important}.dashboard-sidebar{grid-template-columns:minmax(0,1fr)}.dashboard-player-card{grid-column:auto}.account-btn{font-size:12px}}
-
-</style>
-
-<style>
-
-/* Final mobile, welcome-screen, and icon consistency pass */
-.cea-splash{padding:20px}.cea-splash-card{width:min(100%,480px)}.splash-loading{margin-top:18px;color:#7795b4;font-size:11px;letter-spacing:1px}.logo-icon.brand-mark{width:48px;height:48px;flex:0 0 48px}.logo-icon.brand-mark svg{width:100%;height:100%}.footer-brand-icon{width:30px;height:30px;margin-right:8px;color:#8deaff;vertical-align:middle}.footer-logo{display:flex;align-items:center;justify-content:center;gap:5px}.admin-accordion>summary{min-height:52px}.admin-accordion>summary .summary-label{display:flex;align-items:center;gap:10px;min-width:0}.admin-accordion>summary .menu-icon{flex:0 0 21px;margin:0}.admin-accordion-content{overflow-wrap:anywhere}.record-icon{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;margin-right:5px;border:1px solid rgba(125,232,255,.5);border-radius:5px;color:#8deaff;font-size:13px;font-weight:700;vertical-align:middle}.dashboard-list-card p{overflow-wrap:anywhere;line-height:1.65}.account-dropdown{box-sizing:border-box;width:min(92vw,390px);max-width:calc(100vw - 24px);max-height:min(78vh,720px);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable}.account-dropdown *{box-sizing:border-box}.account-dropdown button{box-sizing:border-box;min-height:40px;height:auto;line-height:1.25;white-space:normal;transform:none!important}.player-overview-card .overview-icon{display:flex;align-items:center;justify-content:center;min-height:30px}.player-overview-card .overview-icon .menu-icon{width:26px;height:26px}.player-overview-card>span:not(.overview-icon){display:none}
-@media(max-width:760px){body{overflow-x:hidden}.navbar{width:100%;box-sizing:border-box}.navbar nav{scrollbar-width:thin}.section-mode-switch .ranking-mode{min-width:0;width:100%}.account-dropdown{position:fixed;right:12px;left:auto;top:74px;width:min(390px,calc(100vw - 24px));max-height:calc(100dvh - 90px);z-index:99999}.dashboard-panel,.dashboard-main,.dashboard-list-card,.admin-tool-card{min-width:0;max-width:100%}.admin-record-fields{grid-template-columns:minmax(0,1fr)!important}.admin-tool-card input,.admin-tool-card select,.admin-tool-card textarea{width:100%;font-size:16px}.dashboard-main{padding:14px!important}.player-overview-card{padding:12px}.player-overview-card small{font-size:9px}.player-overview-card strong{font-size:21px}.cea-splash h1{font-size:clamp(25px,8vw,38px)}.splash-message{letter-spacing:2px;font-size:10px}}
-@media(max-width:380px){.logo h2{font-size:14px}.logo small{font-size:8px}.account-btn{font-size:11px}.dashboard-tab{font-size:11px}.player-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.player-overview-card strong{font-size:19px}}
-
-</style>
-<style>
-
-/* Corrected tournament and fixture selectors: horizontal, consistent button sizing */
-.section-mode-switch.tournament-type-switch,.section-mode-switch.fixture-view-switch{display:flex!important;flex-direction:row!important;align-items:stretch;gap:12px;width:100%;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:thin}
-.section-mode-switch.tournament-type-switch>.ranking-mode{flex:1 0 0;min-width:190px;width:auto!important;min-height:76px;display:flex;align-items:center;justify-content:flex-start;gap:12px;text-align:left}
-.section-mode-switch.fixture-view-switch>.ranking-mode{flex:1 0 0;min-width:220px;width:auto!important;min-height:72px;display:flex;align-items:center;justify-content:flex-start;gap:12px;text-align:left}
-.section-mode-switch .ranking-mode span{display:flex;flex-direction:column;gap:5px;min-width:0}
-.section-mode-switch .ranking-mode small{white-space:normal;line-height:1.35}
-.account-dropdown{width:320px!important;min-width:320px!important;max-width:calc(100vw - 24px)!important;max-height:min(78vh,620px)!important;overflow-y:auto!important;overflow-x:hidden!important;transform:none!important}
-.account-dropdown.show{animation:none!important}
-.account-dropdown button{min-height:42px!important;height:42px!important;flex:0 0 42px;white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;transform:none!important}
-@media(max-width:760px){.section-mode-switch.tournament-type-switch,.section-mode-switch.fixture-view-switch{flex-wrap:nowrap!important;overflow-x:auto}.section-mode-switch.tournament-type-switch>.ranking-mode{flex:0 0 230px;min-width:230px}.section-mode-switch.fixture-view-switch>.ranking-mode{flex:0 0 230px;min-width:230px}.account-dropdown{width:min(320px,calc(100vw - 24px))!important;min-width:0!important;right:12px!important;top:74px!important;max-height:calc(100dvh - 90px)!important}}
-
-
-/* Campus eArena mobile authentication visibility fix */
-@media (max-width: 600px) {
-  #navButtons { display:flex !important; flex: 0 0 auto !important; width:auto !important; max-width:100%; margin-left:auto !important; }
-  #loggedOutButtons { display:flex !important; flex-direction:row !important; align-items:center; justify-content:flex-end; gap:6px; flex-wrap:nowrap; }
-  #loggedOutButtons .login-btn { display:inline-flex !important; visibility:visible !important; opacity:1 !important; align-items:center; justify-content:center; white-space:nowrap; padding:9px 10px !important; font-size:12px !important; min-height:38px; }
-  #loggedOutButtons .join-btn { display:inline-flex !important; visibility:visible !important; opacity:1 !important; align-items:center; justify-content:center; white-space:nowrap; padding:9px 10px !important; font-size:11px !important; min-height:38px; }
-  .navbar { gap:8px !important; }
-}
-@media (max-width: 380px) {
-  #loggedOutButtons { gap:4px; }
-  #loggedOutButtons .login-btn { padding:8px 7px !important; font-size:11px !important; }
-  #loggedOutButtons .join-btn { padding:8px 7px !important; font-size:10px !important; }
-}
-</style>
-
 </head>
 
 <body>
-
-<div class="cea-splash" id="ceaSplash" role="status" aria-label="Welcome to Campus eArena">
-  <div class="cea-splash-card">
-    <span class="cea-splash-mark" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><linearGradient id="splashMetal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset=".45" stop-color="#79e7ff"/><stop offset="1" stop-color="#3974bd"/></linearGradient></defs><path d="M50 4 88 25v43L50 94 12 68V25Z" fill="#071426" stroke="url(#splashMetal)" stroke-width="3"/><path d="M26 39c-7-4-13 2-12 11l4 19c1 7 7 8 11 2l7-11h28l7 11c4 6 10 5 11-2l4-19c1-9-5-15-12-11l-11 5H37Z" fill="#102d4b" stroke="url(#splashMetal)" stroke-width="2.5"/><path d="M28 43v13m-6-6h12" stroke="#8deaff" stroke-width="3" stroke-linecap="round"/><circle cx="68" cy="46" r="3" fill="#8deaff"/><circle cx="76" cy="53" r="3" fill="#fff"/><path d="M50 18v13m-7-7h14" stroke="#8deaff" stroke-width="2" stroke-linecap="round"/></svg></span>
-    <p class="splash-kicker">YOUR CAMPUS GAMING ARENA</p>
-    <h1>CAMPUS <span>eARENA</span></h1>
-    <p class="splash-message">YOUR CAMPUS. YOUR ARENA.<br>PLAY. COMPETE. WIN.</p>
-    <span class="splash-loader" aria-hidden="true"></span>
-    <p class="splash-loading">Loading your arena…</p>
-  </div>
-</div>
-
-
-<!-- CAMPUS eARENA WELCOME SCREEN -->
-<div id="arenaWelcome" class="arena-welcome" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
-  <div class="welcome-orbit orbit-one"></div><div class="welcome-orbit orbit-two"></div>
-  <div class="welcome-content">
-    <div class="welcome-emblem" aria-hidden="true"><svg viewBox="0 0 120 90"><defs><linearGradient id="padMetal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset=".5" stop-color="#8feaff"/><stop offset="1" stop-color="#3974bd"/></linearGradient></defs><path d="M29 19Q17 19 12 37L4 62Q0 79 14 82Q24 84 35 66L43 57H77L85 66Q96 84 106 82Q120 79 116 62L108 37Q103 19 91 19L76 25H44Z" fill="#102b46" stroke="url(#padMetal)" stroke-width="3"/><path d="M25 33v20M15 43h20" stroke="#fff" stroke-width="4" stroke-linecap="round"/><circle cx="91" cy="35" r="4" fill="#8feaff"/><circle cx="101" cy="45" r="4" fill="#fff"/><circle cx="84" cy="45" r="3" fill="#8feaff"/><path d="M49 36h22M60 25v22" stroke="#8feaff" stroke-width="2.5" stroke-linecap="round"/></svg></div>
-    <p class="welcome-kicker">THE CAMPUS GAMING EXPERIENCE</p>
-    <h1 id="welcomeTitle">CAMPUS <span>eARENA</span></h1>
-    <p class="welcome-tagline">Your Campus. Your Arena.</p>
-    <p class="welcome-copy">Play your game. Challenge your rivals. Build your legacy.</p>
-    <button id="enterArenaButton" class="primary-btn welcome-enter" type="button">ENTER THE ARENA <span aria-hidden="true">→</span></button>
-    <small class="welcome-foot">PLAY · COMPETE · WIN</small>
-  </div>
-</div>
-
 
 <!-- ================= NAVIGATION ================= -->
 
@@ -115,8 +26,10 @@
             <svg viewBox="0 0 64 64" role="img" aria-label="Campus eArena emblem">
                 <defs><linearGradient id="arenaMetal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".38" stop-color="#9cb9d9"/><stop offset=".68" stop-color="#f8fbff"/><stop offset="1" stop-color="#6486ad"/></linearGradient></defs>
                 <path d="M32 3 56 16v31L32 61 8 47V16Z" fill="#071426" stroke="url(#arenaMetal)" stroke-width="2.5"/>
-                <path d="M17 26c-5-3-10 1-9 8l3 13c1 5 5 6 8 1l5-7h16l5 7c3 5 7 4 8-1l3-13c1-7-4-11-9-8l-7 3H24Z" fill="#102d4b" stroke="url(#arenaMetal)" stroke-width="2"/>
-                <path d="M20 29v8m-4-4h8" stroke="#7de8ff" stroke-width="2" stroke-linecap="round"/><circle cx="42" cy="30" r="1.8" fill="#7de8ff"/><circle cx="46" cy="34" r="1.8" fill="#fff"/><path d="M32 8v8m-4-4h8" stroke="#7de8ff" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M32 13 18 21v22l14 8 14-8V21Z" fill="none" stroke="url(#arenaMetal)" stroke-width="2"/>
+                <path d="M39 23a10 10 0 1 0 0 18" fill="none" stroke="url(#arenaMetal)" stroke-width="5" stroke-linecap="square"/>
+                <path d="M45 23v18m0-9h8m-8 0 8-9m-8 9 8 9" fill="none" stroke="#7de8ff" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter"/>
+                <path d="M13 15 32 5l19 10" fill="none" stroke="#7de8ff" stroke-width="1.5" opacity=".9"/>
             </svg>
         </span>
 
@@ -144,8 +57,9 @@
 <!-- Shown when the player is logged out -->
 <div id="loggedOutButtons" class="nav-auth-buttons">
 
-    <button class="login-btn" onclick="openLogin()">Sign In</button>
-    <button class="join-btn" type="button" onclick="openRegister()">Create Account</button>
+    <button class="login-btn" onclick="openLogin()">
+        Login
+    </button>
 
 </div>
 
@@ -155,7 +69,7 @@
     <button
         class="account-btn"
         id="accountButton"
-        onclick="toggleAccountMenu(event)"
+        onclick="toggleAccountMenu()"
         aria-expanded="false"
     >
         My Account
@@ -165,7 +79,7 @@
     <button
         class="avatar-button"
         id="avatarButton"
-        onclick="toggleAccountMenu(event)"
+        onclick="toggleAccountMenu()"
         aria-label="Open your account menu"
     >
         <img
@@ -208,7 +122,7 @@
         </button>
 
         <button onclick="showMyNotifications()">
-            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg> Notifications <span class="arena-count-badge" id="dropdownNotificationCount" aria-label="Unread notifications">0</span>
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg> Notifications
         </button>
 
         <button onclick="showAccountSettings()">
@@ -284,12 +198,6 @@
 
     </div>
 
-<div class="section-mode-switch tournament-type-switch" role="tablist" aria-label="Filter tournaments by format">
-  <button type="button" class="ranking-mode active" data-tournament-type="all" aria-selected="true"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v4a5 5 0 0 1-10 0zM12 13v5m-5 2h10M8 3H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4"/></svg><span><b>ALL TOURNAMENTS</b><small>Every available event</small></span></button>
-  <button type="button" class="ranking-mode" data-tournament-type="league" aria-selected="false"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v4a5 5 0 0 1-10 0zM12 13v5m-5 2h10M8 3H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4"/></svg><span><b>LEAGUE TOURNAMENTS</b><small>League format</small></span></button>
-  <button type="button" class="ranking-mode" data-tournament-type="knockout" aria-selected="false"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h5v4H4zM15 15h5v4h-5zM9 7h4a3 3 0 0 1 3 3v7M13 10l3 3 3-3"/></svg><span><b>KNOCKOUT TOURNAMENTS</b><small>Single elimination</small></span></button>
-</div>
-
 <div class="tournament-grid" id="tournamentList">
 
     <p class="loading-message">Loading tournaments...</p>
@@ -309,10 +217,6 @@
     </div>
 </div>
 
-<div class="section-mode-switch fixture-view-switch" role="tablist" aria-label="Choose fixtures or results">
- <button type="button" class="ranking-mode active" data-match-view="fixtures" aria-selected="true"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 14h3M14 14h3"/></svg><span><b>FIXTURES</b><small>Upcoming and scheduled matches</small></span></button>
- <button type="button" class="ranking-mode" data-match-view="results" aria-selected="false"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5zM8 8l2 2 5-5M8 15h8"/></svg><span><b>RESULTS</b><small>Completed matches and scores</small></span></button>
-</div>
 <div class="fixture-filters">
 
     <label for="gameFilter">Filter by game:</label>
@@ -393,10 +297,10 @@
 </div>
 
 <div class="player-overview-grid" aria-label="Player summary statistics">
-    <article class="player-overview-card"><span class="overview-icon"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8v4a4 4 0 0 1-8 0zM12 11v5m-5 5h10M9 16h6M8 5H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4"/></svg></span><small>TOURNAMENTS JOINED</small><strong id="statTournaments">—</strong><p>Your registrations</p></article>
-    <article class="player-overview-card"><span class="overview-icon"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10zM12 7V3M8 10l-4-1M14 15l3 3"/></svg></span><small>MATCHES PLAYED</small><strong id="statMatches">—</strong><p>Completed results</p></article>
-    <article class="player-overview-card"><span class="overview-icon"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="m9 13-2 9 5-3 5 3-2-9M7 3H3v2a5 5 0 0 0 4 5m10-7h4v2a5 5 0 0 1-4 5"/></svg></span><small>WINS</small><strong id="statWins">—</strong><p>Your victories</p></article>
-    <article class="player-overview-card"><span class="overview-icon"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20V4M3 20h18M6 16l5-5 4 3 6-8"/></svg></span><small>WIN RATE</small><strong id="statWinRate">—</strong><p>Wins from completed matches</p></article>
+    <article class="player-overview-card"><span>🏆</span><small>TOURNAMENTS JOINED</small><strong id="statTournaments">—</strong><p>Your registrations</p></article>
+    <article class="player-overview-card"><span>⚽</span><small>MATCHES PLAYED</small><strong id="statMatches">—</strong><p>Completed results</p></article>
+    <article class="player-overview-card"><span>🥇</span><small>WINS</small><strong id="statWins">—</strong><p>Your victories</p></article>
+    <article class="player-overview-card"><span>📈</span><small>WIN RATE</small><strong id="statWinRate">—</strong><p>Wins from completed matches</p></article>
 </div>
 <div class="player-progress-wrap"><div class="player-progress-heading"><strong>Profile completion</strong><span id="profileCompletionLabel">0%</span></div><div class="player-progress-track"><span id="profileCompletionBar"></span></div><p>Complete your player information to help organizers identify you.</p></div>
 
@@ -441,12 +345,12 @@
 
         <button class="dashboard-tab"
             onclick="switchDashboardTab('notifications', this)">
-            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg> Notifications <span class="arena-count-badge" id="dashboardNotificationCount">0</span>
+            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg> Notifications
         </button>
 
 
         <button class="dashboard-tab" id="adminDashboardTab" style="display:none" onclick="switchDashboardTab('admin', this)">
-            <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 5v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="m8 12 2.5 2.5L16 9"/></svg> Admin Dashboard
+            🛡️ Admin Dashboard
         </button>
 
         <button class="dashboard-tab"
@@ -615,7 +519,7 @@
             </form>
 
             <div class="account-security-box">
-                <h4><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Change Password</h4>
+                <h4>🔐 Change Password</h4>
                 <p>Choose a strong password you do not use on other websites.</p>
                 <form id="changePasswordForm">
                     <label for="newAccountPassword">New password</label>
@@ -631,9 +535,8 @@
 
 
         <div class="dashboard-panel" id="panel-admin">
-            <h3><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 20 5v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="m8 12 2.5 2.5L16 9"/></svg> Admin Dashboard</h3>
+            <h3>🛡️ Admin Dashboard</h3>
             <p class="dashboard-description">Manage tournaments, fixtures, results, player notifications and player accounts. Access is granted only to accounts marked as admin in the database.</p>
-            <details class="admin-accordion" open><summary><span class="summary-label"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8v4a4 4 0 0 1-8 0zM12 11v5m-5 5h10M9 16h6M8 5H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4"/></svg>Tournament creation</span></summary><div class="admin-accordion-content">
             <div class="admin-tools-grid">
                 <form id="adminTournamentForm" class="admin-tool-card">
                     <h4>Create tournament</h4>
@@ -643,7 +546,6 @@
                     <label>Entry fee (KSh)<input id="adminTournamentFee" type="number" min="0" value="0" required></label>
                     <label>Prize pool (KSh)<input id="adminTournamentPrize" type="number" min="0" value="0" required></label>
                     <label>Start date<input id="adminTournamentDate" type="datetime-local"></label>
-                    <label>Registration status<select id="adminTournamentRegistration"><option value="true" selected>Open for registration</option><option value="false">Closed for registration</option></select></label>
                     <button class="primary-btn" type="submit">Create tournament</button><p id="adminTournamentMessage" role="status"></p>
                 </form>
                 <form id="adminMatchForm" class="admin-tool-card">
@@ -663,35 +565,15 @@
                     <label>Player 2 score<input id="adminScore2" type="number" min="0" required></label>
                     <button class="primary-btn" type="submit">Publish result</button><p id="adminResultMessage" role="status"></p>
                 </form>
-            </div></div></details>
-            <details class="admin-accordion"><summary><span class="summary-label"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM8 5v14M16 5v14"/><path d="M8 9h8M8 15h8"/></svg>Manage all tournaments and registration</span></summary><div class="admin-accordion-content">
-            <div class="admin-tool-card admin-manager-card">
-                <h4>Manage all tournaments</h4>
-                <p>Review every tournament and open or close registration at any time.</p>
-                <button type="button" class="secondary-btn" id="adminRefreshTournaments">Refresh tournaments</button>
-                <div id="adminTournamentsOutput" class="admin-record-list" aria-live="polite">Loading tournaments…</div>
-            </div></div></details>
-            <details class="admin-accordion"><summary><span class="summary-label"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10zM12 7V3M8 10l-4-1M14 15l3 3"/></svg>Match and result management</span></summary><div class="admin-accordion-content">
-            <div class="admin-tool-card admin-manager-card">
-                <h4>View and edit matches and results</h4>
-                <p>Edit the fixture details, scheduled time, players, scores, and match status. Saving a completed score updates the public match data.</p>
-                <button type="button" class="secondary-btn" id="adminRefreshMatches">Refresh matches</button>
-                <div id="adminMatchesOutput" class="admin-record-list" aria-live="polite">Loading matches…</div>
-            </div></div></details>
-            <details class="admin-accordion"><summary><span class="summary-label"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>Notifications and announcements</span></summary><div class="admin-accordion-content">
-            <div class="admin-tool-card admin-manager-card">
-                <h4>Send a notification anytime</h4>
-                <p>Send an announcement to all players or one selected player independently of creating a tournament or match.</p>
-                <form id="adminNoticeForm" class="admin-notice-form">
+                <form id="adminNoticeForm" class="admin-tool-card">
+                    <h4>Send player notification</h4>
                     <label>Recipient<select id="adminNoticeRecipient"><option value="all">All players</option></select></label>
                     <label>Title<input id="adminNoticeTitle" required maxlength="120"></label>
                     <label>Message<textarea id="adminNoticeBody" required rows="3"></textarea></label>
                     <button class="primary-btn" type="submit">Send notification</button><p id="adminNoticeMessage" role="status"></p>
                 </form>
-            </div></div></details>
-            <details class="admin-accordion"><summary><span class="summary-label"><svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21v-2a7 7 0 0 1 14 0v2M17 4a4 4 0 0 1 0 8m2 3a5 5 0 0 1 3 4v2"/></svg>Player accounts</span></summary><div class="admin-accordion-content">
+            </div>
             <div class="admin-tool-card admin-player-list"><h4>Player accounts</h4><button type="button" class="secondary-btn" id="adminRefreshPlayers">Refresh player list</button><div id="adminPlayersOutput" class="dashboard-list">Admin access required.</div></div>
-            </div></details>
         </div>
 
     </div>
@@ -742,11 +624,8 @@
 
             </select>
 
-            <div class="ea-password-field">
-                <input type="password" id="password"
-                    placeholder="Create Password (at least 6 characters)" minlength="6" autocomplete="new-password" required>
-                <button type="button" class="ea-eye-btn" data-toggle-password="password" aria-label="Show password" title="Show password">◉</button>
-            </div>
+            <input type="password" id="password"
+                placeholder="Create Password" required>
 
             <button type="submit" class="primary-btn">
 
@@ -776,14 +655,17 @@
         <p>Login to your player account.</p>
 
         <form id="loginForm">
-            <input type="text" id="loginIdentifier" placeholder="Username or mobile number" autocomplete="username" required>
-            <div class="ea-password-field">
-                <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required>
-                <button type="button" class="ea-eye-btn" data-toggle-password="loginPassword" aria-label="Show password" title="Show password">◉</button>
-            </div>
-            <button type="submit" class="primary-btn" id="loginSubmitButton">Sign In</button>
-            <button type="button" class="ea-forgot-btn" id="forgotPasswordButton">Forgot password?</button>
-            <p id="loginMessage" role="status" aria-live="polite"></p>
+
+            <input type="email" placeholder="Email Address" required>
+
+            <input type="password" placeholder="Password" required>
+
+            <button type="submit" class="primary-btn">
+
+                Login
+
+            </button>
+
         </form>
 
     </div>
@@ -857,7 +739,7 @@
 
     <div class="footer-logo">
 
-        CAMPUS <span>eARENA</span>
+        🎮 CAMPUS <span>eARENA</span>
 
     </div>
 
@@ -899,7 +781,7 @@ body {
 }
 
 :root {
-    --green: #8feaff;
+    --green: #9cff00;
     --dark: #030914;
     --card: #081525;
     --border: #17304c;
@@ -2324,7 +2206,7 @@ transition: 0.3s;
 }
 
 .match-card:hover {
-border-color: #8feaff;
+border-color: #9cff00;
 transform: translateY(-3px);
 }
 
@@ -2340,7 +2222,7 @@ line-height: 1.9;
 }
 
 .match-score {
-color: #8feaff !important;
+color: #9cff00 !important;
 font-family: 'Orbitron', sans-serif;
 font-size: 23px !important;
 font-weight: 700;
@@ -2591,23 +2473,8 @@ button, .primary-btn, .secondary-btn, .join-btn, .login-btn, .account-btn { tran
 .admin-tool-card p{font-size:12px;overflow-wrap:anywhere}
 .admin-player-list{margin-top:16px}
 .admin-player-row{padding:10px 0;border-bottom:1px solid var(--border);overflow-wrap:anywhere}
-.admin-manager-card{margin:16px 0}
-.admin-record-list{display:grid;gap:12px;margin-top:10px;min-width:0}
-.admin-record-row{border:1px solid #284565;border-radius:8px;padding:14px;display:grid;gap:10px;min-width:0;background:#07111f}
-.admin-record-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
-.admin-record-heading strong{color:#fff;overflow-wrap:anywhere}
-.admin-record-meta{font-size:12px;color:#aebed0;overflow-wrap:anywhere}
-.admin-record-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.admin-record-fields label{display:grid;gap:5px;font-size:11px;color:#b8c5d5;min-width:0}
-.admin-record-fields input,.admin-record-fields select{width:100%;min-width:0;background:#081525;color:#fff;border:1px solid #284565;border-radius:6px;padding:9px;font:inherit;font-size:12px}
-.admin-record-actions{display:flex;gap:8px;flex-wrap:wrap}
-.admin-open-pill{font-size:11px;padding:5px 9px;border-radius:20px;border:1px solid #31543a;color:#8feaff;white-space:nowrap}
-.admin-closed-pill{font-size:11px;padding:5px 9px;border-radius:20px;border:1px solid #713d43;color:#ff9a9a;white-space:nowrap}
-.admin-notice-form{display:grid;gap:10px}
-.admin-empty{color:#aebed0;font-size:13px;padding:12px 0}
 #profileAvatarFile{background:#030914;color:#fff;padding:10px;border:1px solid var(--border);border-radius:6px}
-@media(max-width:700px){.admin-tools-grid{grid-template-columns:1fr}.admin-record-fields{grid-template-columns:1fr 1fr}.dashboard-main{padding:18px}}
-@media(max-width:420px){.admin-record-fields{grid-template-columns:1fr}}
+@media(max-width:700px){.admin-tools-grid{grid-template-columns:1fr}.dashboard-main{padding:18px}}
 
 </style>
 <!-- ====================================== -->
@@ -2852,86 +2719,6 @@ async function loadTournaments() {
 
 
 // ======================================
-// PLAYER ACCOUNT CREATION (SUPABASE AUTH)
-// ======================================
-
-const registerForm = document.getElementById("registerForm");
-if (registerForm) {
-    registerForm.addEventListener("submit", async function(event) {
-        event.preventDefault();
-
-        const message = document.getElementById("registerMessage");
-        const submitButton = registerForm.querySelector('button[type="submit"]');
-        const fullName = document.getElementById("fullName").value.trim();
-        const username = document.getElementById("username").value.trim();
-        const email = document.getElementById("email").value.trim().toLowerCase();
-        const phone = document.getElementById("phone").value.trim();
-        const campus = document.getElementById("campus").value;
-        const password = document.getElementById("password").value;
-
-        if (password.length < 6) {
-            message.textContent = "Please use a password with at least 6 characters.";
-            message.style.color = "#ff9a9a";
-            return;
-        }
-
-        if (message) {
-            message.textContent = "Creating your account…";
-            message.style.color = "#9ceaff";
-        }
-        if (submitButton) { submitButton.disabled = true; submitButton.textContent = "Creating account…"; }
-
-        try {
-            const { data, error } = await supabaseClient.auth.signUp({
-                email,
-                password,
-                options: {
-                    data: {
-                        full_name: fullName,
-                        username,
-                        phone,
-                        campus
-                    }
-                }
-            });
-
-            if (error) throw error;
-
-            // Supabase may require email confirmation before the first login.
-            if (data && data.session && data.user) {
-                if (message) {
-                    message.textContent = "Account created successfully. You are now signed in.";
-                    message.style.color = "#86efac";
-                }
-                await updateAccountNavigation(data.user);
-                closeModal();
-                if (typeof loadPlayerDashboard === "function") await loadPlayerDashboard();
-                alert("Your Campus eArena account has been created successfully.");
-            } else {
-                if (message) {
-                    message.textContent = "Account created, but email confirmation is currently enabled in Supabase. The site administrator must turn off email confirmations in Supabase Authentication settings before you can sign in immediately.";
-                    message.style.color = "#9ceaff";
-                }
-            }
-        } catch (error) {
-            console.error("Account creation error:", error);
-            if (message) {
-                let friendly = error && error.message ? error.message : "Unable to create the account.";
-                if (/already registered|already exists|user already registered/i.test(friendly)) {
-                    friendly = "An account may already exist for this email. Try Login or use the password reset option.";
-                } else if (/password/i.test(friendly) && /short|length|least/i.test(friendly)) {
-                    friendly = "Your password is too short. Use at least 6 characters.";
-                }
-                message.textContent = friendly;
-                message.style.color = "#ff9a9a";
-            }
-        } finally {
-            if (submitButton) { submitButton.disabled = false; submitButton.textContent = "Create Account"; }
-        }
-    });
-}
-
-// ======================================
 // PLAYER LOGIN
 // ======================================
 
@@ -2941,22 +2728,20 @@ loginForm.addEventListener("submit", async function(event) {
 
     event.preventDefault();
 
-    const identifier = document.getElementById("loginIdentifier").value.trim();
-    const password = document.getElementById("loginPassword").value;
-    const loginMessage = document.getElementById("loginMessage");
-    const loginButton = document.getElementById("loginSubmitButton");
-    if (loginMessage) { loginMessage.textContent = "Signing in…"; loginMessage.style.color = "#9ceaff"; }
-    if (loginButton) { loginButton.disabled = true; loginButton.textContent = "Signing in…"; }
+    const email = this.querySelector('input[type="email"]').value.trim();
+    const password = this.querySelector('input[type="password"]').value;
 
     try {
-        // Resolve a username or phone number to the account email via the SQL RPC supplied separately.
-        const { data: resolvedEmail, error: lookupError } = await supabaseClient.rpc("lookup_login_email", { p_identifier: identifier });
-        if (lookupError) throw new Error("Login lookup is not configured yet. Run the Campus eArena login SQL setup first.");
-        const email = typeof resolvedEmail === "string" ? resolvedEmail : (Array.isArray(resolvedEmail) ? resolvedEmail[0] : null);
-        if (!email) throw new Error("No account was found for that username or mobile number.");
 
-        const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-        if (error) throw error;
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        if (error) {
+            alert(error.message);
+            return;
+        }
 
         const user = data.user;
 
@@ -3054,7 +2839,7 @@ loginForm.addEventListener("submit", async function(event) {
 
         } else {
 
-            alert("Welcome back!");
+            alert("Welcome back, " + email + "!");
 
         }
 
@@ -3067,15 +2852,11 @@ await loadPlayerDashboard();
 console.log("Logged in user:", user);
         
     } catch (error) {
+
         console.error("Login error:", error);
-        if (loginMessage) {
-            loginMessage.textContent = error && error.message ? error.message : "Unable to sign in. Please check your details.";
-            loginMessage.style.color = "#ff9a9a";
-        } else {
-            alert(error && error.message ? error.message : "Unable to sign in. Please check your details.");
-        }
-    } finally {
-        if (loginButton) { loginButton.disabled = false; loginButton.textContent = "Sign In"; }
+
+        alert("Unable to login. Please try again.");
+
     }
 
 });
@@ -3443,14 +3224,17 @@ window.onclick = function(event) {
 // PLAYER ACCOUNT NAVIGATION
 // ======================================
 
-function toggleAccountMenu(event) {
-if (event) event.stopPropagation();
+function toggleAccountMenu() {
+
 const dropdown = document.getElementById("accountDropdown");
-const accountButton = document.getElementById("accountButton") || document.getElementById("avatarButton");
-if (!dropdown) return;
+const accountButton = document.getElementById("accountButton");
+
 dropdown.classList.toggle("show");
-const expanded = dropdown.classList.contains("show") ? "true" : "false";
-[document.getElementById("accountButton"), document.getElementById("avatarButton")].filter(Boolean).forEach(button => button.setAttribute("aria-expanded", expanded));
+
+accountButton.setAttribute(
+    "aria-expanded",
+    dropdown.classList.contains("show") ? "true" : "false"
+);
 
 }
 
@@ -3462,8 +3246,12 @@ const accountArea = document.getElementById("loggedInButtons");
 const dropdown = document.getElementById("accountDropdown");
 
 if (accountArea && !accountArea.contains(event.target)) {
-    if (dropdown) dropdown.classList.remove('show');
-    [document.getElementById('accountButton'), document.getElementById('avatarButton')].filter(Boolean).forEach(button => button.setAttribute('aria-expanded', 'false'));
+
+    dropdown.classList.remove("show");
+
+    document.getElementById("accountButton")
+        .setAttribute("aria-expanded", "false");
+
 }
 
 });
@@ -3592,12 +3380,9 @@ document.querySelectorAll(".dashboard-tab").forEach(function(tab) {
     tab.classList.remove("active");
 });
 
-const targetPanel = document.getElementById("panel-" + tabName);
-if (!targetPanel) { console.warn("Dashboard panel missing:", tabName); return; }
-targetPanel.classList.add("active");
-if (button) button.classList.add("active");
-const dropdown = document.getElementById("accountDropdown");
-if (dropdown) dropdown.classList.remove("show");
+document.getElementById("panel-" + tabName).classList.add("active");
+
+button.classList.add("active");
 
 if (tabName === "tournaments") {
     loadMyTournaments();
@@ -3786,7 +3571,7 @@ if (changePasswordForm) changePasswordForm.addEventListener("submit", async func
         const { error } = await supabaseClient.auth.updateUser({ password });
         if (error) throw error;
         changePasswordForm.reset();
-        message.textContent = "Password updated successfully."; message.style.color = "#8feaff";
+        message.textContent = "Password updated successfully."; message.style.color = "#9cff00";
     } catch (error) {
         message.textContent = "Could not update password: " + (error.message || "Please try again."); message.style.color = "#ff8585";
     } finally { button.disabled = false; button.textContent = "Update Password"; }
@@ -3805,7 +3590,7 @@ async function(event) {
     const message = document.getElementById("profileUpdateMessage");
 
     message.textContent = "Saving your changes...";
-    message.style.color = "#8feaff";
+    message.style.color = "#9cff00";
 
     const fullName = document.getElementById("editFullName").value.trim();
     const username = document.getElementById("editUsername").value.trim();
@@ -3833,7 +3618,7 @@ async function(event) {
     }
 
     message.textContent = "Profile updated successfully!";
-    message.style.color = "#8feaff";
+    message.style.color = "#9cff00";
 
     await loadPlayerDashboard();
 
@@ -3952,11 +3737,11 @@ async function loadMyTournaments() {
             <h4>${tournament.name || "Tournament"}</h4>
 
             <p>
-                ${tournament.game || "eFootball"}
+                🎮 ${tournament.game || "eFootball"}
             </p>
 
                         <p>
-                Entry Fee:
+                💰 Entry Fee:
                 ${
                     Number(tournament.entry_fee || 0) === 0
                         ? "FREE"
@@ -3965,12 +3750,12 @@ async function loadMyTournaments() {
             </p>
 
             <p>
-                Prize Pool:
+                🏆 Prize Pool:
                 KSh ${Number(tournament.prize_pool || 0).toLocaleString("en-KE")}
             </p>
 
             <p>
-                Payment Status:
+                💳 Payment Status:
                 <strong>
                     ${
                         Number(tournament.entry_fee || 0) === 0
@@ -3981,11 +3766,11 @@ async function loadMyTournaments() {
             </p>
 
             <p>
-                Start Date: ${tournament.start_date || "To be announced"}
+                📅 Start Date: ${tournament.start_date || "To be announced"}
             </p>
 
             <p>
-                Format: ${tournament.tournament_format || "To be announced"}
+                📋 Format: ${tournament.tournament_format || "To be announced"}
             </p>
 
             <p>
@@ -4169,31 +3954,31 @@ async function loadMyMatches() {
         card.appendChild(title);
 
         const game = document.createElement("p");
-game.textContent = (match.game_name || "Game to be announced");
+game.textContent = "🎮 " + (match.game_name || "Game to be announced");
 card.appendChild(game);
         const opponentLine = document.createElement("p");
-        opponentLine.textContent = "Opponent: " + opponentName;
+        opponentLine.textContent = "🆚 Opponent: " + opponentName;
         card.appendChild(opponentLine);
 
         const roundLine = document.createElement("p");
-        roundLine.textContent = "Round: " + (match.round_name || "To be announced");
+        roundLine.textContent = "🏆 Round: " + (match.round_name || "To be announced");
         card.appendChild(roundLine);
 
         const dateLine = document.createElement("p");
-        dateLine.textContent = "Date: " + matchDate;
+        dateLine.textContent = "📅 Date: " + matchDate;
         card.appendChild(dateLine);
 
         const statusLine = document.createElement("p");
-        statusLine.textContent = "Status: " + statusText;
+        statusLine.textContent = "📊 Status: " + statusText;
         card.appendChild(statusLine);
 
         const scoreLine = document.createElement("p");
 
         if (hasScore) {
             scoreLine.textContent =
-                "Score: " + myScore + " - " + opponentScore;
+                "⚽ Score: " + myScore + " - " + opponentScore;
         } else {
-            scoreLine.textContent = "Score: Not available yet";
+            scoreLine.textContent = "⚽ Score: Not available yet";
         }
 
         card.appendChild(scoreLine);
@@ -4202,17 +3987,6 @@ card.appendChild(game);
 
     });
 
-}
-
-// Keep unread counts synchronized in the account dropdown and dashboard.
-async function arenaUpdateNotificationCounts() {
-    try {
-        const { data: { user } } = await supabaseClient.auth.getUser();
-        if (!user) { ['dropdownNotificationCount','dashboardNotificationCount'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='0';}); return; }
-        const { count, error } = await supabaseClient.from('notifications').select('id', { count:'exact', head:true }).eq('user_id',user.id).eq('is_read',false);
-        if (error) throw error;
-        ['dropdownNotificationCount','dashboardNotificationCount'].forEach(id=>{const el=document.getElementById(id);if(el){el.textContent=String(count||0);el.style.display=(count||0)>0?'inline-flex':'none';}});
-    } catch(err) { console.warn('Unread notification count unavailable:',err.message); }
 }
 
 // ======================================
@@ -4284,12 +4058,11 @@ const { data: notifications, error } = await supabaseClient
 
         notificationList.innerHTML = `
             <div class="dashboard-list-card">
-                <h4>You're all caught up!</h4>
+                <h4>You're all caught up! 🎉</h4>
                 <p>Tournament announcements, match updates, and results will appear here.</p>
             </div>
         `;
 
-        await arenaUpdateNotificationCounts();
         return;
     }
 
@@ -4302,13 +4075,13 @@ const { data: notifications, error } = await supabaseClient
         card.className = "dashboard-list-card";
 
         if (!notification.is_read) {
-            card.style.borderLeft = "4px solid #8feaff";
+            card.style.borderLeft = "4px solid #9cff00";
         }
 
         const title = document.createElement("h4");
 
         title.textContent =
-            
+            (notification.is_read ? "🔔 " : "🟢 ") +
             notification.title;
 
         card.appendChild(title);
@@ -4364,7 +4137,7 @@ const { data: notifications, error } = await supabaseClient
 
                 notification.is_read = true;
 
-                title.textContent = notification.title;
+                title.textContent = "🔔 " + notification.title;
 
                 card.style.borderLeft = "";
 
@@ -4376,23 +4149,9 @@ const { data: notifications, error } = await supabaseClient
 
         }
 
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Delete notification";
-        deleteButton.className = "login-btn notification-delete-btn";
-        deleteButton.addEventListener("click", async function () {
-            if (!confirm("Delete this notification? This cannot be undone.")) return;
-            deleteButton.disabled = true;
-            const { error: deleteError } = await supabaseClient.from("notifications").delete().eq("id", notification.id).eq("user_id", userId);
-            if (deleteError) { alert("Could not delete notification: " + deleteError.message); deleteButton.disabled = false; return; }
-            card.remove();
-            await arenaUpdateNotificationCounts();
-            if (!notificationList.children.length) notificationList.innerHTML = `<div class="dashboard-list-card"><h4>You're all caught up!</h4><p>Tournament announcements, match updates, and results will appear here.</p></div>`;
-        });
-        card.appendChild(deleteButton);
         notificationList.appendChild(card);
 
     });
-    await arenaUpdateNotificationCounts();
 
 }
 
@@ -4402,8 +4161,6 @@ const { data: notifications, error } = await supabaseClient
 // ================= PUBLIC FIXTURES & RESULTS =================
 // Separate reads are used instead of a nested Supabase relationship so this works
 // even when the project has no declared foreign-key relationship for the join.
-let publicMatchView = 'fixtures';
-window.publicMatchView = 'fixtures';
 async function loadPublicMatches() {
     const host = document.getElementById('publicMatchList');
     if (!host) return;
@@ -4438,12 +4195,8 @@ async function loadPublicMatches() {
                 const g = String(m.game_name || m.game || tournamentMap.get(String(m.tournament_id))?.game || '').toLowerCase();
                 const wantedGame = String(game).toLowerCase();
                 const gameOk = game === 'all' || g.includes(wantedGame) || (wantedGame.includes('fc') && g.includes('ea sports fc'));
-                const matchStatus = String(m.status || 'scheduled').toLowerCase().replace(/[ -]/g,'_');
-                const isCompleted = matchStatus === 'completed' || matchStatus === 'final';
-                const activeView = window.publicMatchView || publicMatchView || 'fixtures';
-                const viewOk = activeView === 'results' ? isCompleted : !isCompleted;
-                const statusOk = activeView === 'results' ? isCompleted : (status === 'all' ? !isCompleted : matchStatus === status);
-                return gameOk && viewOk && statusOk;
+                const statusOk = status === 'all' || String(m.status || '').toLowerCase().replace(/ /g,'_') === status;
+                return gameOk && statusOk;
             });
             if (!rows.length) {
                 host.innerHTML = `<div class="fixture-empty glass-empty"><h3>${matches.length ? 'No matches match these filters' : 'No fixtures have been published yet'}</h3><p>${matches.length ? 'Try selecting another game or match status.' : 'Fixtures created by the tournament administrator will appear here.'}</p></div>`;
@@ -4564,7 +4317,7 @@ function renderArenaGlobalRanking() {
     const query=document.getElementById('rankingSearch').value.trim().toLowerCase();
     const rows=arenaCalculateGlobalRatings().filter(p=>(p.username||'').toLowerCase().includes(query)||(p.full_name||'').toLowerCase().includes(query));
     if (!rows.length) { body.innerHTML='<tr><td colspan="8" class="standings-empty">No player profiles or completed-match players were found.</td></tr>'; return; }
-    body.innerHTML=rows.map((p,i)=>`<tr class="${p.id===arenaRankings.currentUserId?'my-rank-row':''}"><td>${i+1<=3?String(i+1).padStart(2,'0'):String(i+1).padStart(2,'0')}</td><td><div class="ranking-player"><span class="rank-avatar">${arenaEsc((p.username||p.full_name||'P').slice(0,1).toUpperCase())}</span><span><strong>${arenaEsc(p.username||p.full_name||'Player')}</strong>${p.id===arenaRankings.currentUserId?'<small>YOU</small>':''}</span></div></td><td class="rating-value">${p.rating}</td><td>${p.played}</td><td>${p.wins}</td><td>${p.draws}</td><td>${p.losses}</td><td>${p.winRate}%</td></tr>`).join('');
+    body.innerHTML=rows.map((p,i)=>`<tr class="${p.id===arenaRankings.currentUserId?'my-rank-row':''}"><td>${i+1<=3?['🥇','🥈','🥉'][i]:String(i+1).padStart(2,'0')}</td><td><div class="ranking-player"><span class="rank-avatar">${arenaEsc((p.username||p.full_name||'P').slice(0,1).toUpperCase())}</span><span><strong>${arenaEsc(p.username||p.full_name||'Player')}</strong>${p.id===arenaRankings.currentUserId?'<small>YOU</small>':''}</span></div></td><td class="rating-value">${p.rating}</td><td>${p.played}</td><td>${p.wins}</td><td>${p.draws}</td><td>${p.losses}</td><td>${p.winRate}%</td></tr>`).join('');
 }
 async function renderArenaLeague() {
     const body=document.getElementById('leagueRankingBody'), msg=document.getElementById('rankingStatusMessage');
@@ -4590,7 +4343,7 @@ function renderArenaKnockout() {
     title.textContent=t.name||'Tournament Bracket';
     const q=document.getElementById('rankingSearch').value.trim().toLowerCase();
     const matches=arenaRankings.matches.filter(m=>String(m.tournament_id)===String(t.id)).filter(m=>!q||arenaPlayerName(m.player1_id).toLowerCase().includes(q)||arenaPlayerName(m.player2_id).toLowerCase().includes(q));
-    if(!matches.length){host.innerHTML='<p class="standings-empty">No fixtures have been created for this tournament yet. The administrator can create the rounds and matches; this view will display them here.</p>';msg.textContent=`${t.name}: matches awaiting update.`;return;}
+    if(!matches.length){host.innerHTML='<p class="standings-empty">No fixtures have been created for this tournament yet. The administrator can create the rounds and matches; this view will display them here.</p>';msg.textContent=`${t.name}: no matches were returned.`;return;}
     const roundKey=m=>String(m.round_name||m.match_type||'Round to be announced').trim();
     const rounds=new Map(); matches.forEach(m=>{const k=roundKey(m);if(!rounds.has(k))rounds.set(k,[]);rounds.get(k).push(m);});
     const roundOrder=name=>{const x=name.toLowerCase();if(x.includes('final')&&!x.includes('semi'))return 100;if(x.includes('semi'))return 90;if(x.includes('quarter'))return 80;if(x.includes('round of 16'))return 70;if(x.includes('round of 32'))return 60;if(x.includes('round of 64'))return 50;if(x.includes('round'))return 40;return 10;};
@@ -4635,7 +4388,7 @@ function arenaSafeText(value) {
     return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 function arenaSetMessage(id, text, ok=false) {
-    const el=document.getElementById(id); if(el){el.textContent=text;el.style.color=ok?'#8feaff':'#ff9a9a';}
+    const el=document.getElementById(id); if(el){el.textContent=text;el.style.color=ok?'#9cff00':'#ff9a9a';}
 }
 async function arenaCurrentUser() {
     const {data,error}=await supabaseClient.auth.getUser();
@@ -4664,106 +4417,20 @@ async function arenaRequireAdmin() {
     if(!(await arenaIsAdmin(user))) throw new Error('Admin permission is required for this action.');
     return user;
 }
-function arenaToLocalDateTime(value) {
-    if (!value) return '';
-    const d = new Date(value);
-    if (Number.isNaN(d.getTime())) return '';
-    const local = new Date(d.getTime() - d.getTimezoneOffset() * 60000);
-    return local.toISOString().slice(0, 16);
-}
 async function arenaAdminLoadLists() {
     await arenaRequireAdmin();
-    const {data:tournaments,error:tErr}=await supabaseClient.from('tournaments').select('id,name,game,tournament_format,entry_fee,prize_pool,start_date,status,registration_open,created_at').order('created_at',{ascending:false}).limit(200);
+    const {data:tournaments,error:tErr}=await supabaseClient.from('tournaments').select('id,name,game').order('created_at',{ascending:false}).limit(200);
     const ts=document.getElementById('adminMatchTournament');
     if(!tErr && ts) ts.innerHTML=(tournaments||[]).map(t=>`<option value="${arenaSafeText(t.id)}">${arenaSafeText(t.name)} — ${arenaSafeText(t.game||'Game')}</option>`).join('')||'<option value="">No tournaments</option>';
-    const tournamentOut=document.getElementById('adminTournamentsOutput');
-    if(tournamentOut) {
-        if(tErr) tournamentOut.innerHTML=`<p class="admin-empty">Could not load tournaments: ${arenaSafeText(tErr.message)}</p>`;
-        else tournamentOut.innerHTML=(tournaments||[]).map(t=>{
-            const isOpen=t.registration_open===true;
-            return `<article class="admin-record-row">
-                <div class="admin-record-heading"><strong>${arenaSafeText(t.name||'Untitled tournament')} · ${arenaSafeText(t.game||'Game')}</strong><span class="${isOpen?'admin-open-pill':'admin-closed-pill'}">${isOpen?'REGISTRATION OPEN':'REGISTRATION CLOSED'}</span></div>
-                <div class="admin-record-meta">${arenaSafeText(t.tournament_format||'Tournament')} · Entry: KSh ${arenaSafeText(t.entry_fee??0)} · Prize: KSh ${arenaSafeText(t.prize_pool??0)} · Starts: ${t.start_date?arenaSafeText(new Date(t.start_date).toLocaleString()):'TBA'}</div>
-                <div class="admin-record-actions"><button type="button" class="${isOpen?'secondary-btn':'primary-btn'}" data-admin-toggle-tournament="${arenaSafeText(t.id)}" data-next-open="${isOpen?'false':'true'}">${isOpen?'Close registration':'Open registration'}</button></div>
-            </article>`;
-        }).join('')||'<p class="admin-empty">No tournaments have been created yet.</p>';
-    }
-    const {data:matches,error:mErr}=await supabaseClient.from('matches').select('id,tournament_id,game_name,round_name,player1_id,player2_id,scheduled_at,player1_score,player2_score,status,created_at').order('created_at',{ascending:false}).limit(300);
+    const {data:matches,error:mErr}=await supabaseClient.from('matches').select('id,round_name,game_name,status,tournament_id').order('created_at',{ascending:false}).limit(300);
     const ms=document.getElementById('adminResultMatch');
     if(!mErr && ms) ms.innerHTML=(matches||[]).map(m=>`<option value="${arenaSafeText(m.id)}">${arenaSafeText(m.round_name||'Match')} — ${arenaSafeText(m.game_name||'Game')} [${arenaSafeText(m.status||'scheduled')}]</option>`).join('')||'<option value="">No matches</option>';
-    const matchesOut=document.getElementById('adminMatchesOutput');
-    const tournamentNames=new Map((tournaments||[]).map(t=>[String(t.id),t.name]));
-    if(matchesOut) {
-        if(mErr) matchesOut.innerHTML=`<p class="admin-empty">Could not load matches: ${arenaSafeText(mErr.message)}</p>`;
-        else matchesOut.innerHTML=(matches||[]).map(m=>`<article class="admin-record-row" data-admin-match-row="${arenaSafeText(m.id)}">
-            <div class="admin-record-heading"><strong>Match #${arenaSafeText(m.id)} · ${arenaSafeText(tournamentNames.get(String(m.tournament_id))||'Tournament')}</strong><span class="admin-record-meta">${arenaSafeText(m.status||'scheduled')}</span></div>
-            <div class="admin-record-fields">
-                <label>Game<input data-match-field="game_name" value="${arenaSafeText(m.game_name||'')}" maxlength="120"></label>
-                <label>Round<input data-match-field="round_name" value="${arenaSafeText(m.round_name||'')}" maxlength="120"></label>
-                <label>Status<select data-match-field="status">${['scheduled','in_progress','completed','cancelled'].map(st=>`<option value="${st}" ${String(m.status||'scheduled')===st?'selected':''}>${st.replace('_',' ')}</option>`).join('')}</select></label>
-                <label>Player 1 user ID<input data-match-field="player1_id" value="${arenaSafeText(m.player1_id||'')}" spellcheck="false"></label>
-                <label>Player 2 user ID<input data-match-field="player2_id" value="${arenaSafeText(m.player2_id||'')}" spellcheck="false"></label>
-                <label>Scheduled time<input data-match-field="scheduled_at" type="datetime-local" value="${arenaSafeText(arenaToLocalDateTime(m.scheduled_at))}"></label>
-                <label>Player 1 score<input data-match-field="player1_score" type="number" min="0" step="1" value="${m.player1_score===null||m.player1_score===undefined?'':arenaSafeText(m.player1_score)}"></label>
-                <label>Player 2 score<input data-match-field="player2_score" type="number" min="0" step="1" value="${m.player2_score===null||m.player2_score===undefined?'':arenaSafeText(m.player2_score)}"></label>
-            </div>
-            <div class="admin-record-actions"><button type="button" class="primary-btn" data-admin-save-match="${arenaSafeText(m.id)}">Save match / result edits</button></div>
-        </article>`).join('')||'<p class="admin-empty">No matches have been created yet.</p>';
-    }
     const {data:profiles,error:pErr}=await supabaseClient.from('profiles').select('id,username,full_name').order('username').limit(500);
     const rec=document.getElementById('adminNoticeRecipient');
     if(!pErr && rec) rec.innerHTML='<option value="all">All players</option>'+(profiles||[]).map(p=>`<option value="${arenaSafeText(p.id)}">${arenaSafeText(p.username||p.full_name||'Player')} — ${arenaSafeText(p.id)}</option>`).join('');
     const out=document.getElementById('adminPlayersOutput');
     if(out) out.innerHTML=pErr?`<p>Could not load player profiles: ${arenaSafeText(pErr.message)}</p>`:(profiles||[]).map(p=>`<div class="admin-player-row"><strong>${arenaSafeText(p.username||p.full_name||'Player')}</strong><br><small>${arenaSafeText(p.full_name||'')} · ${arenaSafeText(p.id)}</small></div>`).join('')||'<p>No player profiles found.</p>';
 }
-function arenaWireAdminManagerActions() {
-    document.getElementById('adminTournamentsOutput')?.addEventListener('click', async e => {
-        const button=e.target.closest('[data-admin-toggle-tournament]');
-        if(!button) return;
-        button.disabled=true;
-        try {
-            await arenaRequireAdmin();
-            const id=button.getAttribute('data-admin-toggle-tournament');
-            const nextOpen=button.getAttribute('data-next-open')==='true';
-            const {error}=await supabaseClient.from('tournaments').update({registration_open:nextOpen}).eq('id',id);
-            if(error) throw error;
-            await arenaAdminLoadLists();
-            await loadTournaments();
-            await initializeArenaRankings();
-        } catch(err) { alert(err.message||'Could not change registration status.'); button.disabled=false; }
-    });
-    document.getElementById('adminMatchesOutput')?.addEventListener('click', async e => {
-        const button=e.target.closest('[data-admin-save-match]');
-        if(!button) return;
-        const row=button.closest('[data-admin-match-row]');
-        if(!row) return;
-        button.disabled=true;
-        try {
-            await arenaRequireAdmin();
-            const value=field=>row.querySelector(`[data-match-field="${field}"]`)?.value ?? '';
-            const game_name=value('game_name').trim();
-            const round_name=value('round_name').trim()||'Round 1';
-            const status=value('status');
-            const player1_id=value('player1_id').trim();
-            const player2_id=value('player2_id').trim();
-            const scheduledRaw=value('scheduled_at');
-            const s1raw=value('player1_score');
-            const s2raw=value('player2_score');
-            if(!game_name) throw new Error('Game name is required.');
-            if(player1_id && player2_id && player1_id===player2_id) throw new Error('A match must have two different players.');
-            const payload={game_name,round_name,status,player1_id:player1_id||null,player2_id:player2_id||null,scheduled_at:scheduledRaw?new Date(scheduledRaw).toISOString():null,player1_score:s1raw===''?null:Number(s1raw),player2_score:s2raw===''?null:Number(s2raw)};
-            for(const key of ['player1_score','player2_score']) if(payload[key]!==null&&(!Number.isInteger(payload[key])||payload[key]<0)) throw new Error('Scores must be whole numbers of zero or greater.');
-            const {error}=await supabaseClient.from('matches').update(payload).eq('id',row.getAttribute('data-admin-match-row'));
-            if(error) throw error;
-            arenaSetMessage('adminResultMessage','Match and result changes saved.',true);
-            await arenaAdminLoadLists(); await loadPublicMatches(); await initializeArenaRankings();
-        } catch(err) { alert(err.message||'Could not save match changes.'); }
-        finally { button.disabled=false; }
-    });
-    document.getElementById('adminRefreshTournaments')?.addEventListener('click',async()=>{try{await arenaAdminLoadLists();}catch(err){alert(err.message);}});
-    document.getElementById('adminRefreshMatches')?.addEventListener('click',async()=>{try{await arenaAdminLoadLists();}catch(err){alert(err.message);}});
-}
-
 function arenaWireAdminForms() {
     const tournamentForm=document.getElementById('adminTournamentForm');
     tournamentForm?.addEventListener('submit',async e=>{
@@ -4776,9 +4443,7 @@ function arenaWireAdminForms() {
             const fee=Number(document.getElementById('adminTournamentFee').value);
             const prize=Number(document.getElementById('adminTournamentPrize').value);
             const date=document.getElementById('adminTournamentDate').value;
-            const adminUser=await arenaRequireAdmin();
-            const registrationOpen=document.getElementById('adminTournamentRegistration').value==='true';
-            const payload={name,game,tournament_format:format,entry_fee:fee,prize_pool:prize,registration_open:registrationOpen,created_by:adminUser.id};
+            const payload={name,game,tournament_format:format,entry_fee:fee,prize_pool:prize};
             if(date) payload.start_date=new Date(date).toISOString();
             const {error}=await supabaseClient.from('tournaments').insert(payload);
             if(error) throw error;
@@ -4801,25 +4466,94 @@ function arenaWireAdminForms() {
         } catch(err){arenaSetMessage('adminMatchMessage',err.message||'Could not create match.');}
         finally{b.disabled=false;}
     });
-    document.getElementById('adminResultForm')?.addEventListener('submit',async e=>{
-        e.preventDefault();const form=e.currentTarget;const b=form.querySelector('button[type=submit]');b.disabled=true;
-        try {
-            await arenaRequireAdmin();
-            const id=document.getElementById('adminResultMatch').value;
-            const s1=Number(document.getElementById('adminScore1').value),s2=Number(document.getElementById('adminScore2').value);
-            if(!id||s1<0||s2<0) throw new Error('Choose a match and enter valid scores.');
-            const {error}=await supabaseClient.from('matches').update({player1_score:s1,player2_score:s2,status:'completed'}).eq('id',id);
-            if(error) throw error;
-            arenaSetMessage('adminResultMessage','Result published.',true); form.reset(); await arenaAdminLoadLists(); await loadPublicMatches(); await initializeArenaRankings();
-            // Notify both players for the completed fixture.
-            const {data:m}=await supabaseClient.from('matches').select('player1_id,player2_id,game_name,round_name').eq('id',id).maybeSingle();
-            if(m) {
-                const notices=[m.player1_id,m.player2_id].filter(Boolean).map(user_id=>({user_id,title:'Match result published',message:`${m.game_name||'Match'} (${m.round_name||'fixture'}): ${s1} - ${s2}.`,type:'match_result',is_read:false}));
-                if(notices.length) { const n=await supabaseClient.from('notifications').insert(notices); if(n.error) console.warn('Result saved, notification failed:',n.error.message); }
+
+document.getElementById('adminResultForm')?.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    // Save the form reference before any await operations.
+    const form = e.currentTarget;
+    const b = form.querySelector('button[type=submit]');
+    b.disabled = true;
+
+    try {
+        await arenaRequireAdmin();
+
+        const id = document.getElementById('adminResultMatch').value;
+        const s1 = Number(document.getElementById('adminScore1').value);
+        const s2 = Number(document.getElementById('adminScore2').value);
+
+        if (!id || s1 < 0 || s2 < 0) {
+            throw new Error('Choose a match and enter valid scores.');
+        }
+
+        const { error } = await supabaseClient
+            .from('matches')
+            .update({
+                player1_score: s1,
+                player2_score: s2,
+                status: 'completed'
+            })
+            .eq('id', id);
+
+        if (error) throw error;
+
+        arenaSetMessage('adminResultMessage', 'Result published.', true);
+
+        // Reset the saved form reference instead of e.currentTarget.
+        form.reset();
+
+        await arenaAdminLoadLists();
+        await loadPublicMatches();
+        await initializeArenaRankings();
+
+        // Notify both players about the completed match.
+        const { data: m, error: matchError } = await supabaseClient
+            .from('matches')
+            .select('player1_id, player2_id, game_name, round_name')
+            .eq('id', id)
+            .maybeSingle();
+
+        if (matchError) {
+            console.warn('Result saved, but match details could not be loaded:', matchError.message);
+        }
+
+        if (m) {
+            const notices = [m.player1_id, m.player2_id]
+                .filter(Boolean)
+                .map(user_id => ({
+                    user_id,
+                    title: 'Match result published',
+                    message: `${m.game_name || 'Match'} (${m.round_name || 'fixture'}): ${s1} - ${s2}.`,
+                    type: 'match_result',
+                    is_read: false
+                }));
+
+            if (notices.length) {
+                const n = await supabaseClient
+                    .from('notifications')
+                    .insert(notices);
+
+                if (n.error) {
+                    console.warn(
+                        'Result saved, but notification failed:',
+                        n.error.message
+                    );
+                }
             }
-        } catch(err){arenaSetMessage('adminResultMessage',err.message||'Could not publish result.');}
-        finally{b.disabled=false;}
-    });
+        }
+
+    } catch (err) {
+        console.error('Publish result failed:', err);
+
+        arenaSetMessage(
+            'adminResultMessage',
+            err.message || 'Could not publish result.'
+        );
+
+    } finally {
+        b.disabled = false;
+    }
+});
     document.getElementById('adminNoticeForm')?.addEventListener('submit',async e=>{
         e.preventDefault();const form=e.currentTarget,b=form.querySelector('button[type=submit]');b.disabled=true;
         try {
@@ -4851,22 +4585,18 @@ function arenaWireAdminForms() {
             const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg';
             const path=`${user.id}/avatar.${ext}`;
             const {error:uploadError}=await supabaseClient.storage.from('player-avatars').upload(path,file,{upsert:true,contentType:file.type});
-            if(uploadError) {
-                if(/bucket.*not found|not found.*bucket/i.test(uploadError.message||'')) throw new Error('The player-avatars storage bucket has not been created yet. Run the supplied Campus eArena Avatar Storage SQL in Supabase SQL Editor, then try again.');
-                throw uploadError;
-            }
+            if(uploadError) throw uploadError;
             const {data}=supabaseClient.storage.from('player-avatars').getPublicUrl(path);
             const avatarUrl=data.publicUrl+(data.publicUrl.includes('?')?'&':'?')+'v='+Date.now();
             const {error:updateError}=await supabaseClient.auth.updateUser({data:{avatar_url:avatarUrl}});
             if(updateError) throw updateError;
             ['navAvatar','dropdownAvatar','dashboardAvatar'].forEach(id=>{const img=document.getElementById(id);if(img)img.src=avatarUrl;});
-            msg.textContent='Profile picture updated.';msg.style.color='#8feaff';
+            msg.textContent='Profile picture updated.';msg.style.color='#9cff00';
         } catch(err){msg.textContent=err.message||'Upload failed. Create the player-avatars bucket and storage policies first.';msg.style.color='#ff9a9a';}
     });
 }
 document.addEventListener('DOMContentLoaded',()=>{
     arenaWireAdminForms();
-    arenaWireAdminManagerActions();
     supabaseClient.auth.onAuthStateChange(()=>{setTimeout(arenaInitializeAdmin,0);});
     setTimeout(arenaInitializeAdmin,500);
 });
@@ -4881,148 +4611,6 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeArenaRankings();
 });
 
-</script>
-
-
-<script>
-(function(){
- const welcome=document.getElementById('arenaWelcome');
- const enter=document.getElementById('enterArenaButton');
- if(welcome&&enter){enter.addEventListener('click',()=>{welcome.classList.add('is-hidden');setTimeout(()=>welcome.remove(),400);});}
- // Keep the account menu anchored and its dimensions stable as tabs/content change.
- const dropdown=document.getElementById('accountDropdown');
- if(dropdown){const observer=new MutationObserver(()=>{dropdown.style.width=window.matchMedia('(max-width:760px)').matches?'min(390px, calc(100vw - 24px))':'min(92vw, 390px)';});observer.observe(dropdown,{childList:true,subtree:true,attributes:true,attributeFilter:['class','style']});window.addEventListener('resize',()=>{dropdown.style.maxHeight=window.matchMedia('(max-width:760px)').matches?'calc(100dvh - 90px)':'min(78vh, 720px)';});}
- // Admin tab visibility should be recalculated whenever the account dashboard opens.
- const oldSwitch=window.switchDashboardTab;
- if(typeof oldSwitch==='function'){window.switchDashboardTab=function(tab,button){const result=oldSwitch.apply(this,arguments);if(tab==='admin'){const panel=document.getElementById('panel-admin');if(panel)panel.style.display='block';}return result;};}
-})();
-</script>
-
-<script>
-(function(){const splash=document.getElementById('ceaSplash');if(!splash)return;const dismiss=()=>{splash.classList.add('is-hidden');window.setTimeout(()=>splash.remove(),500)};window.setTimeout(dismiss,1900);splash.addEventListener('click',dismiss,{once:true});})();
-</script>
-
-<script>
-(function(){
- const all=(sel,root=document)=>Array.from(root.querySelectorAll(sel));
- function cardFormat(card){const t=(card.innerText||card.textContent||'').toLowerCase();return /knockout|single elimination/.test(t)?'knockout':/league|round.?robin/.test(t)?'league':'unknown';}
- function applyTournamentFilter(type){all('#tournamentList > *').forEach(card=>{if(card.classList.contains('loading-message'))return;const fmt=cardFormat(card);card.style.display=(type==='all'||fmt===type||fmt==='unknown'&&type==='all')?'':'none';});all('[data-tournament-type]').forEach(b=>{const active=b.dataset.tournamentType===type;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});}
- all('[data-tournament-type]').forEach(b=>b.addEventListener('click',()=>applyTournamentFilter(b.dataset.tournamentType)));
- function applyMatchView(view){
-   const chosen = view === 'results' ? 'results' : 'fixtures';
-   window.publicMatchView = chosen;
-   try { publicMatchView = chosen; } catch(e) {}
-   all('[data-match-view]').forEach(b=>{const active=b.dataset.matchView===chosen;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
-   const status=document.getElementById('matchStatusFilter');
-   if(status){status.value=chosen==='results'?'completed':'all';status.disabled=chosen==='results';}
-   if(typeof loadPublicMatches==='function') loadPublicMatches();
- }
- all('[data-match-view]').forEach(b=>b.addEventListener('click',()=>applyMatchView(b.dataset.matchView)));
- applyMatchView('fixtures');
- // Keep the profile dropdown available above page sections and stable while its contents change.
- const dropdown=document.getElementById('accountDropdown'), accountArea=document.getElementById('loggedInButtons');
- if(dropdown&&accountArea){accountArea.style.position='relative';dropdown.style.width='320px';dropdown.style.boxSizing='border-box';dropdown.style.zIndex='99999';dropdown.addEventListener('click',e=>e.stopPropagation());}
- window.addEventListener('resize',()=>{if(dropdown){dropdown.style.width='min(390px, calc(100vw - 24px))';dropdown.style.maxHeight='min(78vh, 720px)';}});
- // Welcome colors strictly match the site's blue/cyan palette.
- const welcome=document.getElementById('arenaWelcome');if(welcome){welcome.querySelectorAll('.welcome-kicker,.welcome-orbit').forEach(el=>{el.style.color='#8feaff';el.style.borderColor='rgba(143,234,255,.13)';});}
-})();
-</script>
-
-
-<style id="cea-final-layout-fixes">
-/* Final interaction fixes: horizontal selectors, stable account menu, responsive mobile layout */
-.section-mode-switch.tournament-type-switch,.section-mode-switch.fixture-view-switch{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:stretch;gap:12px;width:100%;overflow-x:auto;overflow-y:hidden;padding:4px 2px 12px;scrollbar-width:thin}
-.section-mode-switch.tournament-type-switch>.ranking-mode,.section-mode-switch.fixture-view-switch>.ranking-mode{display:flex!important;flex:1 0 0!important;min-width:0!important;width:auto!important;min-height:76px;height:auto!important;flex-shrink:0!important;align-items:center;justify-content:flex-start;gap:12px;text-align:left;white-space:normal!important}
-.section-mode-switch.tournament-type-switch>.ranking-mode{flex-basis:calc((100% - 24px)/3)!important}
-.section-mode-switch.fixture-view-switch>.ranking-mode{flex-basis:calc((100% - 12px)/2)!important}
-.section-mode-switch .ranking-mode span{display:flex;flex-direction:column;gap:5px;min-width:0}
-.section-mode-switch .ranking-mode small{white-space:normal;line-height:1.35}
-.account-dropdown{position:absolute;right:0;top:calc(100% + 10px);width:320px!important;min-width:320px!important;max-width:calc(100vw - 24px)!important;height:auto!important;max-height:min(78vh,620px)!important;overflow-y:auto!important;overflow-x:hidden!important;box-sizing:border-box!important;transform:none!important;z-index:999999!important}
-.account-dropdown.show{display:block!important;animation:none!important}
-.account-dropdown button{width:100%;min-height:42px!important;height:auto!important;min-width:0!important;flex:0 0 auto!important;white-space:normal!important;overflow-wrap:anywhere;text-overflow:clip;line-height:1.3;padding:11px 14px;transform:none!important}
-@media(max-width:760px){.section-mode-switch.tournament-type-switch>.ranking-mode{flex:0 0 230px!important;flex-basis:230px!important;min-width:230px!important}.section-mode-switch.fixture-view-switch>.ranking-mode{flex:0 0 230px!important;flex-basis:230px!important;min-width:230px!important}.account-dropdown{position:fixed!important;top:74px!important;right:12px!important;left:auto!important;width:min(320px,calc(100vw - 24px))!important;min-width:0!important;max-width:calc(100vw - 24px)!important;max-height:calc(100dvh - 90px)!important}.navbar .nav-account{position:static!important}}
-@media(max-width:380px){.section-mode-switch .ranking-mode b{font-size:11px}.section-mode-switch .ranking-mode small{font-size:10px}}
-/* Blue/cyan-only welcome palette */
-#arenaWelcome .welcome-kicker,#arenaWelcome .welcome-orbit,#ceaSplash .splash-kicker{color:#8feaff!important;border-color:rgba(143,234,255,.25)!important}
-</style>
-<script id="cea-final-account-fixes">
-(function(){
- const dropdown=document.getElementById('accountDropdown');
- const accountArea=document.getElementById('loggedInButtons');
- const setExpanded=value=>[document.getElementById('accountButton'),document.getElementById('avatarButton')].filter(Boolean).forEach(b=>b.setAttribute('aria-expanded',String(value)));
- window.toggleAccountMenu=function(event){if(event)event.stopPropagation();if(!dropdown)return;dropdown.classList.toggle('show');setExpanded(dropdown.classList.contains('show'));};
- if(dropdown){dropdown.addEventListener('click',e=>e.stopPropagation());const observer=new MutationObserver(()=>{dropdown.style.boxSizing='border-box';});observer.observe(dropdown,{attributes:true,attributeFilter:['class']});}
- document.addEventListener('click',function(event){if(accountArea&&!accountArea.contains(event.target)){if(dropdown)dropdown.classList.remove('show');setExpanded(false);}});
- window.addEventListener('resize',()=>{if(dropdown){dropdown.style.maxHeight=window.matchMedia('(max-width:760px)').matches?'calc(100dvh - 90px)':'min(78vh,620px)';}});
-})();
-</script>
-
-
-<style>
-/* Campus eArena auth controls and phone layout at normal 100% zoom */
-.ea-password-field{position:relative;display:flex;align-items:center;width:100%;min-width:0}
-.ea-password-field input{width:100%;min-width:0;padding-right:52px!important;box-sizing:border-box}
-.ea-eye-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:38px;height:38px;border:0;border-radius:9px;background:transparent;color:#9ceaff;font-size:19px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.ea-eye-btn:focus-visible,.ea-forgot-btn:focus-visible{outline:2px solid #6ee7ff;outline-offset:2px}
-.ea-forgot-btn{display:block;width:100%;margin-top:12px;background:transparent;border:0;color:#9ceaff;text-decoration:underline;padding:10px;cursor:pointer;font:inherit}
-#loginMessage{font-size:13px;line-height:1.5;overflow-wrap:anywhere;margin-top:8px}
-#loginForm,#registerForm{width:100%;min-width:0}
-#loginForm input,#registerForm input,#registerForm select{box-sizing:border-box;max-width:100%;min-width:0}
-@media(max-width:600px){
- .modal{padding:12px!important;align-items:center!important}
- .modal-content{width:100%!important;max-width:440px!important;max-height:calc(100dvh - 24px)!important;overflow-y:auto!important;box-sizing:border-box!important;padding:clamp(18px,5vw,26px)!important;margin:0 auto!important}
- .modal-content h2{font-size:clamp(21px,5.5vw,28px)!important;line-height:1.2}
- .modal-content p{overflow-wrap:anywhere}
- #loginForm .primary-btn,#registerForm .primary-btn{width:100%;min-height:46px}
- #loginForm input,#registerForm input,#registerForm select{font-size:16px!important;min-height:44px}
- body{overflow-x:hidden}
- img,video,iframe,canvas{max-width:100%}
-}
-@media(max-width:360px){.modal-content{padding:16px!important}.ea-eye-btn{right:4px}}
-</style>
-<script>
-// Accessible password visibility controls.
-document.querySelectorAll('[data-toggle-password]').forEach(function(button){
-  button.addEventListener('click', function(){
-    const input = document.getElementById(button.getAttribute('data-toggle-password'));
-    if (!input) return;
-    const show = input.type === 'password';
-    input.type = show ? 'text' : 'password';
-    button.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
-    button.setAttribute('title', show ? 'Hide password' : 'Show password');
-    button.textContent = show ? '◉' : '◎';
-  });
-});
-
-// Password recovery starts with username or phone and sends a recovery link to the account email.
-document.getElementById('forgotPasswordButton')?.addEventListener('click', async function(){
-  const identifier = document.getElementById('loginIdentifier').value.trim();
-  const message = document.getElementById('loginMessage');
-  if (!identifier) {
-    message.textContent = 'Enter your username or mobile number first.';
-    message.style.color = '#ffcc80';
-    document.getElementById('loginIdentifier').focus();
-    return;
-  }
-  this.disabled = true;
-  message.textContent = 'Requesting password reset…';
-  message.style.color = '#9ceaff';
-  try {
-    const { data: resolvedEmail, error: lookupError } = await supabaseClient.rpc('lookup_login_email', { p_identifier: identifier });
-    if (lookupError) throw new Error('Login lookup is not configured yet. Run the Campus eArena login SQL setup first.');
-    const email = typeof resolvedEmail === 'string' ? resolvedEmail : (Array.isArray(resolvedEmail) ? resolvedEmail[0] : null);
-    if (!email) throw new Error('No account was found for that username or mobile number.');
-    const redirectTo = window.location.origin + window.location.pathname;
-    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo });
-    if (error) throw error;
-    message.textContent = 'If the account is eligible, a password-reset link has been sent to its registered email address. Check Inbox and Spam.';
-    message.style.color = '#86efac';
-  } catch (error) {
-    console.error('Password recovery error:', error);
-    message.textContent = error.message || 'Could not request password reset. Please try again.';
-    message.style.color = '#ff9a9a';
-  } finally { this.disabled = false; }
-});
 </script>
 
 </body>
