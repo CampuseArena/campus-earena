@@ -59,7 +59,22 @@
 .account-dropdown button{min-height:42px!important;height:42px!important;flex:0 0 42px;white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;transform:none!important}
 @media(max-width:760px){.section-mode-switch.tournament-type-switch,.section-mode-switch.fixture-view-switch{flex-wrap:nowrap!important;overflow-x:auto}.section-mode-switch.tournament-type-switch>.ranking-mode{flex:0 0 230px;min-width:230px}.section-mode-switch.fixture-view-switch>.ranking-mode{flex:0 0 230px;min-width:230px}.account-dropdown{width:min(320px,calc(100vw - 24px))!important;min-width:0!important;right:12px!important;top:74px!important;max-height:calc(100dvh - 90px)!important}}
 
+
+/* Campus eArena mobile authentication visibility fix */
+@media (max-width: 600px) {
+  #navButtons { display:flex !important; flex: 0 0 auto !important; width:auto !important; max-width:100%; margin-left:auto !important; }
+  #loggedOutButtons { display:flex !important; flex-direction:row !important; align-items:center; justify-content:flex-end; gap:6px; flex-wrap:nowrap; }
+  #loggedOutButtons .login-btn { display:inline-flex !important; visibility:visible !important; opacity:1 !important; align-items:center; justify-content:center; white-space:nowrap; padding:9px 10px !important; font-size:12px !important; min-height:38px; }
+  #loggedOutButtons .join-btn { display:inline-flex !important; visibility:visible !important; opacity:1 !important; align-items:center; justify-content:center; white-space:nowrap; padding:9px 10px !important; font-size:11px !important; min-height:38px; }
+  .navbar { gap:8px !important; }
+}
+@media (max-width: 380px) {
+  #loggedOutButtons { gap:4px; }
+  #loggedOutButtons .login-btn { padding:8px 7px !important; font-size:11px !important; }
+  #loggedOutButtons .join-btn { padding:8px 7px !important; font-size:10px !important; }
+}
 </style>
+
 </head>
 
 <body>
